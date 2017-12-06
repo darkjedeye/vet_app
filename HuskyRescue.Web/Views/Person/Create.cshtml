@@ -1,0 +1,23 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.Person
+@{
+	ViewBag.Title = "Create Person";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Person", FormMethod.Post, new { @class = "custom" }))
+{
+	<div class="row">
+		<div class="large-12 columns text-center">
+			<h3>Create New Person</h3>
+		</div>
+	</div>
+
+	@Html.EditorForModel()
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Save" id="btnSubmit" class="large button expand" />
+		</div>
+	</div>
+}

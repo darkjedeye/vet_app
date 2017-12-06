@@ -1,0 +1,34 @@
+@using System.Web.Optimization;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+	@Styles.Render("~/bundles/securitygaurd/css")
+	@Scripts.Render("~/bundles/securitygaurd/js")
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div class="inner">
+                <div class="title">
+                    Security Guard Dashboard <span>powered by <a href="http://www.gizmobeach.com" target="_blank">Gizmo Beach</a></span></div>
+                <div id="menu">
+                    Welcome <strong>@User.Identity.Name</strong>! [ @using (Html.BeginForm("LogOff", "SGAccount", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                                                                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                                                    } ] | 
+                    <a href="https://github.com/kahanu/Security-Guard" target="_blank">Help</a>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="inner">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

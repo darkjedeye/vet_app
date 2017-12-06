@@ -1,0 +1,73 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions
+@model HuskyRescue.Core.ViewModel.Entity.ApplicantOwnedAnimal
+
+<div class="panel">
+	@Html.HiddenFor(x => x.Delete, new { @class = "mark-for-delete" })
+	<div class="row" id="adoptersanimalinfo">
+		<div class="large-3 small-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.Name, new { @class = "AppAnimalName" })
+			</div>
+		</div>
+		<div class="large-2 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.Breed)
+			</div>
+		</div>
+		<div class="large-2 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationDropDownListFor(model => model.Gender, Model.GenderList, "--gender--")
+			</div>
+		</div>
+		<div class="large-2 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AgeMonths)
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.OwnershipLengthMonths)
+			</div>
+		</div>
+	</div>
+	<div class="row" id="trAltered">
+		<div class="large-3 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.IsAltered, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsAltered, null, true)
+			</div>
+		</div>
+		<div class="large-9 columns input-wrapper" id="tdAppAnimalAlteredReasonLabel">
+			@Html.FoundationTextBoxFor(model => model.AlteredReason, new { @class = "AlteredReason"})
+		</div>
+	</div>
+	<div class="row" id="trHwpv">
+		<div class="large-3 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.IsHwPrevention, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsHwPrevention, null, true)
+			</div>
+		</div>
+		<div class="large-9 columns input-wrapper" id="tdAppAnimalHwPreventionReasonLabel">
+			@Html.FoundationTextBoxFor(model => model.HwPreventionReason, new { @class = "HwPreventionReason"})
+		</div>
+	</div>
+	<div class="row" id="trVacc">
+		<div class="large-3 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.IsFullyVaccinated, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsFullyVaccinated, null, true)
+			</div>
+		</div>
+		<div class="large-9 columns input-wrapper" id="tdAppAnimalVaccinatedReasonLabel">
+			@Html.FoundationTextBoxFor(model => model.FullyVaccinatedReason, new { @class = "FullyVaccinatedReason"})
+		</div>
+	</div>
+	<div class="row" id="trOwned">
+		<div class="large-3 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.IsStillOwned, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsStillOwned, null, true)
+			</div>
+		</div>
+		<div class="large-9 columns input-wrapper" id="tdIsStillOwnedReasonLabel">
+			@Html.FoundationTextBoxFor(model => model.IsStillOwnedReason, new { @class = "IsStillOwnedReason"})
+		</div>
+	</div>
+</div>

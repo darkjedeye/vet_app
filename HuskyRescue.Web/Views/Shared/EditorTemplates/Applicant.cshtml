@@ -1,0 +1,542 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.Applicant
+
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.PersonID)
+@Html.HiddenFor(model => model.ApplicantType)
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		@* set name based on the type of application *@
+		@if (Model.ApplicantType.Equals("A"))
+  {
+			<h3>Adoption Application</h3>
+  }
+  else
+  {
+			<h3>Foster Application</h3>
+  }
+	</div>
+</div>
+
+<fieldset>
+	<legend>Applicant Information</legend>
+	<div class="row">
+		<div class="large-3 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppNameFirst)
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppNameLast)
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppSpouseNameFirst)
+			</div>
+		</div>
+		<div class="large-3 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppSpouseNameLast)
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-4 small-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppAddressStreet1)
+			</div>
+		</div>
+		<div class="large-3 small-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppAddressCity)
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationDropDownListFor(model => model.AppAddressStateId, Model.AppAddressStateList, "--select state--")
+			</div>
+		</div>
+		<div class="large-2 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppAddressZIP, new { @class = "zip" })
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppHomePhone, new { @class = "phoneNumber" })
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppCellPhone, new { @class = "phoneNumber" })
+			</div>
+		</div>
+		<div class="large-4 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppEmail, new { @class = "email" })
+			</div>
+		</div>
+		<div class="large-2 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppDateBirth, new { @Value = Model.AppDateBirth != null ? Model.AppDateBirth.Value.ToString("d") : string.Empty, @class = "datepicker2" })
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppEmployer)
+			</div>
+		</div>
+	</div>
+	@*This is for Adoption Applicants only*@
+	@if (Model.ApplicantType.Equals("A"))
+ {
+		<div class="row">
+			<div class="large-4 small-12 columns">
+				<div class="input-wrapper">
+					@Html.FoundationRadioButtonFor(model => model.IsAllAdultsAgreedOnAdoption, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsAllAdultsAgreedOnAdoption, null, true)
+				</div>
+			</div>
+			<div class="large-8 small-12 columns">
+				<div id="divIsAllAdultsAgreedOnAdoptionReason" class="input-wrapper">
+					@Html.FoundationTextAreaFor(model => model.IsAllAdultsAgreedOnAdoptionReason, true)
+				</div>
+			</div>
+		</div>
+ }
+	<div id="trstudent" class="row">
+		<div class="large-4 small-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.IsAppOrSpouseStudent, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsAppOrSpouseStudent, null, true)
+			</div>
+		</div>
+		<div class="large-3 small-12 columns">
+			<div id="divStudentTypeList" class="input-wrapper">
+				@Html.FoundationDropDownListFor(model => model.StudentTypeID, Model.StudentTypeList, "--student type--")
+			</div>
+		</div>
+		<div class="large-5"></div>
+	</div>
+	<div class="row">
+		<div class="large-4 small-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.IsAppTravelFrequent, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.IsAppTravelFrequent, null, true)
+			</div>
+		</div>
+		<div class="large-8 small-12 columns">
+			<div id="divAppTravelFrequency" class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.AppTravelFrequency, new { @style = "width:300px"})
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-4 small-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.FilterAppIsCatOwner, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.FilterAppIsCatOwner, null, true)
+			</div>
+		</div>
+		<div class="large-8 small-12 columns">
+			<div id="divFilterAppCatsOwnedCount" class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.FilterAppCatsOwnedCount, new { @style = "width:300px"})
+			</div>
+		</div>
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend>Residence Information</legend>
+	<div class="row">
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationDropDownListFor(model => model.ResidenceOwnershipID, Model.ResidenceOwnershipList, "--owner type--")
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationDropDownListFor(model => model.ResidenceTypeID, Model.ResidenceTypeList, "--home type--")
+			</div>
+		</div>
+		<div class="large-3 small-7 columns">
+			<div id="divResidenceIsPetAllowed">
+				<div class="checkRequiredWrapper input-wrapper">
+					@Html.FoundationRadioButtonFor(model => model.ResidenceIsPetAllowed, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.ResidenceIsPetAllowed, null, true)
+				</div>
+			</div>
+		</div>
+		<div class="large-3 small-5 columns">
+			<div id="divResidenceIsPetSizeWeightLimit">
+				<div class="checkRequiredWrapper input-wrapper">
+					@Html.FoundationRadioButtonFor(model => model.ResidenceIsPetSizeWeightLimit, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.ResidenceIsPetSizeWeightLimit, null, true)
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-3 small-6 columns">
+			<div id="divResidencePetDeposit1">
+				<div class="checkRequiredWrapper input-wrapper">
+					@Html.FoundationRadioButtonFor(model => model.ResidenceIsPetDepositRequired, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.ResidenceIsPetDepositRequired, null, true)
+				</div>
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div id="divResidencePetDeposit2" class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.ResidencePetDepositAmount, new { @class = "amount"})
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div id="divResidencePetDeposit3" class="input-wrapper">
+				@Html.FoundationDropDownListFor(model => model.ResidencePetDepositCoverageID, Model.ResidencePetDepositCoverageList, "--coverage--")
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div id="divResidencePetDeposit4">
+				<div class="checkRequiredWrapper input-wrapper">
+					@Html.FoundationRadioButtonFor(model => model.ResidenceIsPetDepositPaid, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.ResidenceIsPetDepositPaid, null, true)
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div id="divResidenceLandlord">
+			<div class="large-5 small-12 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextBoxFor(model => model.ResidenceLandlordName)
+				</div>
+			</div>
+			<div class="large-4 small-6 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextBoxFor(model => model.ResidenceLandlordNumber, new { @class = "phoneNumber"})
+				</div>
+			</div>
+			<div class="large-3 small-6 columns"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-5 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.ResidenceLengthOfResidence)
+			</div>
+		</div>
+		<div class="large-4 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.ResidenceNumberOccupants)
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.ResidenceAgesOfChildren)
+			</div>
+		</div>
+		<div class="small-6 columns"></div>
+	</div>
+	<div id="trfence" class="row">
+		<div class="large-3 small-12 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.ResidenceIsYardFenced, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.ResidenceIsYardFenced, null, true)
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div id="divResidenceFenceType" class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.ResidenceFenceType, new { @style = "width:100px" })
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div id="divResidenceFenceHeight" class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.ResidenceFenceHeight, new { @style = "width:100px" })
+			</div>
+		</div>
+		<div class="large-3 columns"></div>
+	</div>
+</fieldset>
+<fieldset>
+	<legend>Husky Information</legend>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextAreaFor(model => model.FilterAppDogsInterestedIn, false)
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextAreaFor(model => model.WhatIfMovingPetPlacement, false)
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextAreaFor(model => model.WhatIfTravelPetPlacement, false)
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextAreaFor(model => model.FilterAppTraitsDesired, false)
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.FilterAppIsAwareHuskyAttributes, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.FilterAppIsAwareHuskyAttributes, null, true)
+			</div>
+		</div>
+		<div class="large-6 columns"></div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns">
+			<div class="checkRequiredWrapper input-wrapper">
+				@Html.FoundationRadioButtonFor(model => model.FilterAppHasOwnedHuskyBefore, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false)}, model => model.FilterAppHasOwnedHuskyBefore, null, true)
+			</div>
+		</div>
+		<div class="large-6 columns"></div>
+	</div>
+	<div class="row">
+		<div class="large-4 small-12 columns">
+			<label>How long will this pet be left home alone during the day?</label>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.PetLeftAloneHours)
+			</div>
+		</div>
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				@Html.FoundationTextBoxFor(model => model.PetLeftAloneDays)
+			</div>
+		</div>
+		<div class="large-1 columns"></div>
+	</div>
+	<div class="panel">
+		<div class="row">
+			<div class="large-3 columns">
+				@Html.LabelFor(model => model.PetKeptLocationInOutDoors)
+			</div>
+			<div class="large-9 columns">
+				<ul class="small-block-grid-2 large-block-grid-4">
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationInOutDoorsTotallyInside)
+						@Html.LabelFor(model => model.IsPetKeptLocationInOutDoorsTotallyInside, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationInOutDoorsMostlyInside)
+						@Html.LabelFor(model => model.IsPetKeptLocationInOutDoorsMostlyInside, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationInOutDoorsTotallyOutside)
+						@Html.LabelFor(model => model.IsPetKeptLocationInOutDoorsTotallyOutside, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationInOutDoorMostlyOutsides)
+						@Html.LabelFor(model => model.IsPetKeptLocationInOutDoorMostlyOutsides, new { @class = "checkboxinlineblock" })
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				@Html.FoundationTextAreaFor(model => model.PetKeptLocationInOutDoorsExplain, true)
+			</div>
+		</div>
+	</div>
+	<div class="panel">
+		<div class="row">
+			<div class="large-3 columns">
+				@Html.LabelFor(model => model.PetKeptLocationAloneRestriction)
+			</div>
+			<div class="large-9 columns">
+				<ul class="small-block-grid-2 large-block-grid-4">
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionLooseIndoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionLooseIndoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionLooseInBackyard)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionLooseInBackyard, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionTiedUpOutdoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionTiedUpOutdoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionOutsideKennel)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionOutsideKennel, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionGarage)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionGarage, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionCratedIndoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionCratedIndoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionCratedOutdoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionCratedOutdoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionBasement)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionBasement, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationAloneRestrictionOther)
+						@Html.LabelFor(model => model.IsPetKeptLocationAloneRestrictionOther, new { @class = "checkboxinlineblock" })
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				@Html.FoundationTextAreaFor(model => model.PetKeptLocationAloneRestrictionExplain, true)
+			</div>
+		</div>
+	</div>
+	<div class="panel">
+		<div class="row">
+			<div class="large-3 column">
+				@Html.LabelFor(model => model.PetKeptLocationSleepingRestriction)
+			</div>
+			<div class="large-9 column">
+				<ul class="small-block-grid-2 large-block-grid-4">
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionLooseIndoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionLooseIndoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionLooseInBackyard)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionLooseInBackyard, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionTiedUpOutdoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionTiedUpOutdoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionOutsideKennel)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionOutsideKennel, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionGarage)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionGarage, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionCratedIndoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionCratedIndoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionCratedOutdoors)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionCratedOutdoors, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionBasement)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionBasement, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionInBedOwner)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionInBedOwner, new { @class = "checkboxinlineblock" })
+					</li>
+					<li>
+						@Html.CheckBoxFor(model => model.IsPetKeptLocationSleepingRestrictionOther)
+						@Html.LabelFor(model => model.IsPetKeptLocationSleepingRestrictionOther, new { @class = "checkboxinlineblock" })
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				@Html.FoundationTextAreaFor(model => model.PetKeptLocationSleepingRestrictionExplain, true)
+			</div>
+		</div>
+	</div>
+	@if (Model.ApplicantType.Equals("A"))
+ {
+		<div class="panel">
+			<div class="row">
+				<div class="large-3 columns left">
+					@Html.LabelFor(model => model.PetAdoptionReason)
+				</div>
+				<div class="large-9 columns">
+					<ul class="small-block-grid-2 large-block-grid-4">
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonHousePet)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonHousePet, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonGuardDog)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonGuardDog, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonWatchDog)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonWatchDog, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonGift)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonGift, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonCompanionChild)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonCompanionChild, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonCompanionPet)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonCompanionPet, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonJoggingPartner)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonJoggingPartner, new { @class = "checkboxinlineblock" })
+						</li>
+						<li>
+							@Html.CheckBoxFor(model => model.IsPetAdoptionReasonOther)
+							@Html.LabelFor(model => model.IsPetAdoptionReasonOther, new { @class = "checkboxinlineblock" })
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					@Html.FoundationTextAreaFor(model => model.PetAdoptionReasonExplain, true)
+				</div>
+			</div>
+		</div>
+ }
+</fieldset>
+
+<fieldset>
+	<legend>Veterinarian Information</legend>
+	@Html.HiddenFor(model => model.ApplicantVeterinariansID)
+	@Html.EditorFor(model => model.ApplicantVeterinarian, "ApplicantVeterinarian")
+</fieldset>
+
+<fieldset>
+	<legend>Applicant's Pets</legend>
+	<p>
+		Please list <strong>every</strong> animal you’ve owned in the last 5 years (dogs, cats, etc.) - do not reptiles, birds, etc.
+	</p>
+	<div id="divAnimals">
+		@for (var a = 0; a < Model.ApplicantOwnedAnimal.Count; a++)
+  {
+	@Html.EditorFor(model => Model.ApplicantOwnedAnimal[a])
+  }
+	</div>
+</fieldset>
+
+<div id="modalVetReq" class="reveal-modal" data-reveal>
+	<h2>Veterinarian Information</h2>
+	<p>You must provide all of your vet's information.</p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="modalLandLordReq" class="reveal-modal" data-reveal>
+	<h2>Land Lord Information</h2>
+	<p>You must provide all of your land lord's information.</p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>

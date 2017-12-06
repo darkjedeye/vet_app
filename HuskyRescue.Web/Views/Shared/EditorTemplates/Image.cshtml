@@ -1,0 +1,5 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Image
+
+<span class="image"><a href="@Model.FileFullPath" rel="lightbox[husky]" title="@Model.Description">
+	<img src="@Model.ThumbnailFullPath" /></a></span>

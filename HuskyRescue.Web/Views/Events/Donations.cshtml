@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AnimalRescue.Web.ViewModel.Entity_DonationItemsListViewModel>
+@{
+	ViewBag.Title = "Donations";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="main-container">
+	<div class="container1">
+		<div id="header1">
+			<p id="tagline1">
+				<strong>Donations</strong>
+			</p>
+		</div>
+		<p>
+			@Html.ActionLink("New", "DonationAdd")
+		</p>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Cost Per Item</th>
+				<th>Donation Type</th>
+				<th>Event Purpose</th>
+				<th>Has Been Received?</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+   {
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Quantity)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CostPerItem)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DonationItemType)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.EventPurposeID)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.HasBeenReceived)
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+						@Html.ActionLink("Details", "Details", new { id = item.ID }) |
+						@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+					</td>
+				</tr>
+   }
+		</table>
+
+	</div>
+</div>

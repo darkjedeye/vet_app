@@ -1,0 +1,9 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.HuskyPageGenHtml
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+
+@Html.TextAreaFor(model => model.resultHTML, new { @rows = "20" }) 

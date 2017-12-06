@@ -1,0 +1,74 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.EventSponsor
+
+<fieldset>
+	<legend>Event_SponsorViewModel</legend>
+
+	@Html.HiddenFor(model => model.Id)
+	<table>
+		<colgroup>
+			<col style="width: 200px" />
+			<col style="width: 50px" />
+			<col style="width: 200px" />
+			<col style="width: 450px" />
+		</colgroup>
+		<tr>
+			<td class="editor-label">@Html.LabelFor(model => model.DateAdded)</td>
+			<td class="editor-field" colspan="3">@Html.TextBoxFor(model => model.DateAdded)
+				@Html.ValidationMessageFor(model => model.DateAdded)</td>
+		</tr>
+		<tr>
+			<td class="editor-label">@Html.LabelFor(model => model.EventList)</td>
+			<td class="editor-field" colspan="3">@Html.DropDownListFor(model => model.EventId, Model.EventList)
+				@Html.ValidationMessageFor(model => model.EventList)</td>
+		</tr>
+		<tr id="trSponsor">
+			<td class="editor-label">Business or Organization Sponsoring</td>
+			<td class="editor-field" colspan="3">@Html.DropDownListFor(model => model.PersonId, Model.People)
+				@Html.DropDownListFor(model => model.BusinessId, Model.Businesses)</td>
+		</tr>
+		<tr>
+			<td class="editor-label">@Html.LabelFor(model => model.IsSponsoring)</td>
+			<td class="editor-field">@Html.EditorFor(model => model.IsSponsoring)
+				@Html.ValidationMessageFor(model => model.IsSponsoring)</td>
+			<td class="editor-label" id="tdSponsorshipLevelLabel">@Html.LabelFor(model => model.SponsorshipLevelsSelectList)</td>
+			<td class="editor-field" id="tdSponsorshipLevelField">@Html.DropDownListFor(model => model.SponsorshipLevel, Model.SponsorshipLevelsSelectList)
+				@Html.ValidationMessageFor(model => model.SponsorshipLevel)</td>
+		</tr>
+		<tr id="trHasLogoBeenReceived">
+			<td class="editor-label">@Html.LabelFor(model => model.HasLogoBeenReceived)</td>
+			<td class="editor-field" colspan="3">@Html.EditorFor(model => model.HasLogoBeenReceived)
+				@Html.ValidationMessageFor(model => model.HasLogoBeenReceived)</td>
+		</tr>
+		<tr id="trIsSingageComplete">
+			<td class="editor-label">@Html.LabelFor(model => model.IsSingageComplete)</td>
+			<td class="editor-field" colspan="3">@Html.EditorFor(model => model.IsSingageComplete)
+				@Html.ValidationMessageFor(model => model.IsSingageComplete)</td>
+		</tr>
+
+		<tr>
+			<td class="editor-label">@Html.LabelFor(model => model.IsDonating)</td>
+			<td class="editor-field">@Html.EditorFor(model => model.IsDonating)
+				@Html.ValidationMessageFor(model => model.IsDonating)</td>
+			<td class="editor-label" id="tdDonationAmountLabel">@Html.LabelFor(model => model.DonationAmount)</td>
+			<td class="editor-field" id="tdDonationAmountField">
+				@Html.TextBoxFor(model => model.DonationAmount, new { @class = "amount", @style = "width:75px" })
+				@Html.ValidationMessageFor(model => model.DonationAmount)</td>
+		</tr>
+		<tr id="trIsDonationRecieved">
+			<td class="editor-label">@Html.LabelFor(model => model.IsDonationReceived)</td>
+			<td class="editor-field" colspan="3">@Html.EditorFor(model => model.IsDonationReceived)
+				@Html.ValidationMessageFor(model => model.IsDonationReceived)</td>
+		</tr>
+
+		<tr>
+			<td class="editor-label">@Html.LabelFor(model => model.Comments)</td>
+			<td class="editor-field" colspan="3">@Html.EditorFor(model => model.Comments)
+				@Html.ValidationMessageFor(model => model.Comments)</td>
+		</tr>
+	</table>
+@Html.ValidationSummary(true)
+	<p>
+		<input type="submit" value="Create" />
+	</p>
+</fieldset>

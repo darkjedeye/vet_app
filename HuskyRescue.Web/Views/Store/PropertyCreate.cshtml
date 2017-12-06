@@ -1,0 +1,21 @@
+﻿@model HuskyRescue.Core.ViewModel.Store.ProductProperty
+
+@{
+	ViewBag.Title = "PropertyCreate";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<h2>Product Property</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.Partial("_Property", Model, ViewData)
+
+	<p>
+		<input type="submit" value="Create" />
+	</p>
+}
+
+<div>
+	@Html.ActionLink("Back to List", "PropertyIndex")
+</div>

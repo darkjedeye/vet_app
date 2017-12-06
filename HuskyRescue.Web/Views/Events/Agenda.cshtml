@@ -1,0 +1,10 @@
+﻿@{
+	List<string> items = TempData["reminders"] as List<string>;
+}
+
+
+@foreach (string s in items)
+{
+	@Html.Raw(s)
+	<br />
+}

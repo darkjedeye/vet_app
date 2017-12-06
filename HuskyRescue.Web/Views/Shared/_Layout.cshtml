@@ -1,0 +1,278 @@
+﻿@using HuskyRescue.Core.Service;
+@{
+	var rescueCountHandler = new RescueCountHandler();
+	var numberOfHuskies = rescueCountHandler.Count;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" title="Texas Husky Rescue" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="msvalidate.01" content="ED35CB695E274A7F1171266C486D5D52" />
+	<meta property="og:url" content="https://texashuskyrescue.org/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Texas Husky Rescue, Inc" />
+	<meta property="og:site_name" content="Texas Husky Rescue, Inc" />
+	<meta property="og:description" content="To rescue, rehabilitate and find qualified loving homes for neglected, abused and unwanted Huskies throughout Texas and beyond.  To educate the public about responsible pet ownership and the special qualities of the Siberian Husky Breed. " />
+	<meta property="og:image" content="https://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider800.jpg" />
+	<meta property="og:image" content="https://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider6.jpg" />
+	<meta property="og:image" content="https://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider7.jpg" />
+	<meta property="og:image" content="https://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider8.jpg" />
+	<meta property="og:image" content="https://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider3a.png" />
+	<meta property="og:updated_time" content="1333666310" />
+	<link rel="image_src" href="https://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider800.jpg" />
+	<title>Texas Husky Rescue, Inc</title>
+
+	@Styles.Render("~/bundles/main/css")
+	@Scripts.Render("~/bundles/top/js")
+</head>
+	<body>
+		<div class="off-canvas-wrap">
+			<div class="inner-wrap">
+				<!-- Title -->
+				<div class="row">
+					<div class="large-12 columns">
+						<header>
+							<h1>
+								@Html.ActionLink("Texas Husky Rescue", "Index", "Home")
+							</h1>
+							<p id="rescueCount">
+								@numberOfHuskies huskies saved and counting
+							</p>
+						</header>
+					</div>
+				</div>
+				<!-- Contact & Site Search -->
+				<div class="row">
+					<div class="large-6 columns">
+						<div id="contactheader">
+							<p>
+								Tel: 877 TX HUSKY | Mail: <a href="mailto:contact@texashuskyrescue.org">contact@texashuskyrescue.org</a>
+							</p>
+							<p>
+								PO Box 118891 Carrollton, TX 75011
+							</p>
+						</div>
+					</div>
+					<div class="large-4 large-offset-2 columns">
+						<div id="cse-search-form" style="width: 100%;">Loading</div>
+					</div>
+				</div>
+				<!-- Nav -->
+				<div class="row show-for-large-up">
+					<div class="large-12 columns">
+						<div class="nav-wrapper">
+							<div id="nav-container" class="contain-to-grid ">
+								<nav id="nav" class="top-bar" data-topbar>
+									<ul class="title-area">
+										<!-- Title Area -->
+										<li class="name">
+											<h1><a href="#"></a></h1>
+										</li>
+										<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+										<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+									</ul>
+									<section class="top-bar-section">
+										<ul class="left">
+											<li class="divider"></li>
+											<li class="active has-dropdown">
+												@Html.ActionLink("Home", "Index", "Home")
+												<ul class="dropdown">
+													@Html.Partial("_LoginPartial")
+													@if (Request.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("Admin") || User.IsInRole("Staff") || User.IsInRole("Volunteer")))
+													{
+														<li>@Html.ActionLink("Internal Site", "Index", "Dashboard")</li>
+													}
+												</ul>
+											</li>
+											<li class="divider"></li>
+											<li class="has-dropdown">
+												@Html.ActionLink("Huskies", "Huskies", new { controller = "Adoption" })
+												<ul class="dropdown">
+													<li>@Html.ActionLink("Available Huskies", "Huskies", "Adoption")</li>
+													<li>@Html.ActionLink("Adoption Process", "Process", "Adoption")</li>
+													<li>@Html.ActionLink("Application", "Apply", "Adoption")</li>
+												</ul>
+											</li>
+											<li class="divider"></li>
+											<li class="has-dropdown">
+												@Html.ActionLink("Helping Us", "Volunteer", new { controller = "Info" })
+												<ul class="dropdown">
+													<li>@Html.ActionLink("Volunteer", "Volunteer", "Info")</li>
+													<li>@Html.ActionLink("Foster", "Fostering", "Info")</li>
+													<li>@Html.ActionLink("Foster Application", "Apply", "Foster")</li>
+													<li>@Html.ActionLink("Donate", "Index", "Donation")</li>
+													<li>@Html.ActionLink("Donate Form", "Donate", "Donation")</li>
+												</ul>
+											</li>
+											<li class="divider"></li>
+											<li class="has-dropdown">
+												@Html.ActionLink("Events", "Calendar", new { controller = "Events" })
+												<ul class="dropdown">
+													<li><a href="/RoughRiders">RoughRiders</a></li>
+													<li><a href="/Golf">Golf Tournament</a></li>
+													@*<li><a href="/RollsRoyce">Rolls-Royce Raffle</a></li>*@
+												</ul>
+											</li>
+											<li class="divider"></li>
+											<li>
+												@Html.ActionLink("Sponsors", "Sponsors", "Info")
+											</li>
+											<li class="divider"></li>
+											<li class="has-dropdown">
+												@Html.ActionLink("Resources", "ResourcesAboutHuskies", "Info")
+												<ul class="dropdown">
+													<li>@Html.ActionLink("About Huskies", "ResourcesAboutHuskies", "Info")</li>
+													<li>@Html.ActionLink("Other Husky Rescues", "ResourcesHuskyRescues", "Info")</li>
+												</ul>
+											</li>
+											<li class="divider"></li>
+											<li class="has-dropdown">
+												@Html.ActionLink("About Us", "AboutUs", "Info")
+												<ul class="dropdown">
+													<li>@Html.ActionLink("Policies", "Policies", "Info")</li>
+												</ul>
+											</li>
+											<li class="divider"></li>
+											<li>@Html.ActionLink("Contact", "Contact", "Info")</li>
+											<li class="divider"></li>
+											<li>@Html.ActionLink("Store", "Index", "Store")</li>
+											<li class="divider"></li>
+										</ul>
+									</section>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				<nav class="tab-bar hide-for-large-up">
+					<a class="left-off-canvas-toggle menu-icon" href="#"><span>Menu</span></a>
+				</nav>
+				<aside class="left-off-canvas-menu">
+					<ul class="off-canvas-list">
+						<li><label>Texas Husky Rescue</label></li>
+						<li>@Html.ActionLink("Home", "Index", "Home")</li>
+						@Html.Partial("_LoginPartial")
+						@if (Request.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("Admin") || User.IsInRole("Staff") || User.IsInRole("Volunteer")))
+						{
+							<li>@Html.ActionLink("Internal Site", "Index", "Dashboard")</li>
+						}
+
+						<li><label>Huskies</label></li>
+						<li>@Html.ActionLink("Available Huskies", "Huskies", "Adoption")</li>
+						<li>@Html.ActionLink("Adoption Process", "Process", "Adoption")</li>
+						<li>@Html.ActionLink("Application", "Apply", "Adoption")</li>
+						
+						<li><label>Helping TXHR</label></li>
+						<li>@Html.ActionLink("Volunteer", "Volunteer", "Info")</li>
+						<li>@Html.ActionLink("Foster", "Fostering", "Info")</li>
+						<li>@Html.ActionLink("Foster Application", "Apply", "Foster")</li>
+						<li>@Html.ActionLink("Donate", "Index", "Donation")</li>
+						@*<li>@Html.ActionLink("Donate Form", "Donate", "Donation")</li>*@
+						
+						<li><label>Events</label></li>
+						<li>@Html.ActionLink("Event Calendar", "Calendar", new { controller = "Events" })</li>
+						<li><a href="/RoughRiders">RoughRiders</a></li>
+						<li><a href="/Golf">Golf Tournament</a></li>
+						@*<li><a href="/RollsRoyce">Rolls-Royce Raffle</a></li>*@
+						
+						<li><label>TXHR Sponsors</label></li>
+						<li>@Html.ActionLink("View Sponsors", "Sponsors", "Info")</li>
+						
+						<li><label>Husky Resources</label></li>
+						<li>@Html.ActionLink("About Huskies", "ResourcesAboutHuskies", "Info")</li>
+						<li>@Html.ActionLink("Other Husky Rescues", "ResourcesHuskyRescues", "Info")</li>
+
+						<li><label>About TXHR</label></li>
+						<li>@Html.ActionLink("About Us", "AboutUs", "Info")</li>
+						<li>@Html.ActionLink("Policies", "Policies", "Info")</li>
+						<li>@Html.ActionLink("Contact Us", "Contact", "Info")</li>
+
+						<li><label>Get Husky</label></li>
+						<li>@Html.ActionLink("Online Store", "Index", "Store")</li>
+					</ul>
+				</aside>
+				<a class="exit-off-canvas"></a>
+
+				<!-- Main Wrapper -->
+				<div class="main-wrapper">
+					<div class="row">
+						<div class="large-12 columns">
+							@RenderBody()
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer Wrapper -->
+				<div id="footer-wrapper" class="wrapper">
+					<div class="row">
+						<div class="large-4 small-6 small-centered columns text-center">
+							<ul class="small-block-grid-1 large-block-grid-1">
+								<li>&copy; 2009 - All Rights Reserved
+									<br />
+									<a href="http://www.texashuskyrescue.org/">www.texashuskyrescue.org</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-4 small-6 small-centered columns">
+							<ul class="small-block-grid-6 large-block-grid-6">
+								<li>
+									<a href="https://twitter.com/txhuskyrescue">
+										<img src="@Url.Content("~/Content/images/Controllers/_Shared/Social/twitter.png")" title="Twitter" /></a>
+								</li>
+								<li>
+									<a href="https://www.facebook.com/TexasHuskyRescue">
+										<img src="@Url.Content("~/Content/images/Controllers/_Shared/Social/facebook.png")" title="Facebook" /></a>
+								</li>
+								<li>
+									<a href="http://pinterest.com/txhuskyrescue">
+										<img src="@Url.Content("~/Content/images/Controllers/_Shared/Social/pinterest.png")" title="Pinterest" /></a>
+								</li>
+								<li>
+									<a href="https://plus.google.com/112816597978592196487/posts">
+										<img src="@Url.Content("~/Content/images/Controllers/_Shared/Social/googleplus.png")" title="Google+" /></a>
+								</li>
+								<li>
+									<a href="https://www.youtube.com/user/TxHR/videos">
+										<img src="@Url.Content("~/Content/images/Controllers/_Shared/Social/youtube.png")" title="YouTube" /></a>
+								</li>
+								<li>
+									<a href="mailto:contact@texashuskyrescue.org">
+										<img src="@Url.Content("~/Content/images/Controllers/_Shared/Social/email.png")" title="Email us" /></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		@* Used to pass token into AJAX requests - script below inserts this into header of request *@
+		<form id="__AjaxAntiForgeryForm" action="#" method="post">@Html.AntiForgeryToken()</form>
+
+		@Scripts.Render("~/bundles/main/js")
+		@RenderSection("JavaScript", required: false)
+		<script type="text/javascript">
+			App.init();
+		</script>
+		<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">
+			google.load('search', '1', { language: 'en', style: google.loader.themes.MINIMALIST });
+			google.setOnLoadCallback(function () {
+				var customSearchOptions = {}; var customSearchControl = new google.search.CustomSearchControl('007518821069765088978:h_a_a6l3kfu', customSearchOptions);
+				customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+				var options = new google.search.DrawOptions();
+				options.enableSearchboxOnly("https://www.google.com/cse?cx=007518821069765088978:h_a_a6l3kfu");
+				customSearchControl.draw('cse-search-form', options);
+				$("#gsc-i-id1").css("background", "");
+			}, true);
+		</script>
+	</body>
+
+</html>

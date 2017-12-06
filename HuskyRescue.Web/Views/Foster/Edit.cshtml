@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+@using (Html.BeginForm("Apply", "Foster", FormMethod.Post, new { @id = "formApp", @class="custom" }))
+{
+	@Html.EditorFor(model => model)
+	@Html.ValidationSummary(true)
+
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Submit" id="btnSubmit" class="large button expand"/>
+		</div>
+	</div>
+}

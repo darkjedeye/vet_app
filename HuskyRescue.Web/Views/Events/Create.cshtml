@@ -1,0 +1,26 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.Event
+@{
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+@section JavaScript{
+	@Scripts.Render("~/bundles/events/create/js")
+}
+
+@using (Html.BeginForm("Create", "Events", FormMethod.Post, new { @id = "formEvent", @class = "custom", @data_abide = "" }))
+{
+	<div class="row">
+		<div class="large-12 columns">
+			@Html.Partial("EventPartial", Model)
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Save" id="btnSubmit" class="button" />
+		</div>
+	</div>
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

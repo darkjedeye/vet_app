@@ -1,0 +1,97 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity_DonationItemsViewModel
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#DateReceived').mask('99/99/9999');
+
+		$("#DateReceived").datepicker({
+			changeMonth: true,
+			changeYear: true
+		});
+
+		$('#DateReceived').blur(function () {
+			if (($(this).val() != null && $(this).size() < 1) &&
+				($(this).val().length > 10 ||
+				($(this).val().length < 6 && $(this).size() > 0) ||
+				 $(this).val().split('/').length == 1)) {
+				alert('Please enter a date in the valid format: MM/DD/YYYY');
+			}
+		});
+	});
+</script>
+
+<div>
+	@Html.HiddenFor(model => model.EventID)
+	@Html.HiddenFor(model => model.PersonID)
+	@Html.HiddenFor(model => model.OrganisationID)
+</div>
+<table>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.Name)
+		</td>
+		<td class="editor-field">
+			@Html.EditorFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.Quantity)
+		</td>
+		<td class="editor-field">
+			@Html.EditorFor(model => model.Quantity)
+			@Html.ValidationMessageFor(model => model.Quantity)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.CostPerItem)
+		</td>
+		<td class="editor-field">
+			@Html.EditorFor(model => model.CostPerItem, new { @class = "money" })
+			@Html.ValidationMessageFor(model => model.CostPerItem)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.DonatedItemTypeList)
+		</td>
+		<td class="editor-field">
+			@Html.DropDownListFor(model => model.DonationItemType, Model.DonatedItemTypeList)
+			@Html.ValidationMessageFor(model => model.DonatedItemTypeList)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.EventPurposeTypeList)
+		</td>
+		<td class="editor-field">
+			@Html.DropDownListFor(model => model.EventPurposeID, Model.EventPurposeTypeList)
+			@Html.ValidationMessageFor(model => model.EventPurposeTypeList)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.HasBeenReceived)
+		</td>
+		<td class="editor-field">
+			@Html.EditorFor(model => model.HasBeenReceived)
+			@Html.ValidationMessageFor(model => model.HasBeenReceived)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.DateReceived)
+		</td>
+		<td class="editor-field">
+			@Html.EditorFor(model => model.DateReceived)
+			@Html.ValidationMessageFor(model => model.DateReceived)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" value="Create" />
+		</td>
+	</tr>
+</table>
+

@@ -1,0 +1,194 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.EventRegistration
+
+@{
+	int i = 0;
+	int j = 0;
+	string errorMessage = string.Empty;
+	if (ViewData["ErrorMessage"] != null)
+	{
+
+	}
+}
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.EventId)
+@Html.HiddenFor(model => model.Event.TicketPrice)
+
+@if (ViewData["ErrorMessage"] != null)
+{
+	<div class="row">
+		<div class="col-md-12">
+			<div data-alert class="alert-box alert round">@ViewData["ErrorMessage"].ToString()</div>
+		</div>
+	</div>
+}
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption"><i class="icon-reorder"></i>Rolls-Royce Raffle Purchase Form</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+			<a href="#portlet-config" data-toggle="modal" class="config"></a>
+			<a href="javascript:;" class="reload"></a>
+			<a href="javascript:;" class="remove"></a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- BEGIN FORM-->
+		@using (Html.BeginForm("RaffleTickets", "Events", FormMethod.Post, new { @id = "braintree-payment-form", @class = "horizontal-form" }))
+  {
+			<div class="form-body">
+				<h3 class="form-section">Person Info</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.HiddenFor(model => model.Attendees[i].Id)
+							@Html.HiddenFor(model => model.Attendees[i].PersonId)
+							@Html.HiddenFor(model => model.Attendees[i].Person.ID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.BaseID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.ID)
+
+							@Html.LabelFor(model => model.Attendees[i].Person.FirstName, "First Name", new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.Attendees[i].Person.FirstName, new { @class = "form-control", placeholder = "First Name" })
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.FirstName)
+						</div>
+					</div>
+					<!--/span-->
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.LabelFor(model => model.Attendees[i].Person.LastName, "Last Name", new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.Attendees[i].Person.LastName, new { @class = "form-control", placeholder = "Last Name" })
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.LastName)
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].ID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].EntityID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Type)
+							@Html.LabelFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Address, new { @class = "control-label" })
+							<div class="input-group">
+								<span class="input-group-addon"><i class="icon-envelope"></i></span>
+								@Html.TextBoxFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Address, new { @class = "form-control", placeholder = "Email Address", @type = "email" })
+							</div>
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Address)
+
+						</div>
+					</div>
+					<!--/span-->
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].ID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].EntityID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Type)
+							@Html.LabelFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Number, new { @class = "control-label" })
+							<div class="input-group">
+								<span class="input-group-addon"><i class="icon-phone"></i></span>
+								@Html.TextBoxFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Number, new { @class = "form-control phoneNumber2" })
+							</div>
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Number)
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+				<h3 class="form-section">Address</h3>
+				<div class="row">
+					<div class="col-md-12 ">
+						<div class="form-group">
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.Addresses[j].ID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.Addresses[j].EntityID)
+							@Html.HiddenFor(model => model.Attendees[i].Person.Base.Addresses[j].Type)
+							@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].Street, "Street Address", new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.Attendees[i].Person.Base.Addresses[j].Street, new { @class = "form-control", placeholder = "Street Address" })
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.Base.Addresses[j].Street)
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].City, new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.Attendees[i].Person.Base.Addresses[j].City, new { @class = "form-control", placeholder = "City Name" })
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.Base.Addresses[j].City)
+						</div>
+					</div>
+					<!--/span-->
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].AddressStateList, new { @class = "control-label" })
+							@Html.DropDownListFor(model => model.Attendees[i].Person.Base.Addresses[j].StateID, Model.Attendees[i].Person.Base.Addresses[j].AddressStateList, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.Base.Addresses[j].AddressStateList)
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].ZIP, new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.Attendees[i].Person.Base.Addresses[j].ZIP, new { @class = "zip form-control", placeholder = "Postal" })
+							@Html.ValidationMessageFor(model => model.Attendees[i].Person.Base.Addresses[j].ZIP)
+						</div>
+					</div>
+					<!--/span-->
+					<div class="col-md-6">
+						<div class="form-group">
+							&nbsp;
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<h3 class="form-section">Raffle Info</h3>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							@Html.LabelFor(model => model.TicketsBought, new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.TicketsBought, new { @class = "form-control", placeholder = "" })
+							@Html.ValidationMessageFor(model => model.TicketsBought)
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							@Html.LabelFor(model => model.AmountPaid, new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.AmountPaid, new { @class = "form-control", @readonly = "" })
+						</div>
+					</div>
+					<!--/span-->
+					<div class="col-md-3">
+						<div class="form-group">
+							@Html.LabelFor(model => model.DateSubmitted, new { @class = "control-label" })
+							@Html.TextBoxFor(model => model.DateSubmitted, new { @class = "form-control", @readonly = "" })
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							&nbsp;
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+			</div>
+			@*<div class="form-actions left">
+				<button type="button" class="btn default">Cancel</button>
+				<button type="submit" class="btn blue"><i class="icon-ok"></i>Save</button>
+			</div>*@
+  }
+		<!-- END FORM-->
+	</div>
+</div>
+
+@section JavaScript{
+	@Scripts.Render("~/bundles/events/raffle/js")
+}

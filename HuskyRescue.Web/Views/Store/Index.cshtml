@@ -1,0 +1,313 @@
+﻿@model HuskyRescue.Core.ViewModel.Store.Store
+
+@section JavaScript
+{
+	@Scripts.Render("~/Scripts/Controllers/Store/Store.js")
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>The Texas Husky Rescue Online Store</h3>
+	</div>
+</div>
+@*<div class="row">
+	<div class="large-12 columns">
+		<table width="100%">
+			<tbody>
+				<tr>
+					<td id="cartTotals">
+						<!-- add link to modal window showing cart detail -->
+						@Html.DisplayFor(model => model.Cart.CartItems.Count) items, $@Html.DisplayFor(model => model.Cart.TotalPrice)
+					</td>
+				</tr>
+				@foreach (var product in Model.Products)
+	{
+					<tr>
+						<td style="width: 150px">
+							@Html.Hidden(product.Id.ToString())
+							<ul class="clearing-thumbs clearing-feature" data-clearing>
+								@if (!string.IsNullOrEmpty(product.ImageLink1))
+		{
+									<li class="clearing-featured-img"><a class="th" href="@product.ImageLink1"><img src="@product.ImageLink1" alt="" style="max-width: 150px"/></a></li>
+		}
+								@if (!string.IsNullOrEmpty(product.ImageLink2))
+		{
+									<li><a class="th" href="@product.ImageLink2"><img src="@product.ImageLink2" alt="" style="max-width: 150px"/></a></li>
+		}
+								@if (!string.IsNullOrEmpty(product.ImageLink3))
+		{
+									<li><a class="th" href="@product.ImageLink3"><img src="@product.ImageLink3" alt="" style="max-width: 150px"/></a></li>
+		}
+							</ul>
+						</td>
+						<td style="width: 75px" class="left">
+							$@Html.DisplayFor(p => product.SellPrice)
+						</td>
+						<td class="left">
+							<ul class="no-bullet">
+								@if (!string.IsNullOrEmpty(product.Name))
+		{
+									<li>@Html.DisplayTextFor(p => product.Name)</li>
+		}
+								@if (!string.IsNullOrEmpty(product.Size))
+		{
+									<li>@Html.DisplayTextFor(p => product.Size)</li>
+		}
+								@if (!string.IsNullOrEmpty(product.Description))
+		{
+									<li>@Html.DisplayTextFor(p => product.Description)</li>
+		}
+							</ul>
+						</td>
+						<td style="width: 100px" class="right">
+							<!-- add link to modal window showing cart detail -->
+							<a href="#" class="cartAddButton" data-reveal-id="storeCartModal">Add to Cart</a>
+						</td>
+					</tr>
+	}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div id="storeCartModal" class="reveal-modal large" data-reveal>
+	@using (Html.BeginForm("Purchase", "Store", FormMethod.Post, new { @id = "formStorePurchase", @class = "custom", @data_abide = "" }))
+ {
+		<div class="section-container auto" data-section>
+			@Html.HiddenFor(model => model.Cart.Id)
+			@Html.HiddenFor(model => model.Order.Id)
+			@Html.HiddenFor(model => model.Order.TotalDue)
+			@Html.HiddenFor(model => model.Order.ShippingTotal)
+			@Html.HiddenFor(model => model.Order.CartTotal)
+			<section class="active">
+				<p class="title" data-section-title><a href="#" id="modalPanelCart">Shopping Cart</a></p>
+				<div class="content" data-section-content>
+					<div class="row">
+						<div class="large-12 columns">
+							<table>
+								<thead>
+									<tr>
+										<th width="250px">Item</th>
+										<th width="100px">Quantity</th>
+										<th width="100px">Price</th>
+										<th><!--Action--></th>
+									</tr>
+								</thead>
+								<tbody id="tableItems">
+									@foreach (var item in Model.Cart.CartItems)
+		 {
+			 Html.RenderPartial("_CartItem", item);
+		 }
+								</tbody>
+							</table>
+							<script type="text/x-jsrender" id="itemTemplate">
+							@Html.CollectionItemJQueryTemplate("_CartItem", new HuskyRescue.Core.ViewModel.Store.CartItem())
+						</script>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<a href="#" class="button small" id="buttonCloseCartModal">Add More Items</a>
+							<a href="#" class="button small" id="buttonNavCartToInfo">Next</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title><a href="#" id="modalPanelInfoPayment">Your Info & Payment</a></p>
+				<div class="content" data-section-content>
+					<div class="row">
+						<div class="large-12 columns">
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="input-wrapper">
+										@Html.LabelFor(model => model.Order.FirstName)
+										@Html.TextBoxFor(model => model.Order.FirstName, new { placeholder = "First Name", @required = "" })
+										<small class="error">required</small>
+									</div>
+								</div>
+								<div class="large-6 columns">
+									<div class="input-wrapper">
+										@Html.LabelFor(model => model.Order.LastName)
+										@Html.TextBoxFor(model => model.Order.LastName, new { placeholder = "Last Name", @required = "" })
+										<small class="error">required</small>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-6 columns">
+									<div class="input-wrapper">
+										@Html.LabelFor(model => model.Order.Email)
+										@Html.TextBoxFor(model => model.Order.Email, new { placeholder = "Email", @required = "", @type = "email" })
+										<small class="error">required</small>
+									</div>
+								</div>
+								<div class="large-6 columns">
+									<div class="input-wrapper">
+										@Html.LabelFor(model => model.Order.Phone)
+										@Html.TextBoxFor(model => model.Order.Phone, new { placeholder = "234-567-8910", @required = "", @type = "email", pattern = @"^\d{3}-\d{3}-\d{4}$" })
+										<small class="error">required</small>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 columns">
+									<fieldset>
+										<legend>Shipping Address</legend>
+										<div class="row">
+											<div class="large-12 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.ShippingAddress.StreetAddress)
+													@Html.TextBoxFor(model => model.Order.ShippingAddress.StreetAddress, new { placeholder = "123 Main St, Apt 100", @required = "", @type = "text" })
+													<small class="error">required</small>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="large-6 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.ShippingAddress.City)
+													@Html.TextBoxFor(model => model.Order.ShippingAddress.City, new { placeholder = "Nowhere", @required = "", @type = "text" })
+													<small class="error">required</small>
+												</div>
+											</div>
+											<div class="large-3 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.ShippingAddress.State)
+													@Html.DropDownListFor(model => model.Order.ShippingAddress.State, Model.Order.ShippingAddress.AddressStateList, " -- Select a State -- ", new { @required = "" })
+													<small class="error">required</small>
+												</div>
+											</div>
+											<div class="large-3 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.ShippingAddress.PostalCode)
+													@Html.TextBoxFor(model => model.Order.ShippingAddress.PostalCode, new { placeholder = "12345", @required = "", pattern = @"^\d{5}$" })
+													<small class="error">required</small>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-2 small-4 columns">
+									<label for="CopyShippingAddress" class=""> Copy shipping address to billing address?</label>
+								</div>
+								<div class="large-10 small-8 columns">
+									<input type="checkbox" id="CopyShippingAddress" class="left inline no-custom">
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 columns">
+									<fieldset>
+										<legend>Billing Address</legend>
+										<div class="row">
+											<div class="large-12 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.BillingAddress.StreetAddress)
+													@Html.TextBoxFor(model => model.Order.BillingAddress.StreetAddress, new { placeholder = "123 Main St, Apt 100", @required = "", @type = "text" })
+													<small class="error">required</small>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="large-6 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.BillingAddress.City)
+													@Html.TextBoxFor(model => model.Order.BillingAddress.City, new { placeholder = "Nowhere", @required = "", @type = "text" })
+													<small class="error">required</small>
+												</div>
+											</div>
+											<div class="large-3 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.BillingAddress.State)
+													@Html.DropDownListFor(model => model.Order.BillingAddress.State, Model.Order.BillingAddress.AddressStateList, " -- Select a State -- ", new { @required = "" })
+													<small class="error">required</small>
+												</div>
+											</div>
+											<div class="large-3 columns">
+												<div class="input-wrapper">
+													@Html.LabelFor(model => model.Order.BillingAddress.PostalCode)
+													@Html.TextBoxFor(model => model.Order.BillingAddress.PostalCode, new { placeholder = "12345", @required = "", pattern = @"^\d{5}$" })
+													<small class="error">required</small>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 columns">
+									<a href="#" class="button small" id="buttonNavInfoToOrder">Next</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<p class="title" data-section-title><a href="#" id="modalPanelPlaceOrder">Place Order</a></p>
+				<div class="content" data-section-content>
+					<div class="row">
+						<div class="large-12 columns">
+							<div class="row">
+								<div class="large-12 small-12 columns">
+									<span>All shipping is via USPS and the cheapest method possible. You will receive an email confirming your order and another email when your order has been shipped.</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 small-12 columns" id="cartTotalAtPayment">
+									
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 small-12 columns">
+									<br />
+									<ul class="inline-list">
+										<li>
+											<div class="input-wrapper">
+												<label for="PayInfo_CreditCardNumber">Card Number</label>
+												<input autocomplete="off" class="CreditCardNumber" data-encrypted-name="number" id="PayInfo_CreditCardNumber" type="text" value="" required pattern="card">
+												<small class="error">required</small>
+											</div>
+										</li>
+										<li>
+											<div class="input-wrapper">
+												<label for="PayInfo_CreditCardCVV">CVV</label>
+												<input autocomplete="off" class="CreditCardCVV" data-encrypted-name="cvv" id="PayInfo_CreditCardCVV" type="text" value="" required pattern="cvv">
+												<small class="error">required</small>
+											</div>
+										</li>
+										<li>
+											<div class="input-wrapper">
+												<label for="PayInfo_CreditCardExpireMonth">MM</label>
+												<input autocomplete="off" class="CreditCardExpireMonth" data-encrypted-name="month" id="PayInfo_CreditCardExpireMonth" type="text" pattern="number" value="" required>
+												<small class="error">required</small>
+											</div>
+										</li>
+										<li>
+											<div class="input-wrapper">
+												<label for="PayInfo_CreditCardExpireYear">YYYY</label>
+												<input autocomplete="off" class="CreditCardExpireYear" data-encrypted-name="year" id="PayInfo_CreditCardExpireYear" type="text" pattern="number" value="" required>
+												<small class="error">required</small>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-12 small-12 columns" id="recaptcha">
+									@Html.Recaptcha(theme: Recaptcha.Web.RecaptchaTheme.Clean)
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<a href="#" class="button success small" id="buttonPlaceOrder">Place Order</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+ }
+</div>*@

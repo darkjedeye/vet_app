@@ -1,0 +1,17 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+}
+<fieldset>
+	<legend>Error</legend>
+	<div class="main-container">
+		<div class="container1">
+		HttpError.cshtml<br />
+			<h2>@Html.Encode(ViewData["Title"])</h2>  
+			<p>@Html.Encode(ViewData["Description"])</p>  
+  
+			<div>  
+			Return to the @Html.ActionLink("home page", "Index", "Home")
+			</div>
+		</div>
+	</div>
+</fieldset>

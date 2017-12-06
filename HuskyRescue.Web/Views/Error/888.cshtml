@@ -1,0 +1,39 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+	ViewBag.Title = "Error";
+}
+<fieldset>
+	<legend>Error</legend>
+	<div class="main-container">
+		<div class="container1">
+			<h2>
+				888 - Sorry, an error occurred while processing your request. This has been logged and emailed to the site administrator.
+			</h2>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.InnerException.Message)
+			@if (Request.RequestContext.HttpContext.AllErrors != null)
+   {
+				<h3>
+					HttpContext Errors</h3>
+	   foreach (Exception exHttp in Request.RequestContext.HttpContext.AllErrors)
+	   {
+				<h4>
+					Http Exception Message</h4>
+				@exHttp.Message
+				<h4>
+					Source</h4>
+				@exHttp.Source
+				<h4>
+					TargetSite</h4>
+				@exHttp.TargetSite
+				<h4>
+					Stack Trace</h4>
+				@exHttp.StackTrace
+				<h4>
+					HelpLink</h4>
+				@exHttp.HelpLink
+				<br />
+	   }
+   }
+		</div>
+	</div>
+</fieldset>

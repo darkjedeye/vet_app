@@ -1,0 +1,110 @@
+﻿@{
+	ViewBag.Title = "RaffleGallery";
+}
+@Styles.Render("/bundles/events/raffle/css")
+@Styles.Render("/bundles/camera/css")
+
+@section JavaScript
+{
+	@Scripts.Render("/bundles/camera/js")
+	@Scripts.Render("~/bundles/events/raffle/js")
+<script>
+	jQuery(function () {
+		jQuery('#camera_wrap_2').camera({
+			height: '500px',
+			loader: 'bar',
+			pagination: false,
+			thumbnails: true
+		});
+	});
+</script>
+}
+
+@Html.Partial("RaffleMenu")
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_Rolls_royce_small.png" data-src="/Content/Images/Controllers/Events/Raffle/Rolls_royce_small.png"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_1IMG_1252.jpg" data-src="/Content/Images/Controllers/Events/Raffle/1IMG_1252.jpg"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1260.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1260.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1262.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1262.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1271.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1271.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1274.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1274.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1289.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1289.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1291.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1291.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1270.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1270.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1268.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1268.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_IMG_1267.JPG" data-src="/Content/Images/Controllers/Events/Raffle/IMG_1267.JPG"></div>
+			<div data-thumb="/Content/Images/Controllers/Events/Raffle/tn_1IMG_1284.jpg" data-src="/Content/Images/Controllers/Events/Raffle/1IMG_1284.jpg"></div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<p>
+			The following is a partial list of the work that was done on the car from 2007 to 2009. Since completion, the car has been driven around 125 miles. 
+			Here is your chance to win a Rolls Royce Silver Shadow that is not dry rotted and that has benefited from a hugely expensive rebuild with new Wilton Wool carpets bound in leather as original in the cockpit and trunk. The interior wood has all been expensively and professionally refinished by Madera Concepts and is about as fine as they get. Avon tires are fitted. 
+		</p>
+		<div style="padding-left: 20px;">
+			<ul>
+				<li>Remove and rebuild the front and rear brake calipers with stainless steel pistons</li>
+				<li>Replace the brake pads</li>
+				<li>Replace all hydraulic hoses (12)</li>
+				<li>Replace the brake distribution valves</li>
+				<li>Replace the front and rear brake rotors</li>
+				<li>Replace the front and rear wheel bearings</li>
+				<li>Remove, clean and reseal the brake fluid reservoir</li>
+				<li>Rebuild and charge the brake accumulators</li>
+				<li>Rebuild the brake pumps</li>
+				<li>Replace the front and rear shock absorbers</li>
+				<li>Replace all front suspension bushings</li>
+				<li>Replace upper and lower ball joints</li>
+				<li>Rebuild tie rods</li>
+				<li>Rebuild the power steering box</li>
+				<li>Remove and rebuild the carburetors</li>
+				<li>Replace the valve cover gaskets</li>
+				<li>Replace the radiator hoses</li>
+				<li>Remove and rebuild the rear suspension rams and height control valves</li>
+				<li>Rebuild the automatic transmission</li>
+				<li>Replace torque converter</li>
+				<li>Replace engine mounts</li>
+				<li>Replace fan belts</li>
+				<li>Remove and service rear axles and replace the boots</li>
+				<li>Recore the radiator with a high efficiency core</li>
+				<li>Rebuild the water pump</li>
+				<li>Rebuild the steering column u-joint</li>
+				<li>Replace the front sway bar bushings and links</li>
+				<li>Replace all engine vacuum lines</li>
+				<li>Replace thermostat</li>
+				<li>Replace valve cover gaskets</li>
+				<li>Replace ignition cables, spark plugs, cap and rotor</li>
+				<li>Install new Alpine stereo and speakers</li>
+				<li>Replace electric aerial</li>
+				<li>Service electric door locks and windows</li>
+				<li>Remove all gauges</li>
+				<li>Remove glasses and clean</li>
+				<li>Make and fit new a/c hoses</li>
+				<li>Replace a/c compressor with a new unit ( not rebuilt)</li>
+				<li>Replace dryer and expansion valve</li>
+				<li>Replace horns, Replace seat belts</li>
+				<li>Replace engine oil and filter</li>
+				<li>Replace differential oil</li>
+				<li>Replace wiper arms and wiper blades</li>
+				<li>Replace two door lock solenoids</li>
+				<li>Remove dash top and clean all wiring connections</li>
+				<li>Replace wiper module, fit automatic transmission cooler and hoses</li>
+				<li>Replace cockpit carpets with original Wilton carpets bound in leather</li>
+				<li>Replace door carpet sections with Wilton wool carpets bound in leather</li>
+				<li>Replace trunk carpets with original Wilton wool bound in leather</li>
+				<li>Remove all cockpit wood and have refinished</li>
+				<li>Remove back glass and replace with new factory glass</li>
+				<li>Replace front turn lenses</li>
+				<li>Replace trunk seal</li>
+				<li>Replace bonnet buffers</li>
+			</ul>
+		</div>
+	</div>
+</div>
+

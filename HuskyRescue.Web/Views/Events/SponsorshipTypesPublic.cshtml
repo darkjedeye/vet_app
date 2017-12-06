@@ -1,0 +1,112 @@
+﻿@model IEnumerable<AnimalRescue.Web.ViewModel.Event_SponsorshipLevelTypesViewModel>
+@{
+	ViewBag.Title = "SponsorshipTypesPublic";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+@Styles.Render("~/bundles/action/sponsorshiptype/css")
+
+<div class="main-container">
+	<div class="container1">
+		<div id="header1">
+			<p id="tagline1">
+				<strong class="GolfText">2nd Annual Texas Husky Rescue Golf Tournament Sponsorships</strong>
+			</p>
+		</div>
+		<table>
+			@foreach (var item in Model)
+   {
+				<tr class="GolfText EventDetail" style="">
+					<td>
+						<h6>
+							@Html.DisplayFor(modelItem => item.Name)
+						</h6>
+					</td>
+					<td>
+						<ul>
+							@foreach (string s in item.DescriptionHTML)
+	   {
+								@Html.Raw("<li>" + s + "</li>")
+	   }
+						</ul>
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.SponsorAmount)
+					</td>
+				</tr>
+   }
+		</table>
+		<form action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/456368772049667" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm"
+		target="_top">
+		<table cellpadding="5" cellspacing="0" width="1%">
+			<tr>
+				<td align="right" width="1%">
+					<select name="item_selection_1">
+						<option value="1">$5,000.00 - Title Sponsor</option>
+						<option value="2">$2,500.00 - Beverage or Dinner Sponsor</option>
+						<option value="3">$1,500.00 - Driving Range or Putting Contest Sponsor</option>
+						<option value="4">$1,000.00 - Platinum Sponsor</option>
+						<option value="5">$500.00 - Gold Sponsor</option>
+						<option value="6">$250.00 - Silver Sponsor</option>
+						<option value="7">$125.00 - Bronze Sponsor</option>
+					</select>
+					<input name="item_option_name_1" type="hidden" value="Title Sponsor" />
+					<input name="item_option_price_1" type="hidden" value="5000.0" />
+					<input name="item_option_description_1" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_1" type="hidden" value="1" />
+					<input name="item_option_currency_1" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-1.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-1.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+					<input name="item_option_name_2" type="hidden" value="Beverage or Dinner Sponsor" />
+					<input name="item_option_price_2" type="hidden" value="2500.0" />
+					<input name="item_option_description_2" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_2" type="hidden" value="1" />
+					<input name="item_option_currency_2" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-2.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-2.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+					<input name="item_option_name_3" type="hidden" value="Driving Range or Putting Contest Sponsor" />
+					<input name="item_option_price_3" type="hidden" value="1500.0" />
+					<input name="item_option_description_3" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_3" type="hidden" value="1" />
+					<input name="item_option_currency_3" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-3.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-3.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+					<input name="item_option_name_4" type="hidden" value="Platinum Sponsor" />
+					<input name="item_option_price_4" type="hidden" value="1000.0" />
+					<input name="item_option_description_4" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_4" type="hidden" value="1" />
+					<input name="item_option_currency_4" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-4.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-4.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+					<input name="item_option_name_5" type="hidden" value="Gold Sponsor" />
+					<input name="item_option_price_5" type="hidden" value="500.0" />
+					<input name="item_option_description_5" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_5" type="hidden" value="1" />
+					<input name="item_option_currency_5" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-5.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-5.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+					<input name="item_option_name_6" type="hidden" value="Silver Sponsor" />
+					<input name="item_option_price_6" type="hidden" value="250.0" />
+					<input name="item_option_description_6" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_6" type="hidden" value="1" />
+					<input name="item_option_currency_6" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-6.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-6.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+					<input name="item_option_name_7" type="hidden" value="Bronze Sponsor" />
+					<input name="item_option_price_7" type="hidden" value="125.0" />
+					<input name="item_option_description_7" type="hidden" value="See http://texashuskyrescue.org/GolfSponsor for details" />
+					<input name="item_option_quantity_7" type="hidden" value="1" />
+					<input name="item_option_currency_7" type="hidden" value="USD" />
+					<input name="shopping-cart.item-options.items.item-7.digital-content.description" type="hidden" value="Please contact us at golf@texashuskyrescue.org with any questions." />
+					<input name="shopping-cart.item-options.items.item-7.digital-content.url" type="hidden" value="http://texashuskyrescue.org/GolfSponsor" />
+				</td>
+				<td align="left" width="1%">
+					<input alt="" src="https://checkout.google.com/buttons/buy.gif?merchant_id=456368772049667&amp;w=121&amp;h=44&amp;style=trans&amp;variant=text&amp;loc=en_US"
+						type="image" />
+				</td>
+			</tr>
+		</table>
+		</form>
+
+	</div>
+</div>

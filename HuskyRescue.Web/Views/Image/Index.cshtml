@@ -1,0 +1,47 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.ImageViewModel
+<div class="main-container">
+	<div class="container1">
+		@if (Model.ImageList.Count > 0)
+  {
+			@Model.ID
+			<div id="gallery" class="box">
+				@for (int x = 1; x <= Model.ImageList.Count; )
+	{
+					<ul>
+						@for (int y = x + 6; x < y && x <= Model.ImageList.Count; x++)
+	  {
+		  if (x % 6 == 0 || x == Model.ImageList.Count)
+		  {
+							<li class="last">
+								@Html.EditorFor(model => Model.ImageList[x - 1])
+							</li>
+		  }
+		  else
+		  {
+							<li>
+								@Html.EditorFor(model => Model.ImageList[x - 1])
+							</li>
+		  }
+	  }
+					</ul>
+	}
+			</div>
+  }
+  else if (Model.Folders.Count > 0)
+  {
+			<ul>
+				@foreach (string f in Model.Folders)
+	{
+					<li>
+						@Html.ActionLink(f, "Index", new { id = f }, null) </li>
+	}
+			</ul>
+  }
+		<br class="clear">
+		<br>
+		<div class="clear"></div>
+		<br />
+		@*<p>@Html.ActionLink("Add your own image", "Upload", "Image")</p>*@
+	</div>
+</div>

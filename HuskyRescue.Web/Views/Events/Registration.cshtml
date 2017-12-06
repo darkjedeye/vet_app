@@ -1,0 +1,25 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Event_RegistrationViewModel
+@{
+	ViewBag.Title = "1st Annual Texas Husky Rescue Golf Tournament";
+}
+@Scripts.Render("~/bundles/action/golfreg/js")
+
+<fieldset>
+	<legend>Adoption Application</legend>
+	<div class="main-container">
+		<div class="container1">
+			<div>
+				<h1>2nd Annual Texas Husky Rescue Golf Tournament </h1>
+			</div>
+			@using (Html.BeginForm("Registration", "Events", FormMethod.Post, new { @id = "formReg" }))
+   {
+				@Html.ValidationSummary(true)
+				@Html.EditorForModel()
+				<p>
+					<input type="submit" value="Register" />
+				</p>
+   }
+		</div>
+	</div>
+</fieldset>

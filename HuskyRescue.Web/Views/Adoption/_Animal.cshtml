@@ -1,0 +1,22 @@
+﻿@using Fabrik.Common
+@using Fabrik.Common.Web
+@model HuskyRescue.Core.ViewModel.RescueGroups.Animal
+
+<div class="animalCell" id="@Model.animalID">
+	<table>
+		<tbody>
+			<tr>
+				<td class="animalThumbPix">
+					@if (!string.IsNullOrEmpty(Model.animalThumbnailUrl))
+					{
+						@Html.Image(Model.animalThumbnailUrl, Model.animalName, new {width = "100px"});
+					}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="petinfo">
+		<div class="petSummaryText petName">@Html.DisplayTextFor(model => model.animalName)</div>
+		<div class="petSummaryText">@Html.DisplayTextFor(model => model.animalBreed)</div>
+	</div>
+</div>

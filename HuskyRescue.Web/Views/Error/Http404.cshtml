@@ -1,0 +1,94 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+	ViewBag.Title = "Error";
+}
+<fieldset>
+	<legend>Error</legend>
+	<div class="main-container">
+		<div class="container1">
+			<h2>
+				404 - Sorry, an error occurred while processing your request. This has been logged and emailed to the site administrator. 
+			</h2>
+			<table>
+				<tr>
+					<td class="editor-label">
+						Controller Name
+					</td>
+					<td class="editor-label">
+						@Html.DisplayTextFor(model => model.ActionName)
+					</td>
+				</tr>
+				<tr>
+					<td class="editor-label">
+						Action Name
+					</td>
+					<td class="editor-label">
+						@Html.DisplayTextFor(model => model.ControllerName)
+					</td>
+				</tr>
+			</table>
+			<h3>
+				Exception Message</h3>
+			@Html.DisplayTextFor(model => model.Exception.Message)
+			<h4>
+				Source</h4>
+			@Html.DisplayTextFor(model => model.Exception.Source)
+			<h4>
+				TargetSite</h4>
+			@Html.DisplayTextFor(model => model.Exception.TargetSite)
+			<h4>
+				Stack Trace</h4>
+			@Html.DisplayTextFor(model => model.Exception.StackTrace)
+			<h4>
+				HelpLink</h4>
+			@Html.DisplayTextFor(model => model.Exception.HelpLink)
+			<br />
+			<br />
+			<h3>
+				Inner Exception</h3>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.Message)
+			<h4>
+				Source</h4>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.Source)
+			<h4>
+				TargetSite</h4>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.TargetSite)
+			<h4>
+				Stack Trace</h4>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.StackTrace)
+			<h4>
+				HelpLink</h4>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.HelpLink)
+			<h4>
+				Inner Exception Message</h4>
+			@Html.DisplayTextFor(model => model.Exception.InnerException.InnerException.Message)
+			@if (Request.RequestContext.HttpContext.AllErrors != null)
+   {
+				<br />
+				<br />
+
+				<h3>
+					HttpContext Errors</h3>
+	   foreach (Exception exHttp in Request.RequestContext.HttpContext.AllErrors)
+	   {
+				<br />
+				<h4>
+					Http Exception Message</h4>
+				@exHttp.Message
+				<h4>
+					Source</h4>
+				@exHttp.Source
+				<h4>
+					TargetSite</h4>
+				@exHttp.TargetSite
+				<h4>
+					Stack Trace</h4>
+				@exHttp.StackTrace
+				<h4>
+					HelpLink</h4>
+				@exHttp.HelpLink
+	   }
+   }
+		</div>
+	</div>
+</fieldset>

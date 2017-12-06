@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Enum_Misc] (
+    [ID]    NVARCHAR (50)  NOT NULL,
+    [Value] NVARCHAR (100) NOT NULL,
+    CONSTRAINT [PK_Enum_Misc] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

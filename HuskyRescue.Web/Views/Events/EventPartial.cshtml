@@ -1,0 +1,95 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.Event
+
+@Html.AntiForgeryToken()
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="row">
+	<div class="large-4 columns">
+		@Html.FoundationTextBoxFor(model => model.Name)
+	</div>
+	<div class="large-2 columns">
+		@Html.FoundationTextBoxFor(model => model.DateOfEvent, new { @Value = Model.DateOfEvent.ToString("MM-dd-yyyy"), @class = "datepicker2" })
+	</div>
+	<div class="large-6 columns">
+	</div>
+</div>
+<div class="row">
+	<div class="large-4 columns">
+		@Html.FoundationDropDownListFor(model => model.BusinessId, Model.Locations)
+	</div>
+	<div class="large-8 columns">
+	</div>
+</div>
+<div class="row">
+	<div class="large-6 columns">
+		@Html.FoundationTextAreaFor(model => model.Purpose, true)
+	</div>
+	<div class="large-8 columns">
+	</div>
+</div>
+<div class="row">
+	<div class="large-6 columns">
+		@Html.FoundationTextAreaFor(model => model.Description, true)
+	</div>
+	<div class="large-8 columns">
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 columns">
+		@Html.FoundationTextBoxFor(model => model.StartTime, new { @style = "width:100px" })
+	</div>
+	<div class="large-2 columns">
+		@Html.FoundationTextBoxFor(model => model.EndTime, new { @style = "width:100px" })
+	</div>
+	<div class="large-2 columns">
+		@Html.FoundationRadioButtonFor(model => model.IsAllDay, new { }, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false) }, model => model.IsAllDay, null, true)
+	</div>
+	<div class="large-6 columns">
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 columns">
+		@Html.FoundationTextBoxFor(model => model.AmountSpent)
+	</div>
+	<div class="large-2 columns">
+		@Html.FoundationTextBoxFor(model => model.AmountReceived)
+	</div>
+	<div class="large-8 columns"></div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		@Html.LabelFor(model => model.IsActive, new { style = "display: inline-block" })
+		@Html.CheckBoxFor(model => model.IsActive)
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		@Html.LabelFor(model => model.IsActiveGolfEvent, new { style = "display: inline-block" })
+		@Html.CheckBoxFor(model => model.IsActiveGolfEvent)
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		@Html.LabelFor(model => model.IsActiveRoughRidersEvent, new { style = "display: inline-block" })
+		@Html.CheckBoxFor(model => model.IsActiveRoughRidersEvent)
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		@Html.LabelFor(model => model.IsActiveRaffle, new { style = "display: inline-block" })
+		@Html.CheckBoxFor(model => model.IsActiveRaffle)
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 small-12 columns">
+		@Html.FoundationRadioButtonFor(model => model.IsTicketsSold, new { }, new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("Yes", true), new KeyValuePair<string, object>("No", false) }, model => model.IsTicketsSold, null, true)
+	</div>
+	<div class="large-2 small-12 columns">
+		<div id="divTicketPrice">
+			@Html.FoundationTextBoxFor(model => model.TicketPrice)
+		</div>
+	</div>
+	<div class="large-8 columns"></div>
+</div>

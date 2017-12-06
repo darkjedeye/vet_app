@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f43496e64a24d7d93ad5c9d726e939c" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="HuskyRescueModel.ApplicantOwnedAnimal" Width="1.5" PointX="14.25" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.ApplicantVeterinarian" Width="1.5" PointX="15" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Addresses" Width="1.5" PointX="3" PointY="50.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Base" Width="1.5" PointX="0.75" PointY="50.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Dog" Width="1.5" PointX="11.25" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_DogIntake" Width="1.5" PointX="9" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_DogPlacement" Width="1.5" PointX="19.5" PointY="50.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_DonationItems" Width="1.5" PointX="13.5" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_EmailAddress" Width="1.5" PointX="6" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_File" Width="1.5" PointX="19.5" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Organisation" Width="1.5" PointX="3" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Person" Width="1.5" PointX="6" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_PhoneNumber" Width="1.5" PointX="6" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Supplies" Width="1.5" PointX="0.75" PointY="62.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_SupplyPlacement" Width="1.5" PointX="3" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_SupplyType" Width="1.5" PointX="1.5" PointY="66.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_AddressType" Width="1.5" PointX="0.75" PointY="56.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_Breed" Width="1.5" PointX="9" PointY="70" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_DogPlacementType" Width="1.5" PointX="17.25" PointY="64.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_DonationItemType" Width="1.5" PointX="11.25" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_EmailType" Width="1.5" PointX="3.75" PointY="61" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_EventAttendeeType" Width="1.5" PointX="10.5" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_EventDonationPurpose" Width="1.5" PointX="11.25" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_EventType" Width="1.5" PointX="6" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_Gender" Width="1.5" PointX="3.75" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_HuskyColor" Width="1.5" PointX="9" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_HuskySize" Width="1.5" PointX="9" PointY="67.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_InitialActivity" Width="1.5" PointX="9" PointY="78.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_IntakeFrom" Width="1.5" PointX="9" PointY="80.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_IntakeStatusType" Width="1.5" PointX="6.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_Misc" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_OrganisationRoles" Width="1.5" PointX="6" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_OrganisationServices" Width="1.5" PointX="5.25" PointY="75.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_OrganisationType" Width="1.5" PointX="0.75" PointY="47" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_PetDepositCoverage" Width="1.5" PointX="15" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_PhoneType" Width="1.5" PointX="3.75" PointY="64" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_ResidenceOwnershipType" Width="1.5" PointX="15" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_ResidenceType" Width="1.5" PointX="15" PointY="66.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_Skills" Width="1.5" PointX="8.25" PointY="75.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_StudentType" Width="1.5" PointX="15" PointY="68.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_SupplyPlacementType" Width="1.5" PointX="0.75" PointY="69.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_UsaStates" Width="1.5" PointX="0.75" PointY="59.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Event_Attendee" Width="1.5" PointX="12.75" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Event_Registration" Width="1.5" PointX="10.5" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Event_Sponsor" Width="1.5" PointX="8.25" PointY="51" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Event_SponsorshipLevel" Width="1.5" PointX="13.5" PointY="55.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Event_SponsorshipLevelTypes" Width="1.5" PointX="11.25" PointY="67.25" IsExpanded="true" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPerson_ID__ApplicantOwnedAnimals_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_Addresses_Entity_Base" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_Addresses_Enum_UsaStates" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Enum_AddressType_Entity_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.Email_Entity" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.Entity_PhoneNumbers" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_Business_Entity_Base" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_Person_Entity_Base" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityBase_ID__EntityDogPlacement_LocationID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityBase_ID__EntitySupplyPlacement_LocationID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityDog_ID__EntityDogPlacement_DogID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityDog_ID__EntityFile_DogID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityDogIntake_ID__EntityDog_IntakeID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityOrganisation_ID__EntityDog_MicrochipVendorID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityOrganisation_ID__EntityDog_ShelterID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumBreed_ID__EntityDog_BreedID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumBreed_ID__EntityDog_BreedSecondID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumHuskyColor_ID__EntityDog_ColorID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumHuskySize_ID__EntityDog_SizeID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumInitialActivity_ID__EntityDog_InitialActivityID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumIntakeFrom_ID__EntityDog_IntakeFromID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumIntakeStatusType_ID__EntityDogIntake_IntakeStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumDogPlacementType_ID__EntityDogPlacement_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumDonationItemType_ID___EventDonationItems_DonationItemType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumEventDonationPurpose_ID__EntityDonationItems_EventPurposeID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EventDonationItems_OrganisationID__EntityOrganisation_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EventDonationItems_PersonID__EntityPerson_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_EmailAddress_Enum_EmailType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityOrganisation_ID_EntityFile_OrgID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPerson_ID__EntityFile_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_Business_Enum_BusinessType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityOrganisation_ID___EventSponsor_OrganisationID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_Person_Enum_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPerson_ID__EventAttendee_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPerson_ID__EventSponsor_PersonID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Entity_PhoneNumber_Enum_PhoneType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntitySupplies_ID__EntitySupplyPlacement_SupplyID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntitySupplyType_ID__EntitySupplies_SupplyType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumSupplyPlacementType_ID__EntitySupplyPlacement_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumEventAttendeeType_id___EventAttendee_attendeeType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EventRegistration_id___EventAttendee_eventRegistrationID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EventSponsor_ID__EventSponsorshipLevel_SponsorID" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EventSponsorshipLevelTypes_ID__EventSponsorshipLevel_SponsorshipLevelType" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.Entity_OrganisationServices" ManuallyRouted="false" />
+        <AssociationConnector Association="HuskyRescueModel.Entity_PersonSkills" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HuskyRescueModel.aspnet_Applications" Width="1.5" PointX="1.53638736230153" PointY="18.509158709323572" />
+        <EntityTypeShape EntityType="HuskyRescueModel.aspnet_Membership" Width="1.5" PointX="0.42317607273495572" PointY="25.651392158889859" />
+        <EntityTypeShape EntityType="HuskyRescueModel.aspnet_Roles" Width="1.5" PointX="11.402850564291166" PointY="24.226290043548815" />
+        <EntityTypeShape EntityType="HuskyRescueModel.aspnet_Users" Width="1.5" PointX="6.2943717270597679" PointY="7.0577770057403377" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Blog_Comments" Width="1.5" PointX="12" PointY="3.5" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Blog_Post" Width="1.5" PointX="9.75" PointY="2.625" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Blog_Tags" Width="1.5" PointX="12" PointY="1.125" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_PersonProfile" Width="1.5" PointX="8.25" PointY="72.625" />
+        <AssociationConnector Association="HuskyRescueModel.FK__aspnet_Me__Appli__662B2B3B" />
+        <AssociationConnector Association="HuskyRescueModel.FK__aspnet_Ro__Appli__04AFB25B" />
+        <AssociationConnector Association="HuskyRescueModel.FK__aspnet_Us__Appli__55F4C372" />
+        <AssociationConnector Association="HuskyRescueModel.FK__aspnet_Me__UserI__671F4F74" />
+        <AssociationConnector Association="HuskyRescueModel.FK_aspnetUsers_UserId__BlogComments_AuthorRegisteredUserID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_aspnetUsers_UserId__BlogComments_ModeratedByUserID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_aspnetUsers_UserId__BlogPost_LastModifyAuthor" />
+        <AssociationConnector Association="HuskyRescueModel.FK_aspnetUsers_UserId__BlogPost_OriginalAuthor" />
+        <AssociationConnector Association="HuskyRescueModel.FK_ProfileAspnetUsers_UserId__EntityPerson_UserID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_BlogComments_ID__BlogComments_ParentComentID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_BlogPost_ID__BlogComments_PostID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPerson_ID__EntityPersonProfile_EntityPersonID" />
+        <AssociationConnector Association="HuskyRescueModel.aspnet_UsersInRoles" />
+        <AssociationConnector Association="HuskyRescueModel.Blog_TagsMapped" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Log" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_EntityType" Width="1.5" PointX="9.75" PointY="12.375" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Enum_LogActivityEventType" Width="1.5" PointX="9.75" PointY="9.375" />
+        <EntityTypeShape EntityType="HuskyRescueModel.LogUserActivity" Width="1.5" PointX="12" PointY="9" />
+        <AssociationConnector Association="HuskyRescueModel.FK_aspnetUsers_UserId__LogUserActivity_UserID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumEntityType_ID__LogUserActivity_EntityTypeID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumLogActivityEventType_ID__LogUserActivity_EventTypeID" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Applicant" Width="1.5" PointX="17.25" PointY="38.75" />
+        <AssociationConnector Association="HuskyRescueModel.FK_AdoptionApplications_ApplicantVeterinarians1" />
+        <AssociationConnector Association="HuskyRescueModel.FK_AdoptionApplications_Enum_PetDepositCoverage1" />
+        <AssociationConnector Association="HuskyRescueModel.FK_AdoptionApplications_Enum_ResidenceOwnershipType1" />
+        <AssociationConnector Association="HuskyRescueModel.FK_AdoptionApplications_Enum_ResidenceType1" />
+        <AssociationConnector Association="HuskyRescueModel.FK_AdoptionApplications_Enum_StudentType1" />
+        <AssociationConnector Association="HuskyRescueModel.FK_ApplicantOwnedAnimals_AdoptionApplications1" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPersonID__AdoptionApplications_PersonID1" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_OrganisationContacts" Width="1.5" PointX="8.25" PointY="47.25" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityOrganisation_id___EntityOrganisationContacts_orgID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityPerson_ID__EntityOrganisationContacts_PersonID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EnumOrganisationRoles_id___EntityOrganisationContacts_roleID" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Event" Width="1.5" PointX="8.25" PointY="41.375" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Events_ID___EntityDonationItems_EventID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityOrg_id___Events_orgID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Event_type___EnumEventType_id" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Events_id___EventRegistration_eventID" />
+        <AssociationConnector Association="HuskyRescueModel.FK_Events_ID___EventSponsor_EventID" />
+        <EntityTypeShape EntityType="HuskyRescueModel.System_Config" Width="1.5" PointX="14" PointY="12.875" />
+        <EntityTypeShape EntityType="HuskyRescueModel.System_ConfigCategory" Width="1.5" PointX="11.75" PointY="13.125" />
+        <AssociationConnector Association="HuskyRescueModel.FK_ConfigCategory_Id___SystemConfigSystem_CategoryId" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreCart" Width="1.5" PointX="28.625" PointY="27.375" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreCartItem" Width="1.5" PointX="25.875" PointY="27.375" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreCategory" Width="1.5" PointX="31.375" PointY="20.625" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreOptionType" Width="1.5" PointX="28.625" PointY="22.625" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreOptionValue" Width="1.5" PointX="28.625" PointY="24.875" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreOrder" Width="1.5" PointX="21" PointY="19.5" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreOrderDetail" Width="1.5" PointX="23" PointY="19.5" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StorePaymentMethod" Width="1.5" PointX="15.625" PointY="19.5" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreProductImage" Width="1.5" PointX="31.375" PointY="18.375" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreProperty" Width="1.5" PointX="28.5" PointY="20.125" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreShippingMethod" Width="1.5" PointX="23.25" PointY="14.875" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityAddresses_Id___EntityStoreOrder_BillingAddressId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityAddresses_Id___EntityStoreOrder_ShippingAddressId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityBase_Id___EntityStoreOrder_PersonBaseId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreCart_Id__EntityStoreCartItem_CartId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreOption_Id___EntityStoreOptionItem_OptionId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreOrder_Id___EntityStoreOrderDetail_OrderId" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreProduct" Width="1.5" PointX="25.75" PointY="19.625" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreCategory_Id___EntityStoreProduct_CategoryId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreProduct_Id___EntityStoreProductImage_ProductId" />
+        <AssociationConnector Association="HuskyRescueModel.Entity_StoreProductOptionTypes" />
+        <AssociationConnector Association="HuskyRescueModel.Entity_StoreProductProperty" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StorePayment" Width="1.5" PointX="18" PointY="19.5" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreOrder_Id___EntityStorePayment_OrderId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStorePaymentMethod_Id___EntityStorePayment_PaymentMethodId" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreShipment" Width="1.5" PointX="20.25" PointY="15.125" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreOrder_Id___EntityStoreShipment_OrderId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreShippingMethod_Id___EntityStoreShipment_ShippingMethodId" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_StoreProductVariant" Width="1.5" PointX="23" PointY="23.75" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreProductVariant_Id___EntityStoreCartItem_ProductVariantId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreProductVariant_Id___EntityStoreOrderDetail_ProductVariantId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityStoreProduct_Id___EntityStoreProductVariant_ProductId" />
+        <AssociationConnector Association="HuskyRescueModel.Entity_StoreOptionValueProductVariant" />
+        <EntityTypeShape EntityType="HuskyRescueModel.Entity_Donation" Width="1.5" PointX="9.7345422272265623" PointY="10.996510108465566" />
+        <AssociationConnector Association="HuskyRescueModel.FK_EntityBase_ID___EntityDonation_BaseId" />
+        <EntityTypeShape EntityType="HuskyRescueModel.AspNetRole" Width="1.5" PointX="0.75" PointY="15.5" />
+        <EntityTypeShape EntityType="HuskyRescueModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="14" />
+        <EntityTypeShape EntityType="HuskyRescueModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="16.75" />
+        <EntityTypeShape EntityType="HuskyRescueModel.AspNetUser" Width="1.5" PointX="3" PointY="14.375" />
+        <AssociationConnector Association="HuskyRescueModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="HuskyRescueModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="HuskyRescueModel.AspNetUserRoles" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

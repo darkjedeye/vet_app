@@ -1,0 +1,22 @@
+﻿@{
+	ViewBag.Title = "CreateTransaction";
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>The Texas Husky Rescue Online Store</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		@if (ViewData.ContainsKey("TransactionId"))
+  {
+			<h2>Success! Transaction ID: @ViewData["TransactionId"]</h2>
+  }
+  else
+  {
+			<h2>Error: @ViewData["Message"]</h2>
+  }
+	</div>
+</div>

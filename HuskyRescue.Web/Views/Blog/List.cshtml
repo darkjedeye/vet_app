@@ -1,0 +1,42 @@
+﻿@model List<HuskyRescue.Core.ViewModel.Blog.Post>
+
+
+<div class="5grid">
+	<div class="row">
+		<div class="9u">
+			<div class="contentBody box">
+				<!--Heading-->
+				<div id="header2">
+					<p id="tagline2">
+						<strong>@ViewBag.Title</strong>
+					</p>
+				</div>
+
+				<!-- content -->
+				@Html.Partial("_Pager", Model)
+
+				@if (Model.Count > 0)
+	{
+		foreach (var post in Model)
+		{
+					@Html.Partial("_PostTemplate", post)
+		}
+	}
+	else
+	{
+					<p>No posts found!</p>
+	}
+
+				@Html.Partial("_Pager", Model)
+			</div>
+
+		</div>
+		<div class="3u">
+			<div class="sidebar box">
+				<div class="tag-cloud box">
+					This is where all tags will be located
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

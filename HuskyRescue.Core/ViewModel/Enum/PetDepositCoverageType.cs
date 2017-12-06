@@ -1,0 +1,6 @@
+﻿namespace HuskyRescue.Core.ViewModel.Enum
+{
+	public class PetDepositCoverageType : IntBase
+	{
+	}
+}

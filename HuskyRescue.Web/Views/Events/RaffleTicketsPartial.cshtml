@@ -1,0 +1,187 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.EventRegistration
+
+<div class="row">
+	<div class="large-12 columns">
+		@Html.AntiForgeryToken()
+		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.EventId)
+		@Html.HiddenFor(model => model.Event.TicketPrice)
+	</div>
+</div>
+<fieldset>
+	<legend></legend>
+	@for (var i = 0; i < Model.Attendees.Count; i++)
+ {
+
+		<div class="row">
+			<div class="large-6 columns">
+				@Html.HiddenFor(model => model.Attendees[i].Id)
+				@Html.HiddenFor(model => model.Attendees[i].PersonId)
+				@Html.HiddenFor(model => model.Attendees[i].Person.ID)
+				@Html.HiddenFor(model => model.Attendees[i].Person.BaseID)
+				@Html.HiddenFor(model => model.Attendees[i].Person.Base.ID)
+				<div class="input-wrapper">
+					@Html.LabelFor(model => model.Attendees[i].Person.FirstName, "First Name")
+					@Html.TextBoxFor(model => model.Attendees[i].Person.FirstName, new { @required = "" })
+					<small class="error">required</small>
+				</div>
+			</div>
+			<div class="large-6 columns">
+				<div class="input-wrapper">
+					@Html.LabelFor(model => model.Attendees[i].Person.LastName, "Last Name")
+					@Html.TextBoxFor(model => model.Attendees[i].Person.LastName, new { @required = "" })
+					<small class="error">required</small>
+				</div>
+			</div>
+		</div>
+	 for (var j = 0; j < Model.Attendees[i].Person.Base.Addresses.Count; j++)
+	 {
+
+		<div class="row">
+			<div class="large-4 small-12 columns">
+				@Html.HiddenFor(model => model.Attendees[i].Person.Base.Addresses[j].ID)
+				@Html.HiddenFor(model => model.Attendees[i].Person.Base.Addresses[j].EntityID)
+				@Html.HiddenFor(model => model.Attendees[i].Person.Base.Addresses[j].Type)
+				<div class="input-wrapper">
+					@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].Street, "Street Address")
+					@Html.TextBoxFor(model => model.Attendees[i].Person.Base.Addresses[j].Street, new { @required = "" })
+					<small class="error">required</small>
+				</div>
+			</div>
+			<div class="large-4 small-5 columns">
+				<div class="input-wrapper">
+					@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].City)
+					@Html.TextBoxFor(model => model.Attendees[i].Person.Base.Addresses[j].City, new { @required = "" })
+					<small class="error">required</small>
+				</div>
+			</div>
+			<div class="large-3 small-4 columns">
+				<div class="input-wrapper">
+					@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].AddressStateList)
+					@Html.DropDownListFor(model => model.Attendees[i].Person.Base.Addresses[j].StateID, Model.Attendees[i].Person.Base.Addresses[j].AddressStateList, new { @required = "" })
+					<small class="error">required</small>
+				</div>
+			</div>
+			<div class="large-1 small-3 columns">
+				<div class="input-wrapper">
+					@Html.LabelFor(model => model.Attendees[i].Person.Base.Addresses[j].ZIP)
+					@Html.TextBoxFor(model => model.Attendees[i].Person.Base.Addresses[j].ZIP, new { @class = "zip", @required = "" })
+					<small class="error">required</small>
+				</div>
+			</div>
+		</div>
+	 }
+
+		<div class="row">
+			<div class="large-4 small-12 columns">
+				@for (var j = 0; j < Model.Attendees[i].Person.Base.EmailAddresses.Count; j++)
+	{
+					@Html.HiddenFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].ID)
+					@Html.HiddenFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].EntityID)
+					@Html.HiddenFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Type)
+
+					<div class="input-wrapper">
+						@Html.LabelFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Address)
+						@Html.TextBoxFor(model => model.Attendees[i].Person.Base.EmailAddresses[j].Address, new { @required = "" })
+						<small class="error">required</small>
+					</div>
+	}
+			</div>
+			<div class="large-2 small-5 columns">
+				@for (var j = 0; j < Model.Attendees[i].Person.Base.PhoneNumbers.Count; j++)
+	{
+					@Html.HiddenFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].ID)
+					@Html.HiddenFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].EntityID)
+					@Html.HiddenFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Type)
+
+					<div class="input-wrapper">
+						@Html.LabelFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Number)
+						@Html.TextBoxFor(model => model.Attendees[i].Person.Base.PhoneNumbers[j].Number, new { @class = "phoneNumber2", @required = "" })
+						<small class="error">required</small>
+					</div>
+	}
+			</div>
+			<div class="large6 small-7 columns"></div>
+		</div>
+ }
+	<div class="row">
+		<div class="large-3 small-6 columns">
+			<div class="input-wrapper">
+				<label for="TicketsBought">Number of Tickets</label>
+				<select id="TicketsBought" name="TicketsBought" required></select>
+				<small class="error">At least 1 ticket must be bought.</small>
+			</div>
+		</div>
+		<div class="large-5 small-6 columns">
+			@Html.HiddenFor(model => model.PaymentMethod)
+		</div>
+		<div class="large-4 columns">
+		</div>
+	</div>
+	<div id="CreditCardPayInfo">
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<br />
+				<span class="label">Name and address must match the credit card's billing information</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<br />
+				<ul class="inline-list">
+					<li>
+						<div class="input-wrapper">
+							<label for="PayInfo_CreditCardNumber">Card Number</label>
+							<input autocomplete="off" class="CreditCardNumber" data-encrypted-name="number" id="PayInfo_CreditCardNumber" type="text" value="" required pattern="card">
+							<small class="error">required</small>
+						</div>
+					</li>
+					<li>
+						<div class="input-wrapper">
+							<label for="PayInfo_CreditCardCVV">CVV</label>
+							<input autocomplete="off" class="CreditCardCVV" data-encrypted-name="cvv" id="PayInfo_CreditCardCVV" type="text" value="" required pattern="cvv">
+							<small class="error">required</small>
+						</div>
+					</li>
+					<li>
+						<div class="input-wrapper">
+							<label for="PayInfo_CreditCardExpireMonth">MM</label>
+							<input autocomplete="off" class="CreditCardExpireMonth" data-encrypted-name="month" id="PayInfo_CreditCardExpireMonth" type="text" pattern="number" value="" required>
+							<small class="error">required</small>
+						</div>
+					</li>
+					<li>
+						<div class="input-wrapper">
+							<label for="PayInfo_CreditCardExpireYear">YYYY</label>
+							<input autocomplete="off" class="CreditCardExpireYear" data-encrypted-name="year" id="PayInfo_CreditCardExpireYear" type="text" pattern="number" value="" required>
+							<small class="error">required</small>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<ul class="inline-list">
+					<li style="margin-right: 2px; font-size: 0.875em">Accepted Cards: </li>
+					<li style="margin-left: 0px;">
+						<img src="~/Content/Images/icons/cards/american_express.gif" /></li>
+					<li style="margin-left: 0px;">
+						<img src="~/Content/Images/icons/cards/discover.gif" /></li>
+					<li style="margin-left: 0px;">
+						<img src="~/Content/Images/icons/cards/jcb.gif" /></li>
+					<li style="margin-left: 0px;">
+						<img src="~/Content/Images/icons/cards/mastercard.gif" /></li>
+					<li style="margin-left: 0px;">
+						<img src="~/Content/Images/icons/cards/visa.gif" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<br />
+	<div class="row">
+		<div class="large-4 large-centered columns">
+			<input type="submit" value="Submit" id="btnSubmit" class="medium button expand" />
+		</div>
+	</div>
+</fieldset>

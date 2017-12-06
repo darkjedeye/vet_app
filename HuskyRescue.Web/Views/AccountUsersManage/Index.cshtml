@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HuskyRescue.Core.ViewModel.Accounts.Identity.ApplicationUser>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h2>Account Users Management</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 medium-3 small-3 columns">
+		@Html.ActionLink("Create New User", "Create")
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<table>
+			<tr>
+				<th></th>
+				<th>@Html.DisplayNameFor(model => model.UserName)</th>
+				<th>@Html.DisplayNameFor(model => model.Email)</th>
+			</tr>
+			@foreach (var item in Model)
+			{
+
+				<tr>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+						@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.UserName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Email)
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+
+<div id="jqxgrid">
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		var source = {
+			datatype: "json",
+			datafields: [
+				{ name: 'Id', type: 'number' },
+				{ name: 'TimeStamp', type: 'date' },
+				{ name: 'Level', type: 'string' },
+				{ name: 'Logger', type: 'string' },
+				{ name: 'Message', type: 'string' },
+				{ name: 'ExceptionType', type: 'string' },
+				{ name: 'Operation', type: 'string' },
+				{ name: 'ExceptionMessage', type: 'string' },
+				{ name: 'StackTrace', type: 'string' }
+			],
+			url: 'Log/GetLog'
+		};
+
+		var dataAdapter = new $.jqx.dataAdapter(source);
+
+		$("#jqxgrid").jqxGrid({
+			source: dataAdapter,
+			sortable: true,
+			columnsresize: true,
+			filterable: true,
+			width: 1800,
+			height: 800,
+			autoheight: true,
+			autorowheight: true,
+			pageable: true,
+			columns: [
+				{ text: "Id", datafield: "Id", cellsformat: 'n', width: 75 },
+				{ text: "Time", datafield: "TimeStamp", cellsformat: 'yyyy-MM-dd HH:mm:ss', width: 150 },
+				{ text: "Level", datafield: "Level", width: 50 },
+				//{ text: "Logger", datafield: "Logger", hideable: true, width: 175 },
+				{ text: "Message", datafield: "Message", width: 200 },
+				{ text: "Exception Type", datafield: "ExceptionType", width: 150 },
+				{ text: "Operation", datafield: "Operation", width: 100 },
+				{ text: "Exception Message", datafield: "ExceptionMessage", width: 150 },
+				{ text: "Stack Trace", datafield: "StackTrace", width: 925 }
+			]
+		});
+		$("#jqxgrid").jqxGrid('autoresizecolumns');
+	});
+</script>

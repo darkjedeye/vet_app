@@ -1,0 +1,28 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.EntityPhoneNumber
+<li>
+	@using (Html.BeginCollectionItem("Base.PhoneNumbers"))
+ {
+		
+		@Html.HiddenFor(model => model.ID)
+		@Html.HiddenFor(model => model.EntityID)
+
+		@Html.LabelFor(model => model.Number)
+		@Html.DropDownListFor(model => model.Type, Model.PhoneNumberTypeList)
+		@Html.TextBoxFor(model => model.Number, new { @class = "phoneNumber" })
+		@Html.ValidationMessageFor(model => model.Number)
+	 
+	 if (Model.EntityID == null)
+	 {
+		<a href="#" onclick="EntityCRUD('@ViewData.TemplateInfo.HtmlFieldPrefix', 'phone', 'create')">
+			<img class="action" src="/Content/images/icons/save.png" /></a>
+	 }
+	 else
+	 {
+		<a href="#" onclick="EntityCRUD('@ViewData.TemplateInfo.HtmlFieldPrefix', 'phone', 'update')">
+			<img class="action" src="/Content/images/icons/save.png" /></a>
+	 }
+		<a href="#" onclick="EntityCRUD('@ViewData.TemplateInfo.HtmlFieldPrefix', 'phone', 'delete')">
+			<img class="action" src="/Content/images/icons/delete.png" /></a>
+ }
+</li>

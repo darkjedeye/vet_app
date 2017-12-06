@@ -1,0 +1,194 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.Business
+
+
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.BaseID)
+@Html.HiddenFor(model => model.Base.ID)
+
+<div class="row">
+	<div class="large-6 small-12 columns">
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					<div class="row ">
+						<div class="large-6 small-6 columns">
+							@Html.CheckBoxFor(model => model.Base.IsActive)
+							@Html.LabelFor(model => model.Base.IsActive, new { @class = "checkboxinlineblock" })
+						</div>
+						<div class="large-6 small-6 columns">
+							@if (Model.Base.IsActive == true)
+	   {
+		   @Html.DisplayFor(model => model.Base.DateActive)
+	   }
+	   else
+	   {
+		   @Html.DisplayFor(model => model.Base.DateInActive)
+	   }
+						</div>
+					</div>
+					<div class="row ">
+						<div class="large-6 small-6 columns">
+							@Html.CheckBoxFor(model => model.Base.IsMailable)
+							@Html.LabelFor(model => model.Base.IsMailable, new { @class = "checkboxinlineblock" })
+						</div>
+						<div class="large-6 small-6 columns">
+							@Html.CheckBoxFor(model => model.Base.IsEmailable)
+							@Html.LabelFor(model => model.Base.IsEmailable, new { @class = "checkboxinlineblock" })
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 small-12 columns">
+			<div class="panel">
+				<div class="row ">
+					<div class="large-12 small-12 columns">
+						@Html.FoundationTextBoxFor(model => model.BusinessName)
+					</div>
+				</div>
+				<div class="row ">
+					<div class="large-4 small-4 columns">
+						@Html.FoundationTextBoxFor(model => model.ContactTitle)
+					</div>
+					<div class="large-8 small-8 columns">
+						@Html.FoundationTextBoxFor(model => model.ContactName)
+					</div>
+				</div>
+				<div class="row ">
+					<div class="large-6 columns">
+						@Html.FoundationTextBoxFor(model => model.EIN)
+					</div>
+					<div class="large-6 columns">
+						@Html.LabelFor(model => model.TypeBusiness)
+						@Html.DropDownListFor(model => model.TypeBusiness, Model.TypeBusinessList, "--select one--", new { @class = "no-custom" })
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 small-12 columns">
+			<div class="panel">
+				<div class="row ">
+					<div class="large-12 small-12 columns">
+						<div class="row">
+							<div class="large-12 small-12 columns">
+								<label>Phone(s)</label>
+							</div>
+						</div>
+						@for (int i = 0; i < Model.Base.PhoneNumbers.Count; i++)
+	  {
+
+							<div class="row">
+								<div class="large-9 small-12 columns">
+									@Html.HiddenFor(model => model.Base.PhoneNumbers[i].ID)
+									@Html.HiddenFor(model => model.Base.PhoneNumbers[i].EntityID)
+									@Html.FoundationTextBoxFor(model => model.Base.PhoneNumbers[i].Number, new { @class = "phoneNumber2", notrequired = "" }, false)
+									@Html.DropDownListFor(model => model.Base.PhoneNumbers[i].Type, Model.Base.PhoneNumbers[i].PhoneNumberTypeList, "--select--", new { @class = "no-custom" })
+								</div>
+								<div class="large-3 columns"></div>
+							</div>
+	  }
+					</div>
+				</div>
+				<div class="row ">
+					<div class="large-12 small-12 columns">
+						<div class="row">
+							<div class="large-12 small-12 columns">
+								<label>Email(s)</label>
+							</div>
+						</div>
+
+						@for (int i = 0; i < Model.Base.EmailAddresses.Count; i++)
+	  {
+
+							<div class="row">
+								<div class="large-9 small-12 columns">
+									@Html.HiddenFor(model => model.Base.EmailAddresses[i].ID)
+									@Html.HiddenFor(model => model.Base.EmailAddresses[i].EntityID)
+									@Html.FoundationTextBoxFor(model => model.Base.EmailAddresses[i].Address, new { @class = "email", notrequired = "" }, false)
+									@Html.DropDownListFor(model => model.Base.EmailAddresses[i].Type, Model.Base.EmailAddresses[i].EmailTypeList, "--select--", new { @class = "no-custom" })
+								</div>
+								<div class="large-3 columns"></div>
+							</div>
+	  }
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 small-12 columns">
+			<div class="panel">
+				@for (var i = 0; i < Model.Base.Addresses.Count; i++)
+	{
+	@Html.HiddenFor(model => model.Base.Addresses[i].ID)
+	@Html.HiddenFor(model => model.Base.Addresses[i].EntityID)
+
+					<div class="row">
+						<div class="large-2 small-4 columns">
+							@Html.LabelFor(model => model.Base.Addresses[i].Type)
+							@Html.DropDownListFor(model => model.Base.Addresses[i].Type, Model.Base.Addresses[i].AddressTypeList, new { @class = "no-custom" })
+						</div>
+						<div class="large-5 small-8 columns">
+							@Html.FoundationTextBoxFor(model => model.Base.Addresses[i].Street, new { notrequired = "" })
+						</div>
+						<div class="large-5 small-12 columns">
+							@Html.FoundationTextBoxFor(model => model.Base.Addresses[i].Street2)
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="large-6 small-12 columns">
+							@Html.FoundationTextBoxFor(model => model.Base.Addresses[i].City, new { notrequired = "" })
+						</div>
+						<div class="large-4 small-6 columns">
+							@Html.LabelFor(model => model.Base.Addresses[i].StateID)
+							@Html.DropDownListFor(model => model.Base.Addresses[i].StateID, Model.Base.Addresses[i].AddressStateList, "--select one--", new { @class = "no-custom", notrequired = "" })
+						</div>
+						<div class="large-2 small-3 columns">
+							@Html.FoundationTextBoxFor(model => model.Base.Addresses[i].ZIP, new { @class = "zip", notrequired = "" })
+						</div>
+						<div class="small-3 columns"></div>
+					</div>
+	}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 small-12 columns">
+			<div class="panel">
+				<div class="row">
+					<div class="large-12 columns">
+						@Html.FoundationTextAreaFor(model => model.Description)
+					</div>
+					<div class="large-12 columns">
+						@Html.FoundationTextAreaFor(model => model.Base.Comments)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="large-6 small-12 columns">
+	<div class="row">
+		<div class="large-12 small-12 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 small-12 columns">
+			<div class="panel">
+				<div class="row">
+					<div class="large-5 small-12 columns">
+					</div>
+					<div class="large-7 small-12 columns">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

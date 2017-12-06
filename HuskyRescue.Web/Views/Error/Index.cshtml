@@ -1,0 +1,27 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+	//ViewBag.Title = "Error";
+}
+<fieldset>
+	<legend>Error</legend>
+	<div class="main-container">
+		<div class="container1">
+			<h2>
+				@*Sorry, an error occurred while processing your request. This has been logged and emailed to the site administrator.*@
+				@ViewData["Title"]
+			</h2>
+			<table>
+				<tr>
+					<td class="editor-label">
+						@ViewData["Description"]
+					</td>
+				</tr>
+				<tr>
+					<td class="editor-label">
+						@ViewData["Type"]
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</fieldset>

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+<<<<<<< HEAD
+@using (Html.BeginForm("Apply", "Adoption", FormMethod.Post, new { @id = "formAdoptionApp", @class="custom" }))
+=======
+@using (Html.BeginForm("Apply", "Adoption", FormMethod.Post, new { @id = "formApp", @class="" }))
+>>>>>>> release/v0.2.5
+{
+	@Html.EditorFor(model => model)
+	@Html.ValidationSummary(true)
+
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Submit" id="btnSubmit" class="large button expand"/>
+		</div>
+	</div>
+}

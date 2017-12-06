@@ -1,0 +1,86 @@
+﻿@model IEnumerable<HuskyRescue.Core.ViewModel.Entity.EventRegistration>
+@{
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Golf Registrations</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 small-3 columns">
+		@Html.ActionLink("Add New Golf Registration", "GolfTournamentRegistrationCreate")
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<table>
+			<tr>
+				<th></th>
+				<th>Date Registered</th>
+				<th>Paid?</th>
+				<th>Payment System Code</th>
+				<th># of Golfers</th>
+				<th>Amount Paid</th>
+				<th>Golfers</th>
+			</tr>
+			@foreach (var item in Model)
+			{
+				var Event = item;
+				<tr>
+					<td>
+						<div class="button-bar">
+							<ul class="button-group even-2">
+								<li>
+									@Html.ActionLink("Edit", "GolfTournamentRegistrationEdit", new { @id = item.Id }, new{ @class = "button small table-link-button" }) 
+								</li>
+								<li>
+									@using (Html.BeginForm("GolfTournamentRegistrationDelete", "Events", FormMethod.Post, new { @class = "table-form" }))
+									{
+										@Html.AntiForgeryToken()
+										@Html.Hidden("Id", item.Id)
+										<button name="deleteButton-@item.Id" class="button small alert table-form-button" type="submit">Delete</button>
+									}
+								</li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DateSubmitted)
+					</td>
+					<td>
+						@if (item.HasPaid != null)
+						{
+							@(item.HasPaid.Value == true ? Html.Raw("yes") : Html.Raw("no"))
+						}
+						else
+						{
+							@Html.Raw("no")
+						}
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.PaymentTransactionId)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.TicketsBought)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.AmountPaid)
+					</td>
+					<td>
+						<ul class="no-bullet">
+						@foreach (var a in item.Attendees)
+						{
+							<li>
+								@Html.Raw(a.Person.FullName)
+							</li>
+						}
+						</ul>
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>
+

@@ -1,0 +1,11 @@
+﻿@{
+	ViewBag.Title = "Log";
+	var logfile = TempData["logfile"];
+}
+<div class="main-container">
+	<div class="container1">
+<h2>
+	Log</h2>
+		@Html.TextArea("logdata", logfile.ToString(), 50, 200, new { @style = "width:100%" })
+	</div>
+</div>

@@ -1,0 +1,57 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model IEnumerable<HuskyRescue.Core.ViewModel.Entity.Business>
+@{
+	ViewBag.Title = "Business List";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Businesses & Organisation</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 small-3 columns">
+		@Html.ActionLink("Create New Business/Organisation", "Create")
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Work Phone</th>
+				<th>Is Active </th>
+				<th></th>
+			</tr>
+			@foreach (var item in Model)
+   {
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.BusinessName)
+					</td>
+					<td>
+						@if (item.Base.Addresses.Count > 0)
+	  {
+							@Html.Address(item.Base.Addresses.Single(a => a.Type.Trim().Equals("1")));
+	  }
+					</td>
+					<td>
+						@foreach (var phone in item.Base.PhoneNumbers)
+	  {
+							@Html.DisplayFor(phoneItem => phone.Number);
+	  }
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Base.IsActive)
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+						@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>

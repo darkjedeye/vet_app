@@ -1,0 +1,45 @@
+﻿@model HuskyRescue.Core.ViewModel.EntityAddress
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.EntityID)
+
+
+@if (Model.ShowAddressTypeList == true)
+{ 
+	<div class="row">
+		<div class="large-3 small-4 columns">
+			@Html.LabelFor(model => model.AddressTypeList)
+			@Html.DropDownListFor(model => model.Type, Model.AddressTypeList)
+			@Html.ValidationMessageFor(model => model.AddressTypeList)
+		</div>
+	</div>
+}
+
+<div class="row">
+	<div class="large-6 columns">
+		@Html.LabelFor(model => model.Street)
+		@Html.EditorFor(model => model.Street)
+		@Html.ValidationMessageFor(model => model.Street)
+	</div>
+	<div class="large-6 columns">
+		@Html.LabelFor(model => model.Street2)
+		@Html.EditorFor(model => model.Street2)
+	</div>
+</div>
+<div class="row">
+	<div class="large-4 small-12 columns">
+		@Html.LabelFor(model => model.City)
+		@Html.EditorFor(model => model.City)
+		@Html.ValidationMessageFor(model => model.City)
+	</div>
+	<div class="large-2 small-4 columns">
+		@Html.LabelFor(model => model.AddressStateList)
+		@Html.DropDownListFor(model => model.StateID, Model.AddressStateList, "--select one--")
+		@Html.ValidationMessageFor(model => model.AddressStateList)
+	</div>
+	<div class="large-2 small-3 columns">
+		@Html.LabelFor(model => model.ZIP)
+		@Html.TextBoxFor(model => model.ZIP, new { @class = "zip" })
+		@Html.ValidationMessageFor(model => model.ZIP)
+	</div>
+	<div class="large-4 small-5 columns"></div>
+</div>

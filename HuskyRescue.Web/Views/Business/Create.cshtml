@@ -1,0 +1,21 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.Business
+@{
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Business", FormMethod.Post, new { @id = "formBusiness", @class = "custom", @data_abide = "" }))
+{
+	<div class="row">
+		<div class="large-12 columns text-center">
+			<h3>Create New Business / Organization</h3>
+		</div>
+	</div>
+	
+		@Html.Partial("BusinessPartial", Model)
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Save" id="btnSubmit" class="button" />
+		</div>
+	</div>
+}

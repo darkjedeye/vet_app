@@ -1,0 +1,24 @@
+﻿@model HuskyRescue.Core.ViewModel.Store.ProductProperty
+
+@{
+	ViewBag.Title = "PropertyEdit";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<h2>Property Edit</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	@Html.Partial("_Property", Model, ViewData)
+
+	<p>
+		<input type="submit" value="Save" />
+	</p>
+}
+
+<div>
+	@Html.ActionLink("Back to List", "PropertyIndex")
+</div>

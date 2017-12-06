@@ -1,0 +1,24 @@
+﻿@model HuskyRescue.Core.ViewModel.Event_SponsorViewModel
+@{
+	ViewBag.Title = "SponsorEdit";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+@Scripts.Render("~/bundles/action/addsponsor/js")
+
+<div class="main-container">
+	<div class="container1">
+		<div id="header1">
+			<p id="tagline1">
+				<strong>ESponsor Edit</strong>
+			</p>
+		</div>
+		@using (Html.BeginForm())
+  {
+			@Html.EditorFor(model => model)
+  }
+		<div>
+			@Html.ActionLink("Back to List", "Sponsors")
+		</div>
+	</div>
+</div>
+

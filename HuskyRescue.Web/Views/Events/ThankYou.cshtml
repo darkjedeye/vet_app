@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "ThankYou";
+}
+
+<h2>Thank You For Registering</h2>
+<p>If you would like to pay online please select the number of players you would like to pay for from the drop down below.</p>
+<form action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/456368772049667" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" target="_top">
+    <table cellpadding="5" cellspacing="0" width="1%">
+        <tr>
+            <td align="right" width="1%">
+                <select name="item_selection_1">
+                    <option value="1">$100.00 - 1 Golfer </option>
+                    <option value="2">$200.00 - 2 Golfers</option>
+                    <option value="3">$300.00 - 3 Golfers</option>
+                    <option value="4">$400.00 - 4 Golfers</option>
+                </select>
+                <input name="item_option_name_1" type="hidden" value="1 Golfer "/>
+                <input name="item_option_price_1" type="hidden" value="100.0"/>
+                <input name="item_option_description_1" type="hidden" value="Registration for one golfer to the 1st Annual Texas Husky Rescue Golf Tournament at Frisco Lakes."/>
+                <input name="item_option_quantity_1" type="hidden" value="1"/>
+                <input name="item_option_currency_1" type="hidden" value="USD"/>
+                <input name="item_option_name_2" type="hidden" value="2 Golfers"/>
+                <input name="item_option_price_2" type="hidden" value="200.0"/>
+                <input name="item_option_description_2" type="hidden" value="Registration for two golfers to the 1st Annual Texas Husky Rescue Golf Tournament at Frisco Lakes."/>
+                <input name="item_option_quantity_2" type="hidden" value="1"/>
+                <input name="item_option_currency_2" type="hidden" value="USD"/>
+                <input name="item_option_name_3" type="hidden" value="3 Golfers"/>
+                <input name="item_option_price_3" type="hidden" value="300.0"/>
+                <input name="item_option_description_3" type="hidden" value="Registration for three golfers to the 1st Annual Texas Husky Rescue Golf Tournament at Frisco Lakes."/>
+                <input name="item_option_quantity_3" type="hidden" value="1"/>
+                <input name="item_option_currency_3" type="hidden" value="USD"/>
+                <input name="item_option_name_4" type="hidden" value="4 Golfers"/>
+                <input name="item_option_price_4" type="hidden" value="400.0"/>
+                <input name="item_option_description_4" type="hidden" value="Registration for four golfers to the 1st Annual Texas Husky Rescue Golf Tournament at Frisco Lakes."/>
+                <input name="item_option_quantity_4" type="hidden" value="1"/>
+                <input name="item_option_currency_4" type="hidden" value="USD"/>
+            </td>
+            <td align="left" width="1%">
+                <input alt="" src="https://checkout.google.com/buttons/buy.gif?merchant_id=456368772049667&amp;w=121&amp;h=44&amp;style=trans&amp;variant=text&amp;loc=en_US" type="image"/>
+            </td>
+        </tr>
+    </table>
+</form>

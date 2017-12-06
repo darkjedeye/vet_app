@@ -1,0 +1,15 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Event_AttendeeViewModel
+<div class="attendee" id="@Html.DisplayTextFor(model => model.PlayerLabel)">
+	@Html.HiddenFor(model => model.EventRegistrationID)
+	@Html.HiddenFor(model => model.PersonID)
+	@Html.HiddenFor(model => model.ID)
+	@*<table class="golfer">
+		<tr>
+			<td align="left">
+				<strong>Golfer @Html.DisplayTextFor(model => model.PlayerNumber)</strong>
+			</td>
+		</tr>
+	</table>*@
+	@Html.EditorFor(model => model.Entity_Person)
+</div>

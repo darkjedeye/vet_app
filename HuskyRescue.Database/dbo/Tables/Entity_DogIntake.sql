@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[Entity_DogIntake] (
+    [ID]              UNIQUEIDENTIFIER CONSTRAINT [DF_Entity_DogIntake_ID] DEFAULT (newid()) ROWGUIDCOL NOT NULL,
+    [IntakeStatus]    INT              NOT NULL,
+    [ShelterName]     NVARCHAR (50)    NULL,
+    [WorkerName]      NVARCHAR (50)    NULL,
+    [HasUntil]        NVARCHAR (200)   NULL,
+    [VettingNotes]    NVARCHAR (1000)  NULL,
+    [HasDhppv]        BIT              NULL,
+    [HasDhlppv]       BIT              NULL,
+    [HasRabies]       BIT              NULL,
+    [HasBordetella]   BIT              NULL,
+    [IsDewormed]      BIT              NULL,
+    [IsHwPositive]    BIT              NULL,
+    [IsAltered]       BIT              NULL,
+    [IsUrgent]        BIT              NULL,
+    [FacebookUrl]     NVARCHAR (1000)  NULL,
+    [PetfinderUrl]    NVARCHAR (1000)  NULL,
+    [PetangoUrl]      NVARCHAR (1000)  NULL,
+    [OtherUrl]        NVARCHAR (1000)  NULL,
+    [Comments]        NVARCHAR (MAX)   NULL,
+    [UpdateTimestamp] DATETIME         NOT NULL,
+    CONSTRAINT [PK_Entity_DogIntake] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_EnumIntakeStatusType_ID__EntityDogIntake_IntakeStatus] FOREIGN KEY ([IntakeStatus]) REFERENCES [dbo].[Enum_IntakeStatusType] ([ID])
+);
+

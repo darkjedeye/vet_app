@@ -1,0 +1,19 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.EntityPhoneNumber
+
+<div>
+	<div class="row">
+		<div class="large-3 small-3 columns">
+			@Html.HiddenFor(model => model.ID)
+			@Html.HiddenFor(model => model.EntityID)
+			@Html.LabelFor(model => model.Number)
+			@Html.TextBoxFor(model => model.Number, new { @class = "phoneNumber2" })
+			@Html.ValidationMessageFor(model => model.Number)
+		</div>
+		<div class="large-4 small-9 columns">
+			@Html.LabelFor(model => model.PhoneNumberTypeList)
+			@Html.DropDownListFor(model => model.Type, Model.PhoneNumberTypeList, "--select one--")
+		</div>
+		<div class="large-5 columns"></div>
+	</div>
+</div>

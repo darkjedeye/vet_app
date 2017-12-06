@@ -1,0 +1,247 @@
+﻿@using HuskyRescue.Web.Infrastructure
+@using HuskyRescue.Web.Infrastructure.Extensions
+@{
+	var menu = new List<AdminSideMenu>
+	           {
+		           new AdminSideMenu(Html, "Dashboard", "icon-home", true, "Dashboard", "Index", false, true),
+				   new AdminSideMenu(Html, "General Information", "icon-info", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "Contact Information", "Admin", "ContactInfo"),
+																	  new AdminSideMenuItem(Html, "Member Information", "Admin", "MemberInfo"),
+																	  new AdminSideMenuItem(Html, "Group Org Chart", "Admin", "OrgChart"),
+																	  new AdminSideMenuItem(Html, "Rescue Count", "Admin", "RescueCount")
+				                                                  }),
+				   new AdminSideMenu(Html, "Huskies", "icon-heart", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "New", "Dog", "Create"),
+																	  new AdminSideMenuItem(Html, "Intake", "Dog", "Intake"),
+																	  new AdminSideMenuItem(Html, "Active", "Dog", "Active"),
+																	  new AdminSideMenuItem(Html, "Medical", "Dog", "Medical")
+				                                                  }),
+				   new AdminSideMenu(Html, "People", "icon-user", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "New", "Person", "Create"),
+																	  new AdminSideMenuItem(Html, "Active", "Person", "Index"),
+																	  new AdminSideMenuItem(Html, "Adopters", "Person", "Adopters"),
+																	  new AdminSideMenuItem(Html, "Fosters", "Person", "Fosters")
+				                                                  }),
+				   new AdminSideMenu(Html, "Organizations", "icon-table", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "New", "Business", "Create"),
+																	  new AdminSideMenuItem(Html, "Active", "Business", "Index")
+				                                                  }),
+				   new AdminSideMenu(Html, "Supplies", "icon-paper-clip", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "New", "Supplies", "Create"),
+																	  new AdminSideMenuItem(Html, "All Supplies", "Supplies", "Index"),
+																	  new AdminSideMenuItem(Html, "In Use", "Supplies", "InUse")
+				                                                  }),
+				   new AdminSideMenu(Html, "Events", "icon-calendar", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "New Event", "Events", "Create"),
+																	  new AdminSideMenuItem(Html, "Events", "Events", "Index"),
+																	  //new AdminSideMenuItem(Html, "Raffle Registrations", "Events", "RaffleRegistrationIndex"),
+																	  new AdminSideMenuItem(Html, "Golf Registrations", "Events", "GolfTournamentRegistrationIndex")
+				                                                  }),
+				   new AdminSideMenu(Html, "Donations", "icon-money", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "New", "Donation", "Create"),
+																	  new AdminSideMenuItem(Html, "History", "Donation", "Index")
+				                                                   }),
+				   new AdminSideMenu(Html, "Online Store", "icon-cogs", new List<AdminSideMenuItem>
+				                                                  {
+																	  new AdminSideMenuItem(Html, "Orders", "Store", "Orders"),
+																	  new AdminSideMenuItem(Html, "Products", "Store", "Products"),
+					                                                  new AdminSideMenuItem(Html, "Product Categories", "Store", "ProductCategories"),
+																	  new AdminSideMenuItem(Html, "Product Properties", "Store", "PropertyIndex"),
+																	  new AdminSideMenuItem(Html, "Payment Methods", "Store", "PaymentMethodIndex"),
+																	  new AdminSideMenuItem(Html, "Shipping Methods", "Store", "ShippingMethodIndex")
+																	  }),
+				   new AdminSideMenu(Html, "System", "icon-cogs", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "System Config", "System", "Index"),
+																	  new AdminSideMenuItem(Html, "Activity Log", "Admin", "ActivityLog"),
+																	  new AdminSideMenuItem(Html, "Error Log", "Admin", "ErrorLog")
+				                                                  }),
+				   new AdminSideMenu(Html, "Accounts", "icon-cogs", new List<AdminSideMenuItem>
+				                                                  {
+					                                                  new AdminSideMenuItem(Html, "Roles Management", "AccountRolesManage", "Index"),
+																	  new AdminSideMenuItem(Html, "Users Management", "AccountUsersManage", "Index")
+				                                                  })
+	           };
+}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" title="Texas Husky Rescue" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="msvalidate.01" content="ED35CB695E274A7F1171266C486D5D52" />
+	<link rel="image_src" href="http://texashuskyrescue.org/Content/images/Controllers/Home/Index/slider9.jpg" />
+	<title>Texas Husky Rescue, Inc</title>
+
+	@Styles.Render("~/bundles/adminF/css")
+	@Scripts.Render("~/bundles/top/js")
+</head>
+	<body class="page-sidebar-fixed">
+		<div id="full-height-wrapper">
+			<div>
+				<nav class="top-bar admin">
+					<ul class="title-area">
+						<!-- Title Area -->
+						<li class="name">
+							<h1><a href="#"><img src="/Content/Images/logo.png" alt="logo" class="img-responsive" /></a></h1>
+						</li>
+						<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+						<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+					</ul>
+
+					<section class="top-bar-section">
+						<!-- Left Nav Section -->
+						@*<ul class="left">
+							<li class="divider"></li>
+							<li class="active"><a href="#">Main Item 1</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Main Item 2</a></li>
+							<li class="divider"></li>
+							<li class="has-dropdown"><a href="#">Main Item 3</a>
+
+								<ul class="dropdown">
+									<li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
+
+										<ul class="dropdown">
+											<li>
+												<label>Dropdown Level 2 Label</label></li>
+											<li><a href="#">Dropdown Level 2a</a></li>
+											<li><a href="#">Dropdown Level 2b</a></li>
+											<li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
+
+												<ul class="dropdown">
+													<li>
+														<label>Dropdown Level 3 Label</label></li>
+													<li><a href="#">Dropdown Level 3a</a></li>
+													<li><a href="#">Dropdown Level 3b</a></li>
+													<li class="divider"></li>
+													<li><a href="#">Dropdown Level 3c</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Dropdown Level 2d</a></li>
+											<li><a href="#">Dropdown Level 2e</a></li>
+											<li><a href="#">Dropdown Level 2f</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Dropdown Level 1b</a></li>
+									<li><a href="#">Dropdown Level 1c</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Dropdown Level 1d</a></li>
+									<li><a href="#">Dropdown Level 1e</a></li>
+									<li><a href="#">Dropdown Level 1f</a></li>
+									<li class="divider"></li>
+									<li><a href="#">See all &rarr;</a></li>
+								</ul>
+							</li>
+							<li class="divider"></li>
+						</ul>*@
+
+						<!-- Right Nav Section -->
+						@*<ul class="right">
+							<li class="divider hide-for-small"></li>
+							<li class="has-dropdown"><a href="#">Main Item 4</a>
+
+								<ul class="dropdown">
+									<li>
+										<label>Dropdown Level 1 Label</label></li>
+									<li class="has-dropdown"><a href="#" class="">Dropdown Level 1a</a>
+
+										<ul class="dropdown">
+											<li><a href="#">Dropdown Level 2a</a></li>
+											<li><a href="#">Dropdown Level 2b</a></li>
+											<li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
+
+												<ul class="dropdown">
+													<li><a href="#">Dropdown Level 3a</a></li>
+													<li><a href="#">Dropdown Level 3b</a></li>
+													<li><a href="#">Dropdown Level 3c</a></li>
+												</ul>
+											</li>
+											<li><a href="#">Dropdown Level 2d</a></li>
+											<li><a href="#">Dropdown Level 2e</a></li>
+											<li><a href="#">Dropdown Level 2f</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Dropdown Level 1b</a></li>
+									<li><a href="#">Dropdown Level 1c</a></li>
+									<li class="divider"></li>
+									<li>
+										<label>Dropdown Level 1 Label</label></li>
+									<li><a href="#">Dropdown Level 1d</a></li>
+									<li><a href="#">Dropdown Level 1e</a></li>
+									<li><a href="#">Dropdown Level 1f</a></li>
+									<li class="divider"></li>
+									<li><a href="#">See all &rarr;</a></li>
+								</ul>
+							</li>
+							<li class="divider"></li>
+							<li class="has-form">
+								<form>
+									<div class="row collapse">
+										<div class="small-8 columns">
+											<input type="text">
+										</div>
+										<div class="small-4 columns">
+											<a href="#" class="alert button">Search</a>
+										</div>
+									</div>
+								</form>
+							</li>
+							<li class="divider show-for-small"></li>
+							<li class="has-form">
+								<a class="button" href="#">Button!</a>
+							</li>
+						</ul>*@
+					</section>
+				</nav>
+			</div>
+
+			<div class="page-container">
+				<div class="row full-width">
+					<!-- BEGIN SIDEBAR -->
+					<div class="large-2 medium-3 hide-for-small columns no-padding page-sidebar full-height">
+						<!-- BEGIN SIDEBAR MENU -->
+						<dl class="accordion" id="" data-accordion>
+							@Html.MenuBuilder(menu)
+						</dl>
+						<!-- END SIDEBAR MENU -->
+					</div>
+					<!-- END SIDEBAR -->
+			
+					<!-- BEGIN MAIN CONTENT -->
+					<div class="large-10 medium-9 columns page-content">
+						<div id="main-content">
+							<div class="row full-width">
+								<div class="large-12 columns main-content-space">
+									@RenderBody()
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END MAIN CONTENT -->
+				</div>
+			</div>
+		</div>
+
+		@* Used to pass token into AJAX requests - script below inserts this into header of request *@
+		<form id="__AjaxAntiForgeryForm" action="#" method="post">@Html.AntiForgeryToken()</form>
+
+		@Scripts.Render("~/bundles/adminF/js")
+		@RenderSection("JavaScript", required: false)
+		<script type="text/javascript">
+			App.init();
+			$(".full-height").height($("#full-height-wrapper").height() - 45);
+		</script>
+	</body>
+</html>

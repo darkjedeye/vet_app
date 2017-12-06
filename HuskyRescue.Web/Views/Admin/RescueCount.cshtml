@@ -1,0 +1,63 @@
+﻿@{
+<<<<<<< HEAD
+    ViewBag.Title = "RescueCount";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Scripts.Render("~/bundles/admin/index/js")
+
+<div class="main-container">
+	<div class="container1">
+		<div id="header1">
+			<p id="tagline1">
+				<strong>General Admin</strong>
+			</p>
+		</div>
+			<table>
+				<tr>
+					<td>
+						Enter the number of saved huskies
+					</td>
+					<td>
+						@Html.TextBox("count", @TempData["CurrentCount"])
+
+						<a href="#" onclick="UpdateCount()" style="float:right; padding-right:20px">
+							<img class="action" src="~/Content/images/icons/save.png" /></a>
+					</td>
+				</tr>
+			</table>
+	</div>
+</div>
+=======
+	ViewBag.Title = "RescueCount";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Update Public Numbers</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 small-12 columns">
+		<div class="panel">
+			<div class="row">
+				<div class="large-12 small-12 columns">
+					@Html.Label("count", "Rescued Count", new { @class = "control-label" })
+					@Html.TextBox("count", @TempData["CurrentCount"], new { @placeholder = "# Rescued Count", @style = "width: 100px;" })
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 small-12 columns">
+					<a href="#" class="small button" id="countUpdate"><i class="icon-ok"></i>Save</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="large-10 small-12 columns"></div>
+</div>
+
+@section JavaScript
+{
+	@Scripts.Render("~/bundles/admin/RescueCount/js")
+}
+>>>>>>> release/v0.2.5

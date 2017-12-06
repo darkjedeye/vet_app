@@ -1,0 +1,34 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Event_RegistrationViewModel
+
+
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.EventID)
+<div>
+	<table>
+		<tr>
+			<td class="editor-label">
+				@Html.LabelFor(model => model.ListPlayerCount)
+			</td>
+			<td class="editor-field">
+				@Html.DropDownListFor(model => model.PlayerCount, Model.ListPlayerCount)
+				@Html.ValidationMessageFor(model => model.ListPlayerCount)
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="registration">
+	<table>
+		<tr>
+			<td class="display-field">
+				@Html.LabelFor(model => model.DateSubmitted)
+			</td>
+			<td class="display-field">
+				@Html.DisplayTextFor(model => model.DateSubmitted)
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="attendees">
+	@Html.EditorFor(model => model.Event_Attendee)
+</div>

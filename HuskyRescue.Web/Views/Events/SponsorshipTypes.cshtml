@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AnimalRescue.Web.ViewModel.Event_SponsorshipLevelTypesViewModel>
+
+@{
+    ViewBag.Title = "SponsorshipTypes";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<h2>SponsorshipTypes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "SponsorshipTypeAdd")
+</p>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            SponsorAmount
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SponsorAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "SponsorshipTypeEdit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

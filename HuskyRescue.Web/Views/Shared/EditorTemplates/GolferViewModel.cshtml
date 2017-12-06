@@ -1,0 +1,75 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.GolferViewModel
+@Html.HiddenFor(model => model.ID)
+
+<table class="golfer" id="@Html.DisplayTextFor(model => model.PlayerLabel)">
+	<tr>
+		<td align="left">
+			<strong>Player @Html.DisplayTextFor(model => model.PlayerNumber)</strong>
+		</td>
+	</tr>
+	<tr>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.FirstName)
+		</td>
+		<td class="editer-field">
+			@Html.TextBoxFor(model => model.FirstName, new { @class = "name" })
+			@Html.ValidationMessageFor(model => model.FirstName)
+		</td>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.LastName)
+		</td>
+		<td class="editer-field">
+			@Html.TextBoxFor(model => model.LastName, new { @class = "name" })
+			@Html.ValidationMessageFor(model => model.LastName)
+		</td>
+	</tr>
+	<tr>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.PhoneNumber.Number)
+		</td>
+		<td class="editer-field">
+			@Html.TextBoxFor(model => model.PhoneNumber.Number, new { @class = "phone" })
+			@Html.ValidationMessageFor(model => model.PhoneNumber.Number)
+		</td>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.Email.EmailAddress)
+		</td>
+		<td class="editer-field">
+			@Html.EditorFor(model => model.Email.EmailAddress)
+			@Html.ValidationMessageFor(model => model.Email.EmailAddress)
+		</td>
+	</tr>
+	<tr>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.Address.Street)
+		</td>
+		<td class="editer-field">
+			@Html.EditorFor(model => model.Address.Street)
+			@Html.ValidationMessageFor(model => model.Address.Street)
+		</td>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.Address.City)
+		</td>
+		<td class="editer-field">
+			@Html.EditorFor(model => model.Address.City)
+			@Html.ValidationMessageFor(model => model.Address.City)
+		</td>
+	</tr>
+	<tr>
+		<td class="editor-label">
+			@Html.LabelFor(model => model.AddressStateList)
+		</td>
+		<td class="editor-field">
+			@Html.DropDownListFor(model => model.Address.StateId, Model.AddressStateList)
+			@Html.ValidationMessageFor(model => model.AddressStateList)
+		</td>
+		<td class="editer-label">
+			@Html.LabelFor(model => model.Address.ZIP)
+		</td>
+		<td class="editer-field">
+			@Html.TextBoxFor(model => model.Address.ZIP, new { @class = "zip" })
+			@Html.ValidationMessageFor(model => model.Address.ZIP)
+		</td>
+	</tr>
+</table>

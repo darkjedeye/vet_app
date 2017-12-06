@@ -1,0 +1,157 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity_PersonFullViewModel
+
+@Styles.Render("~/bundles/fileupload/css")
+@Scripts.Render("~bundles/fileupload/js")
+@Scripts.Render("~/bundles/person/detail/js")
+
+<div class="divLeftSide">
+	<div class="personDetail divContent">
+		@Html.HiddenFor(model => model.ID)
+		@Html.HiddenFor(model => model.BaseID)
+		@Html.HiddenFor(model => model.Entity_Base.ID)
+		<ul>
+			<li>
+				@Html.LabelFor(model => model.FirstName)
+				@Html.TextBoxFor(model => model.FirstName, new { @class = "name" })
+				@Html.ValidationMessageFor(model => model.FirstName)
+			</li>
+			<li>
+				@Html.LabelFor(model => model.LastName)
+				@Html.TextBoxFor(model => model.LastName, new { @class = "name" })
+				@Html.ValidationMessageFor(model => model.LastName)
+			</li>
+			<li>
+				@Html.LabelFor(model => model.LicenseNumber)
+				@Html.TextBoxFor(model => model.LicenseNumber)
+				@Html.ValidationMessageFor(model => model.LicenseNumber)
+			</li>
+			<li>
+				<div class="checks">
+					@Html.LabelFor(model => model.Entity_Base.IsActive)
+					@Html.EditorFor(model => model.Entity_Base.IsActive)
+					@if (Model.Entity_Base.IsActive == true)
+	 {
+						@Html.DisplayFor(model => model.Entity_Base.DateActive, "ShortDateTime")
+	 }
+	 else
+	 {
+						@Html.DisplayFor(model => model.Entity_Base.DateInActive, "ShortDateTime")
+	 }
+				</div>
+			</li>
+			<li>
+				<div class="checks">
+					@Html.LabelFor(model => model.Entity_Base.IsMailable)
+					@Html.EditorFor(model => model.Entity_Base.IsMailable)
+					@Html.LabelFor(model => model.Entity_Base.IsEmailable)
+					@Html.EditorFor(model => model.Entity_Base.IsEmailable)
+				</div>
+			</li>
+			<li>
+				<div class="comments">
+					@Html.LabelFor(model => model.Entity_Base.Comments)
+					@Html.TextAreaFor(model => model.Entity_Base.Comments)
+				</div>
+			</li>
+			<li>
+				<a href="#" onclick="EntityCRUD('@ViewData.TemplateInfo.HtmlFieldPrefix', 'person', 'update')" style="float:right; padding-right:20px">
+					<img class="action" src="~/Content/images/icons/save.png" /></a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="divRightSide">
+	<div class="address divContent">
+		@Html.EditorFor(model => model.Entity_Base.Entity_Addresses)
+	</div>
+	<div class="emailAddress divContent">
+		<ul id="EmailAddresssEditor">
+			@if (Model.Entity_Base.Entity_EmailAddress != null)
+   {
+	   foreach (var email in Model.Entity_Base.Entity_EmailAddress)
+	   {
+		   Html.RenderPartial("Entity_EmailAddressViewModel", email);
+	   }
+   }
+		</ul>
+		<script type="text/x-jsrender" id="emailAddressTemplate">
+	@Html.CollectionItemJQueryTemplate("Entity_EmailAddressViewModel", new AnimalRescue.Web.ViewModel.Entity_EmailAddressViewModel())
+		</script>
+		<a id="addAnotherEmail" href="#" onclick="viewModel.addNewEmail();" style="float: right; padding-right: 123px">
+			<img class="action" src="~/Content/images/icons/plus.png" title="Add New Email" /></a>
+	</div>
+	<div class="phonenumber divContent">
+		<ul id="PhoneNumberEditor">
+			@if (Model.Entity_Base.Entity_PhoneNumber != null)
+   {
+	   foreach (var phone in Model.Entity_Base.Entity_PhoneNumber)
+	   {
+		   Html.RenderPartial("Entity_PhoneNumberViewModel", phone);
+	   }
+   }
+		</ul>
+		<script type="text/x-jsrender" id="phoneNumberTemplate">
+	@Html.CollectionItemJQueryTemplate("Entity_PhoneNumberViewModel", new AnimalRescue.Web.ViewModel.Entity_PhoneNumberViewModel())
+		</script>
+		<a id="addAnotherPhone" href="#" onclick="viewModel.addNewPhone();" style="float: right; padding-right: 156px">
+			<img class="action" src="~/Content/images/icons/plus.png" title="Add New Phone" /></a>
+	</div>
+	@if (Model.AdoptionApplications.Count > 0)
+ {
+		<div class="adoptionApp divContent">
+			@foreach (var app in Model.AdoptionApplications)
+   {
+				<ul>
+					<li>
+						@Html.ActionLink("View Adoption Application", "Details", new { ID = app.ID, PersonID = app.PersonID })
+						@Ajax.ActionLink(" ", "Delete", "Adoption", null, new { style = "background: url('~/Content/images/icons/delete.png') no-repeat center right;display:block; height:24px; width:24px;margin-top:-2px;text-decoration:none;" })
+					</li>
+					<li>
+						@Html.LabelFor(model => app.DateSubmitted)
+						@Html.DisplayFor(model => app.DateSubmitted)
+					</li>
+					<li>
+						@Html.LabelFor(model => app.FilterAppDogsInterestedIn)
+						@Html.DisplayFor(model => app.FilterAppDogsInterestedIn)
+					</li>
+				</ul>
+   }
+		</div>
+ }
+	<div class="files divContent">
+		<ul>
+			@if (Model.Files.Count > 0)
+   {
+	<li>
+		<table>
+			<thead>
+				<tr>
+					<th>File Name</th>
+					<th>Delete?</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var file in Model.Files)
+	{
+					<tr>
+						<td>
+							<a href="@file.Url" target="_blank">@file.FileName</a>
+						</td>
+						<td>
+							@Ajax.ActionLink(" ", "DeleteFile", "FileController", null, new { style = "background: url('~/Content/images/icons/delete.png') no-repeat center right;display:block; height:24px; width:24px;margin-top:-2px;text-decoration:none;" })
+						</td>
+					</tr>
+	}
+			</tbody>
+		</table>
+	</li>
+   }
+			<li id="UploadPersonFiles"></li>
+		</ul>
+	</div>
+</div>
+<div class="spacer">
+</div>

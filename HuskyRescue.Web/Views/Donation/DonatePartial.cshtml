@@ -1,0 +1,227 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Controllers.Donation.Donation
+
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.DonationInformation.Id)
+@Html.HiddenFor(model => model.DonationInformation.PaymentTransactionId)
+@Html.HiddenFor(model => model.IsAdminView)
+@Html.HiddenFor(model => model.ShowPaymentSection)
+@Html.HiddenFor(model => model.DonationInformation.BaseType)
+
+<div class="row">
+	<div class="large-12 columns">
+		<h4 class="subheader">Donate to Texas Husky Rescue</h4>
+	</div>
+</div>
+<fieldset>
+	<legend>Donor Information</legend>
+	<div class="row">
+		<div class="large-6 columns">
+			@Html.HiddenFor(model => model.DonationInformation.Person.ID)
+			@Html.HiddenFor(model => model.DonationInformation.Person.BaseID)
+			@Html.HiddenFor(model => model.DonationInformation.Person.Base.ID)
+
+			@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.FirstName)
+		</div>
+		<div class="large-6 columns">
+			@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.LastName)
+		</div>
+	</div>
+	@for (var j = 0; j < Model.DonationInformation.Person.Base.Addresses.Count; j++)
+	{
+
+		<div class="row">
+			<div class="large-4 small-12 columns">
+				@Html.HiddenFor(model => model.DonationInformation.Person.Base.Addresses[j].ID)
+				@Html.HiddenFor(model => model.DonationInformation.Person.Base.Addresses[j].EntityID)
+				@Html.HiddenFor(model => model.DonationInformation.Person.Base.Addresses[j].Type)
+
+				@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.Base.Addresses[j].Street)
+			</div>
+			<div class="large-4 small-5 columns">
+				@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.Base.Addresses[j].City)
+			</div>
+			<div class="large-2 small-4 columns">
+				@Html.LabelFor(model => model.DonationInformation.Person.Base.Addresses[j].StateID)
+				@Html.DropDownListFor(model => model.DonationInformation.Person.Base.Addresses[j].StateID, Model.DonationInformation.Person.Base.Addresses[j].AddressStateList, "-- select one --", new { @class = "no-custom" })
+				<small class="error">State is required</small>
+			</div>
+			<div class="large-2 small-3 columns">
+				@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.Base.Addresses[j].ZIP, new { @class = "zip" })
+			</div>
+		</div>
+	}
+	<div class="row">
+		<div class="large-4 small-12 columns">
+			@for (var j = 0; j < Model.DonationInformation.Person.Base.EmailAddresses.Count; j++)
+			{
+	@Html.HiddenFor(model => model.DonationInformation.Person.Base.EmailAddresses[j].ID)
+	@Html.HiddenFor(model => model.DonationInformation.Person.Base.EmailAddresses[j].EntityID)
+	@Html.HiddenFor(model => model.DonationInformation.Person.Base.EmailAddresses[j].Type)
+	@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.Base.EmailAddresses[j].Address)
+			}
+		</div>
+		<div class="large-2 small-5 columns">
+			@for (var j = 0; j < Model.DonationInformation.Person.Base.PhoneNumbers.Count; j++)
+			{
+	@Html.HiddenFor(model => model.DonationInformation.Person.Base.PhoneNumbers[j].ID)
+	@Html.HiddenFor(model => model.DonationInformation.Person.Base.PhoneNumbers[j].EntityID)
+	@Html.HiddenFor(model => model.DonationInformation.Person.Base.PhoneNumbers[j].Type)
+	@Html.FoundationTextBoxFor(model => model.DonationInformation.Person.Base.PhoneNumbers[j].Number, new { @class = "phoneNumber2" })
+			}
+		</div>
+		<div class="large-6 small-7 columns"></div>
+	</div>
+
+	<hr />
+	<div class="row">
+		<div class="large-12 columns">
+			<label for="DonationInformation_DonorComments">Let us know if you have any comments, suggestions, or requests for how to use your donation</label>
+			@Html.FoundationTextAreaFor(model => model.DonationInformation.DonorComments, false)
+		</div>
+	</div>
+</fieldset>
+<hr />
+
+<fieldset>
+	<legend>Payment Information</legend>
+	@if (Model.IsAdminView)
+	{
+
+		<div class="row">
+			<div class="large-12 columns">
+				@Html.LabelFor(model => model.DonationInformation.Amount)
+				@Html.DisplayFor(model => model.DonationInformation.Amount)
+				@Html.HiddenFor(model => model.DonationInformation.Amount)
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-12 columns">
+				@Html.LabelFor(model => model.DonationInformation.PaymentTransactionId)
+				@Html.DisplayFor(model => model.DonationInformation.PaymentTransactionId)
+			</div>
+		</div>
+	}
+
+	@if (Model.ShowPaymentSection)
+	{
+
+		<div id="CreditCardPayInfo">
+			<div class="row">
+				<div class="large-12 small-12 columns">
+					@Html.FoundationTextBoxFor(model => model.DonationInformation.Amount)
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-4 small-6 columns">
+					<label for="copydonorinfo" class="">Copy Donor Information to Payment Information</label>
+				</div>
+				<div class="large-8 small-6 columns">
+					<input type="checkbox" id="copydonorinfo" class="no-custom left" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-6 columns">
+					@Html.HiddenFor(model => model.BillingInformation.Person.ID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.BaseID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.ID)
+
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.FirstName)
+				</div>
+				<div class="large-6 columns">
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.LastName)
+				</div>
+			</div>
+			@for (var j = 0; j < Model.BillingInformation.Person.Base.Addresses.Count; j++)
+			{
+
+				<div class="row">
+					<div class="large-4 small-12 columns">
+						@Html.HiddenFor(model => model.BillingInformation.Person.Base.Addresses[j].ID)
+						@Html.HiddenFor(model => model.BillingInformation.Person.Base.Addresses[j].EntityID)
+						@Html.HiddenFor(model => model.BillingInformation.Person.Base.Addresses[j].Type)
+
+						@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.Addresses[j].Street)
+					</div>
+					<div class="large-4 small-5 columns">
+						@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.Addresses[j].City)
+					</div>
+					<div class="large-2 small-4 columns">
+						@Html.LabelFor(model => model.BillingInformation.Person.Base.Addresses[j].StateID)
+						@Html.DropDownListFor(model => model.BillingInformation.Person.Base.Addresses[j].StateID, Model.BillingInformation.Person.Base.Addresses[j].AddressStateList, "-- select one --", new { @class = "no-custom" })
+						<small class="error">State is required</small>
+					</div>
+					<div class="large-2 small-3 columns">
+						@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.Addresses[j].ZIP, new { @class = "zip" })
+					</div>
+				</div>
+			}
+			<div class="row">
+				<div class="large-4 small-12 columns">
+					@for (var j = 0; j < Model.BillingInformation.Person.Base.EmailAddresses.Count; j++)
+					{
+	@Html.HiddenFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].ID)
+	@Html.HiddenFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].EntityID)
+	@Html.HiddenFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].Type)
+	@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].Address, new { notrequired = "" })
+					}
+				</div>
+				<div class="large-2 small-5 columns">
+					@for (var j = 0; j < Model.BillingInformation.Person.Base.PhoneNumbers.Count; j++)
+					{
+	@Html.HiddenFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].ID)
+	@Html.HiddenFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].EntityID)
+	@Html.HiddenFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].Type)
+	@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].Number, new { @class = "phoneNumber2", notrequired = "" })
+					}
+				</div>
+				<div class="large-6 small-7 columns"></div>
+			</div>
+			<div class="row">
+				<div class="large-12 small-12 columns">
+					<br />
+					<ul class="inline-list">
+						<li>
+							<div class="input-wrapper">
+								@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardNumber, new { @name = "", autocomplete = "off", data_encrypted_name = "number", @class = "CreditCardNumber" })
+							</div>
+						</li>
+						<li>
+							<div class="input-wrapper">
+								@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardCvv, new { name = "", autocomplete = "off", data_encrypted_name = "cvv", @class = "CreditCardCVV" })
+							</div>
+						</li>
+						<li>
+							<div class="input-wrapper">
+								@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardExpireMonth, new { name = "", autocomplete = "off", data_encrypted_name = "month", @class = "CreditCardExpireMonth" })
+							</div>
+						</li>
+						<li>
+							<div class="input-wrapper">
+								@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardExpireYear, new { name = "", autocomplete = "off", data_encrypted_name = "year", @class = "CreditCardExpireYear" })
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<ul class="inline-list">
+						<li style="margin-right: 2px; font-size: 0.875em">Accepted Cards: </li>
+						<li style="margin-left: 0;">
+							<img src="~/Content/Images/icons/cards/american_express.gif" alt="American Express" /></li>
+						<li style="margin-left: 0;">
+							<img src="~/Content/Images/icons/cards/discover.gif" alt="Discover Network" /></li>
+						<li style="margin-left: 0;">
+							<img src="~/Content/Images/icons/cards/jcb.gif" alt="JCB" /></li>
+						<li style="margin-left: 0;">
+							<img src="~/Content/Images/icons/cards/mastercard.gif" alt="Mastercard" /></li>
+						<li style="margin-left: 0;">
+							<img src="~/Content/Images/icons/cards/visa.gif" alt="Visa" /></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	}
+</fieldset>

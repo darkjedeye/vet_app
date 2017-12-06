@@ -1,0 +1,68 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.EventsViewModel
+@{
+	ViewBag.Title = "1st Annual Texas Husky Rescue Golf Tournament";
+}
+
+@Styles.Render("~/bundles/action/golfreg/css")
+@Scripts.Render("~/bundles/action/golfreg/js")
+
+<style type="text/css">
+
+</style>
+<fieldset>
+	<legend>Adoption Application</legend>
+	<div class="main-container">
+		<div class="container1">
+			<div>
+				<h1 class="GolfText">2nd Annual Texas Husky Rescue Golf Tournament</h1>
+				<h2>Friday, September 21, 2012</h2>
+				<div>
+					<img src="../../Content/elegant_press/images/Golf2012-1.jpg" width="700" />
+				</div>
+				<br />
+				<div class="EventDetail">
+					<h3><a href="/GolfReg">Click Here to Register Your Team Today</a></h3>
+					<h3><a href="/GolfSponsor">Click Here to Sponsor this Event</a></h3>
+					<h4 class="GolfText">Event Schedule</h4>
+					<p>
+						12:30 - Registration
+						<br />
+						2:00 - Shotgun start
+						<br />
+						Post Tournament - Dinner, Silent Auction and Awards Presentation
+						<br />
+						<br />
+						<br />
+					</p>
+					<h4 class="GolfText">Location</h4>
+					<p>
+						Coyote Ridge Golf Club
+						<br />
+						<a href="https://maps.google.com/maps?q=Coyote+Ridge+Golf+Club&hl=en&cid=10425520776480073258&gl=US&t=m&z=16&iwloc=A">1640 W. Hebron Parkway, Carrollton,
+							75010<br />
+						</a><a href="http://www.coyoteridgegolfclub.com">www.CoyoteRidgeGolfClub.com</a>
+						<br />
+						Dress Code - Collared shirts, proper length shorts and soft-spikes required. No t-shirts, denim or tank tops.
+						<br />
+						<br />
+						<br />
+					</p>
+					<h4 class="GolfText">Details</h4>
+					<p>
+						$100 per player<br />
+						Four person team scramble<br />
+						Tournament contests<br />
+						BBQ buffet dinner<br />
+						Awards ceremony & raffle with great prizes!
+					</p>
+					<p>
+						<br />
+						<br />
+						<strong>Already registered?</strong> <a href="/Events/ThankYou">Click here to pay online</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>

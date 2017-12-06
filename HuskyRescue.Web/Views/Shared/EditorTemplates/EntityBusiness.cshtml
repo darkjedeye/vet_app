@@ -1,0 +1,51 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.Business
+
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.BaseID)
+@Html.HiddenFor(model => model.Base.ID)
+
+<div class="row">
+	<div class="large-3 columns">
+		@Html.LabelFor(model => model.TypeBusinessList)
+		@Html.DropDownListFor(model => model.TypeBusiness, Model.TypeBusinessList, "--select one--")
+		@Html.ValidationMessageFor(model => model.TypeBusinessList)
+	</div>
+	<div class="large-4 columns">
+		@Html.LabelFor(model => model.BusinessName)
+		@Html.TextBoxFor(model => model.BusinessName, new { @class = "name" })
+		@Html.ValidationMessageFor(model => model.BusinessName)
+	</div>
+	<div class="large-3 columns">
+		@Html.LabelFor(model => model.ContactName)
+		@Html.TextBoxFor(model => model.ContactName, new { @class = "name" })
+		@Html.ValidationMessageFor(model => model.ContactName)
+	</div>
+	<div class="large-2 columns">
+		@Html.LabelFor(model => model.ContactTitle)
+		@Html.TextBoxFor(model => model.ContactTitle, new { @class = "name" })
+		@Html.ValidationMessageFor(model => model.ContactTitle)
+	</div>
+</div>
+
+
+<div class="address">
+	<fieldset>
+		<legend>Address</legend>
+		@Html.EditorFor(model => model.Base.Addresses)
+	</fieldset>
+</div>
+<div class="row">
+	<div class="large-6 small-12 columns">
+		<fieldset>
+			<legend>Phone</legend>
+			@Html.EditorFor(model => model.Base.PhoneNumbers)
+		</fieldset>
+	</div>
+	<div class="large-6 small-12 columns">
+		<fieldset>
+			<legend>Email</legend>
+			@Html.EditorFor(model => model.Base.EmailAddresses)
+		</fieldset>
+	</div>
+</div>

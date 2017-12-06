@@ -1,0 +1,27 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.EventRegistration
+
+@{
+	ViewBag.Title = "RegistrationEdit";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+@if (Model.Event.IsActiveGolfEvent)
+{
+	@Html.Partial("GolfTournamentPartial", Model)
+}
+@if (Model.Event.IsActiveRoughRidersEvent)
+{
+	@Html.Partial("RoughRidersPartial", Model)
+}
+@if (Model.Event.IsActiveRaffle)
+{
+	@Html.Partial("RaffleTicketsAdminPartial", Model)
+}
+@if (!Model.Event.IsActiveGolfEvent && !Model.Event.IsActiveRoughRidersEvent && !Model.Event.IsActiveRaffle)
+{
+	@Html.Partial("RegistrationEditPartial", Model)
+}
+
+<div>
+	@Html.ActionLink("Back to List", "RegistrationIndex")
+</div>

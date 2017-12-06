@@ -1,0 +1,154 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model IEnumerable<HuskyRescue.Core.ViewModel.Entity.Person>
+@{
+	ViewBag.Title = "Person List";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+<<<<<<< HEAD
+@Styles.Render("~/bundles/main/forms/css")
+@Scripts.Render("~/bundles/main/forms/js")
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>People - Adopters/Fosters/Volunteers/etc</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div id="peopleGrid"></div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="large-2 small-3 columns">
+		@Html.ActionLink("Create New Person", "Create")
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Phones</th>
+				<th>Is Active</th>
+				<th></th>
+			</tr>
+			@foreach (var item in Model)
+   {
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.FullName)
+					</td>
+					<td>
+						@if (item.EntityBase.Addresses.Count > 0)
+	  {
+							@Html.Address(item.EntityBase.Addresses.Single(a => a.Type.Trim().Equals("1")));
+	  }
+					</td>
+					<td>
+						@foreach (var phone in item.EntityBase.PhoneNumbers)
+	  {
+							<span>@Html.DisplayFor(phoneItem => phone.Number)</span><br />
+	  }
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.EntityBase.IsActive)
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+						@Html.ActionLink("Delete", "Delete", new { id = item.ID })
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>
+=======
+
+@section JavaScript
+{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// prepare the data
+			var source =
+				{
+					datatype: "json",
+					datafields: [
+						 { name: 'ID', type: 'string' },
+						 { name: 'BaseID', type: 'string' },
+						 { name: 'FullName', type: 'string' },
+						 { name: 'PrimaryAddressText', type: 'string' },
+						 { name: 'PhoneNumberFormatted', type: 'string' },
+						 { name: 'EmailAddressText', type: 'string' }
+					],
+					url: 'Person/GetPeoples'
+				};
+
+			var addressLinkRenderer = function (row, column, value) {
+				if (value.indexOf('#') != -1) {
+					value = value.substring(0, value.indexOf('#'));
+				}
+				var link = "https://maps.google.com/?q=" + value;
+
+				if (value != "") {
+					return "<a target='_blank' href='" + link + "'>" + value + "</a>"
+				}
+				else {
+					return "";
+				}
+			}
+
+			var editLinkRenderer = function (row, column, value) {
+				if (value.indexOf('#') != -1) {
+					value = value.substring(0, value.indexOf('#'));
+				}
+				var link = "/Person/Edit?ID=" + value;
+
+				if (value != "") {
+					return "<a href='" + link + "'>" + "Edit" + "</a>"
+				}
+				else {
+					return "";
+				}
+			}
+
+			var editButtonRenderer = function (row, column, value) {
+				value = "'" + value + "'";
+				return '<input type="button" onClick="editButtonclick(event, ' + value + ')" class="gridButton" id="btn' + row + '" value="Edit"/>'
+			};
+
+			var dataAdapter = new $.jqx.dataAdapter(source);
+			// initialize jqxGrid
+			$("#grid").jqxGrid(
+				{
+					width: '100%',
+					source: dataAdapter,
+					sortable: true,
+					filterable: true,
+					pageable: true,
+					autoheight: true,
+					autorowheight: true,
+					pagesize: 25,
+					pagesizeoptions: ['25', '50', '100'],
+					columns: [
+						{ text: 'Action', datafield: 'ID', cellsrenderer: editLinkRenderer, width: 100 },
+						{ text: "Name", datafield: "FullName" },
+						{ text: "Address", datafield: "PrimaryAddressText", cellsrenderer: addressLinkRenderer },
+						{ text: "Phone Numbers", datafield: "PhoneNumberFormatted" },
+						{ text: "Email", datafield: "EmailAddressText" }
+					]
+				});
+		});
+		function editButtonclick(event, value) {
+			var id = event.target.id;
+			alert(value);
+			//$("#grid").jqxGrid('editrow', id);
+		};
+	</script>
+}
+
+<div id="grid"></div>
+>>>>>>> release/v0.2.5

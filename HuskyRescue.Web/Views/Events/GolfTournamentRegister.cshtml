@@ -1,0 +1,28 @@
+﻿@model HuskyRescue.Core.ViewModel.Controllers.Events.GolfRegistration
+
+@Html.Partial("GolfTournamentMenu")
+
+@section JavaScript{
+	<script src="https://js.braintreegateway.com/v1/braintree.js"></script>
+	@Scripts.Render("~/bundles/events/golf/js")
+	<script>
+		var braintree = Braintree.create('@ViewBag.ClientKey');
+		braintree.onSubmitEncryptForm('formGolfReg');
+	</script>
+}
+
+@using (Html.BeginForm("GolfTournamentRegister", "Events", FormMethod.Post, new { @id = "formGolfReg", @class = "custom", @data_abide = "" }))
+{
+
+	<div class="row">
+		<div class="large-12 columns">
+			@Html.Partial("GolfTournamentPartial", Model)
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Register" id="btnSubmit" class="button" />
+		</div>
+	</div>
+}

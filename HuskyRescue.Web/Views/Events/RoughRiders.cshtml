@@ -1,0 +1,40 @@
+﻿@model HuskyRescue.Core.ViewModel.Controllers.Events.RoughRiderRegistration
+
+<div class="row">
+	<div class="large-12 columns">
+		<img src="~/Content/Images/Controllers/Events/RoughRiders/RoughRiders.png" />
+	</div>
+</div>
+
+@using (Html.BeginForm("RoughRiders", "Events", FormMethod.Post, new { @id = "formRoughRiders", @data_abide = "" }))
+{
+	@Html.Partial("RoughRidersPartial", Model)
+}
+
+<div class="row">
+	<div class="large-12 columns">
+		@if (!Model.EventRegistration.Event.IsActive)
+		{
+			<p>
+				Our online ticket store is now closed. Last minute tickets can still be purchased by calling Jessica with the RoughRiders at 972-334-1936. Make sure you mention Texas Husky Rescue! 
+			</p>
+		}
+		<p>
+			Advance parking passes can also be purchased from Jessica (972-334-1936 or jenglish@ridersbaseball.com) with the RoughRiders for $5. Parking passes purchased the day of the game are $10. 
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<p><strong>Your tickets will be available for pickup at Will Call the day of the game.</strong></p>
+	</div>
+</div>
+
+@section JavaScript{
+	<script src="https://js.braintreegateway.com/v1/braintree.js"></script>
+	@Scripts.Render("~/bundles/events/roughriders/js")
+	<script>
+		var braintree = Braintree.create('@ViewBag.ClientKey');
+		braintree.onSubmitEncryptForm('formRoughRiders');
+	</script>
+}

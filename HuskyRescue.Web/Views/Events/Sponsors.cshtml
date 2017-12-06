@@ -1,0 +1,96 @@
+﻿@using AnimalRescue.Web.Infrastructure;
+@model IEnumerable<AnimalRescue.Web.ViewModel.Event_SponsorViewModel>
+@{
+	ViewBag.Title = "Sponsors";
+	PopulateEnumCache pCache = new PopulateEnumCache();
+	var levels = pCache.Event_SponsorshipLevelTypes;
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<div class="main-container">
+	<div class="container1">
+		<div id="header1">
+			<p id="tagline1">
+				<strong>Event Sponsors</strong>
+			</p>
+		</div>
+		<p>
+			@Html.ActionLink("New", "SponsorAdd")
+		</p>
+		<table>
+			<tr>
+				<th>Event
+				</th>
+				<th>Sponsor 
+				</th>
+				<th>Donating?
+				</th>
+				<th>Donated Amount
+				</th>
+				<th>Donation Recieved?
+				</th>
+				<th>Sponsoring?
+				</th>
+				<th>Singage Complete?
+				</th>
+				<th>Logo Received?
+				</th>
+				<th>Sponsorship
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+   {
+				<tr>
+					<td>
+						@Html.ActionLink(item.Event.Name, "Edit", new { @controller = "Events", @id = item.EventID.ToString() })
+					</td>
+					<td>
+						@if (item.PersonID != null)
+	  {
+							@Html.ActionLink(item.Entity_Person.FullName, "Edit", new { @controller = "Person", @id = item.PersonID.ToString() })
+	  }
+	  else if (item.OrganisationID != null)
+	  {
+							@Html.ActionLink(item.Entity_Organisation.BusinessName, "Edit", new { @controller = "Business", @id = item.OrganisationID.ToString() })
+	  }
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsDonating)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DonationAmount)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsDonationReceived)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsSponsoring)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsSingageComplete)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.HasLogoBeenReceived)
+					</td>
+					<td>
+						@if (item.SponsorshipLevel != null && item.SponsorshipLevel != 0)
+						{
+							var level = levels.Single(l => l.ID == item.SponsorshipLevel);
+							if (!string.IsNullOrEmpty(level.Name))
+							{
+								@Html.ActionLink(level.Name, "SponsorshipTypeEdit", new { @controller = "Events", @id = item.SponsorshipLevel.ToString() })
+							}
+						}
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "SponsorEdit", new { id = item.ID }) @*|
+						@Html.ActionLink("Details", "SponsorDetails", new { id = item.ID })*@ |
+						@Html.ActionLink("Delete", "SponsorDelete", new { id = item.ID })
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>

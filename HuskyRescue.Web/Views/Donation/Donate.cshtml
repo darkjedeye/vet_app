@@ -1,0 +1,28 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Controllers.Donation.Donation
+
+
+@section JavaScript{
+	<script src="https://js.braintreegateway.com/v1/braintree.js"></script>
+	@Scripts.Render("~/bundles/Donation/Donate/js")
+	<script>
+		var braintree = Braintree.create('@ViewBag.ClientKey');
+		braintree.onSubmitEncryptForm('formDonate');
+	</script>
+}
+
+@using (Html.BeginForm("Donate", "Donation", FormMethod.Post, new { @id = "formDonate", @class = "custom", @data_abide = "" }))
+{
+
+	<div class="row">
+		<div class="large-12 columns">
+			@Html.Partial("DonatePartial", Model)
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Submit Donation" id="btnSubmit" class="button" />
+		</div>
+	</div>
+}

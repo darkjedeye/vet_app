@@ -1,0 +1,58 @@
+﻿@model List<HuskyRescue.Core.ViewModel.Applicant>
+<table>
+	<tr>
+		<th>Actions
+		</th>
+		<th>Name
+		</th>
+		<th>Date Submitted
+		</th>
+		<th>Applied For
+		</th>
+		<th>Home Number
+			<br />
+			Cell Number
+		</th>
+		<th>Email
+		</th>
+		<th>Address
+		</th>
+	</tr>
+	@foreach (var item in Model)
+ { 
+		<tr>
+			<td>
+				@Html.ActionLink("Details", "Edit", new { ID = item.ID, PersonID = item.PersonID })
+				@*<br />
+				@Ajax.ActionLink("Delete", "Delete", new { ID = item.ID, PersonID = item.PersonID },
+		new AjaxOptions
+		{
+			Confirm = "Delete Application?",
+			HttpMethod = "Post",
+			UpdateTargetId = "divAdoptionApplicationList"
+		})*@
+			</td>
+			<td>
+				@Html.ActionLink((@item.AppNameFirst + @item.AppNameLast).ToString(), "Edit", new { @controller = "Person", @id = @item.PersonID })
+			</td>
+			<td>
+				@item.DateSubmitted.Value.Year/@item.DateSubmitted.Value.Month/@item.DateSubmitted.Value.Day
+			</td>
+			<td>
+				@item.FilterAppDogsInterestedIn
+			</td>
+			<td>
+				@item.AppHomePhone
+				<br />
+				@item.AppCellPhone
+			</td>
+			<td>
+				<a href="mailto:@item.AppEmail">@item.AppEmail</a>
+			</td>
+			<td>
+
+				<a href="https://maps.google.com/maps?q=@item.AppAddressStreet1.Replace(' ', '+'),+@item.AppAddressCity.Replace(' ', '+'),+@item.AppAddressZIP,+@item.AppAddressStateId" target="_blank">@item.AppAddressFull</a>
+			</td>
+		</tr>
+ }
+</table>

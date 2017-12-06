@@ -1,0 +1,227 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@using HuskyRescue.Web.Core;
+@model HuskyRescue.Core.ViewModel.Entity.Person
+
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.BaseID)
+@Html.HiddenFor(model => model.Base.ID)
+
+<div class="row">
+	<div class="large-6 small-12 columns">
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					<div class="row ">
+						<div class="large-12 small-12 columns ">
+							<div class="large-2 small-6 columns">
+								@Html.CheckBoxFor(model => model.Base.IsActive)
+								@Html.LabelFor(model => model.Base.IsActive, new { @class = "checkboxinlineblock" })
+								@Html.ValidationMessageFor(model => model.Base.IsActive)
+							</div>
+							<div class="large-3 small-6 columns">
+								@if (Model.Base.IsActive == true)
+		{
+									@Html.TextBoxFor(model => model.Base.DateActive, new { @Value = Model.Base.DateActive.Value.ToString("d"), @class = "datepicker2" })
+		}
+		else
+		{
+									@Html.TextBoxFor(model => model.Base.DateInActive, new { @Value = Model.Base.DateInActive.Value.ToString("d"), @class = "datepicker2" })
+		}
+							</div>
+							<div class="large-3 small-6 columns">
+								@Html.CheckBoxFor(model => model.Base.IsMailable)
+								@Html.LabelFor(model => model.Base.IsMailable, new { @class = "checkboxinlineblock" })
+								@Html.ValidationMessageFor(model => model.Base.IsMailable)
+							</div>
+							<div class="large-3 small-6 columns">
+								@Html.CheckBoxFor(model => model.Base.IsEmailable)
+								@Html.LabelFor(model => model.Base.IsEmailable, new { @class = "checkboxinlineblock" })
+								@Html.ValidationMessageFor(model => model.Base.IsEmailable)
+							</div>
+							<div class="large-1 columns"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					<div class="row ">
+						<div class="large-4 small-6 columns">
+							@Html.LabelFor(model => model.FirstName)
+							@Html.TextBoxFor(model => model.FirstName, new { @class = "name" })
+							@Html.ValidationMessageFor(model => model.FirstName)
+						</div>
+						<div class="large-4 small-6 columns">
+							@Html.LabelFor(model => model.LastName)
+							@Html.TextBoxFor(model => model.LastName, new { @class = "name" })
+							@Html.ValidationMessageFor(model => model.LastName)
+						</div>
+						<div class="large-3 small-6 columns">
+							@Html.LabelFor(model => model.LicenseNumber)
+							@Html.TextBoxFor(model => model.LicenseNumber)
+							@Html.ValidationMessageFor(model => model.LicenseNumber)
+						</div>
+						<div class="large-1 small-6 columns"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					<div class="row ">
+						<div class="large-12 small-12 columns">
+							<div class="row">
+								<div class="large-12 small-12 columns">
+									<label>Phone(s)</label>
+								</div>
+							</div>
+
+							@for (int i = 0; i < Model.Base.PhoneNumbers.Count; i++)
+	   {
+								<div class="row">
+									<div class="large-9 small-12 columns">
+										@Html.HiddenFor(model => model.Base.PhoneNumbers[i].ID)
+										@Html.HiddenFor(model => model.Base.PhoneNumbers[i].EntityID)
+										@Html.TextBoxFor(model => model.Base.PhoneNumbers[i].Number, new { @class = "phoneNumber2" })
+										@Html.DropDownListFor(model => model.Base.PhoneNumbers[i].Type, Model.Base.PhoneNumbers[i].PhoneNumberTypeList, "--select--")
+										@Html.ValidationMessageFor(model => model.Base.PhoneNumbers[i].Number)
+									</div>
+									<div class="large-3 columns"></div>
+								</div>
+	   }
+						</div>
+					</div>
+					<div class="row ">
+						<div class="large-12 small-12 columns">
+							<div class="row">
+								<div class="large-12 small-12 columns">
+									<label>Email(s)</label>
+								</div>
+							</div>
+
+							@for (int i = 0; i < Model.Base.EmailAddresses.Count; i++)
+	   {
+								<div class="row">
+									<div class="large-9 small-12 columns">
+										@Html.HiddenFor(model => model.Base.EmailAddresses[i].ID)
+										@Html.HiddenFor(model => model.Base.EmailAddresses[i].EntityID)
+										@Html.TextBoxFor(model => model.Base.EmailAddresses[i].Address, new { @class = "email" })
+										@Html.DropDownListFor(model => model.Base.EmailAddresses[i].Type, Model.Base.EmailAddresses[i].EmailTypeList, "--select--")
+										@Html.ValidationMessageFor(model => model.Base.EmailAddresses[i].Address)
+									</div>
+									<div class="large-3 columns"></div>
+								</div>
+	   }
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					@for (int i = 0; i < Model.Base.Addresses.Count; i++)
+	 {
+						@Html.HiddenFor(model => model.Base.Addresses[i].ID)
+						@Html.HiddenFor(model => model.Base.Addresses[i].EntityID)
+						<div class="row">
+							<div class="large-2 small-4 columns">
+								@Html.LabelFor(model => model.Base.Addresses[i].AddressTypeList)
+								@Html.DropDownListFor(model => model.Base.Addresses[i].Type, Model.Base.Addresses[i].AddressTypeList)
+								@Html.ValidationMessageFor(model => model.Base.Addresses[i].AddressTypeList)
+							</div>
+							<div class="large-5 small-8 columns">
+								@Html.LabelFor(model => model.Base.Addresses[i].Street)
+								@Html.EditorFor(model => model.Base.Addresses[i].Street)
+								@Html.ValidationMessageFor(model => model.Base.Addresses[i].Street)
+							</div>
+							<div class="large-5 small-12 columns">
+								@Html.LabelFor(model => model.Base.Addresses[i].Street2)
+								@Html.EditorFor(model => model.Base.Addresses[i].Street2)
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-6 small-12 columns">
+								@Html.LabelFor(model => model.Base.Addresses[i].City)
+								@Html.EditorFor(model => model.Base.Addresses[i].City)
+								@Html.ValidationMessageFor(model => model.Base.Addresses[i].City)
+							</div>
+							<div class="large-4 small-6 columns">
+								@Html.LabelFor(model => model.Base.Addresses[i].AddressStateList)
+								@Html.DropDownListFor(model => model.Base.Addresses[i].StateID, Model.Base.Addresses[i].AddressStateList, "--select one--")
+								@Html.ValidationMessageFor(model => model.Base.Addresses[i].AddressStateList)
+							</div>
+							<div class="large-2 small-3 columns">
+								@Html.LabelFor(model => model.Base.Addresses[i].ZIP)
+								@Html.TextBoxFor(model => model.Base.Addresses[i].ZIP, new { @class = "zip" })
+								@Html.ValidationMessageFor(model => model.Base.Addresses[i].ZIP)
+							</div>
+							<div class="small-3 columns"></div>
+						</div>
+	 }
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					@Html.LabelFor(model => model.Base.Comments)
+					@Html.TextAreaFor(model => model.Base.Comments)
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="large-6 small-12 columns">
+		<div class="row">
+			<div class="large-12 small-12 columns">
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<div class="panel">
+					<div class="row">
+						<div class="large-5 small-12 columns">
+							<div class="row">
+								<div class="large-6 small-6 columns">
+									<label for="">Adoption App Received?</label>
+								</div>
+								<div class="large-6 small-6 columns">
+									<input type="checkbox" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-6 small-6 columns">
+									<label for="">Adoption Status</label>
+								</div>
+								<div class="large-6 small-6 columns">
+									<select>
+										<option>--select--</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="large-6 small-6 columns">
+									<p><a href="#">Online Application</a></p>
+								</div>
+								<div class="large-6 small-6 columns">
+									<p><a href="#">PDF Application</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="large-7 small-12 columns">
+							<div class="row">
+								<div class="large-12 small-12 columns">
+									<textarea></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

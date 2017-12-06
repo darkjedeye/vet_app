@@ -1,0 +1,23 @@
+﻿@model HuskyRescue.Core.ViewModel.PetFinder_PetRecord
+@if (Model != null)
+{
+	<h5 style="text-align: center" class="subheader">@Html.DisplayFor(model => model.Name)</h5>
+	<div class="display-label" style="">
+		<img src="@Html.Raw(Model.PictureUrlsThumb.First())" class="imgl"/>
+		@Html.Raw(Model.ShortDescription) ... 
+	</div>
+	<div>
+		<a href="@Model.Link" class="tiny button round secondary text-center" target="_blank">See @Html.DisplayFor(model => model.Name)'s Full Profile</a>
+	</div>
+}
+else
+{
+	<div class="actions">
+		<ul>
+			<li>
+				@Html.ActionLink("Read more about fostering for us", "Fostering", "Info", new { @class = "read_more" })
+			</li>
+		</ul>
+	</div>
+}
+

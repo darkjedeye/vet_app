@@ -1,0 +1,41 @@
+/* 
+
+jFlow Plus v2 Demo CSS 
+
+Description: Demonstation CSS for jFlow Plus
+
+Creator: Devin Walker
+
+Date: July 29, 2010
+
+
+*/
+
+#sliderContainer { width: 960px; height: 450px; position: relative; border-top: 5px solid #999; border-bottom: 5px solid #999; margin: 0 auto; }
+.slideContent {  background:url("/Content/images/jQuery/Plugins/jFlow/contentBg.png") repeat scroll 0 0 transparent; position: absolute; bottom:0px; right:0px; padding: 10px; width: 920px; }
+.slide h3 {  font: 26px/1em 'Rokkitt', serif; color: #FFF;  margin: 0 0 5px 0; }
+.slide p { font-size: 14px; color: #FFF; margin: 0; }
+.jFlowSlideContainer { overflow: hidden; }
+.jFlowSlideContainer a { color: #F90; text-decoration: none; font-style: italic; }
+.jFlowSlideContainer a:hover { text-decoration: none; }
+.jFlowSlideContainer a:focus { position: relative; top: 1px; }
+.jFlowNext { background:url("/Content/images/jQuery/Plugins/jFlow/arrows.png") no-repeat scroll 0 -35px transparent; height:130px; position:absolute; top:185px; right: -50px; width:50px; cursor:pointer; }
+.jFlowPrev { background:url("/Content/images/jQuery/Plugins/jFlow/arrows.png") no-repeat scroll -84px -35px transparent; height:130px; position:absolute; top:185px; left: -50px; width:50px; cursor:pointer; }
+.jFlowPrev:hover { background-position: -84px -235px; }
+.jFlowNext:hover { background-position: 0px -235px; }
+
+/* Custom */
+#slide1 span,#slide2 span,#slide3 span{background:url(/Content/images/jQuery/Plugins/jFlow/contentBg.png) repeat top left transparent;position:absolute;bottom:20px;right:20px;padding:10px}
+#slide1 .slideheading,#slide2 .slideheading,#slide3 .slideheading{font-family:"Franklin Gothic", Georgia, serif;color:#FFF;font-size:35px;letter-spacing:2px;margin:0 0 10px}
+#slide1 p,#slide2 p,#slide3 p{font-family:'Franklin Gothic', Georgia, serif;color:#FFF;margin:0}
+#mySlides{font-family:Verdana, Arial, sans-serif;color:#FFF}
+.container1 .slideheading{letter-spacing:2px;text-shadow:0px 5px 5px #333}
+/* End Custom */
+
+
+/* controller pagination */
+
+#myController {position: absolute; top: 5px; right: 5px; }
+.jFlowControl { background:url("/Content/images/jQuery/Plugins/jFlow/bullet.png") no-repeat scroll 0px 0px transparent;  float: left; width: 15px; height: 15px;}
+.jFlowControl:hover { background-position: -32px 0px; cursor: pointer; }
+.jFlowSelected, .jFlowSelected:hover {background-position: -15px 0px;   }

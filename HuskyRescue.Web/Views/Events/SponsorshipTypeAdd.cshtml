@@ -1,0 +1,46 @@
+﻿@model HuskyRescue.Core.ViewModel.Event_SponsorshipLevelTypesViewModel
+
+@{
+    ViewBag.Title = "SponsorshipTypeAdd";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<h2>SponsorshipTypeAdd</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+	<fieldset>
+        <legend>Event_SponsorshipLevelTypesViewModel</legend>
+		
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SponsorAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SponsorAmount)
+            @Html.ValidationMessageFor(model => model.SponsorAmount)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "SponsorshipTypes")
+</div>

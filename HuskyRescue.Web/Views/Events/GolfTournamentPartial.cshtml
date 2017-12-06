@@ -1,0 +1,275 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Controllers.Events.GolfRegistration
+
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.EventRegistration.Id)
+@Html.HiddenFor(model => model.EventRegistration.EventId)
+@Html.HiddenFor(model => model.EventRegistration.Event.TicketPrice)
+@Html.HiddenFor(model => model.EventRegistration.TicketsBought)
+@Html.HiddenFor(model => model.EventRegistration.AmountPaid)
+@Html.HiddenFor(model => model.EventRegistration.PaymentTransactionId)
+@Html.HiddenFor(model => model.IsAdminView)
+@Html.HiddenFor(model => model.ShowPaymentSection)
+<div class="row">
+	<div class="large-2 columns">
+		@Html.LabelFor(model => model.EventRegistration.intListPlayerCount)
+		@Html.DropDownListFor(model => model.EventRegistration.intListPlayerCount, Model.EventRegistration.ListPlayerCount, new { @class = "no-custom" })
+		@Html.ValidationMessageFor(model => model.EventRegistration.intListPlayerCount)
+	</div>
+	<div class="large-10 columns"></div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<h4 class="subheader">Golfer Information</h4>
+	</div>
+</div>
+
+@for (var i = 0; i < Model.EventRegistration.Attendees.Count; i++)
+{
+
+	<div id="PlayerNumber@(i + 1)">
+		<div class="row">
+			<div class="large-12 columns">
+				<h6 class="subheader">
+					@switch (i)
+	 {
+		 case 0:
+	@Html.Raw("<h6 class='subheader'>First golfer - primary contact if more than one player registered</h6>")
+			 break;
+		 case 1:
+	@Html.Raw("<h6 class='subheader'>Second golfer</h6>")
+			 break;
+		 case 2:
+	@Html.Raw("<h6 class='subheader'>Third golfer</h6>")
+			 break;
+		 case 3:
+	@Html.Raw("<h6 class='subheader'>Fourth golfer</h6>")
+			 break;
+	 }
+				</h6>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-6 columns">
+				@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Id)
+				@Html.HiddenFor(model => model.EventRegistration.Attendees[i].PersonId)
+				@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.ID)
+				@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.BaseID)
+				@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.ID)
+
+				@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.FirstName)
+			</div>
+			<div class="large-6 columns">
+				@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.LastName)
+			</div>
+		</div>
+		@for (var j = 0; j < Model.EventRegistration.Attendees[i].Person.Base.Addresses.Count; j++)
+  {
+
+			<div class="row">
+				<div class="large-4 small-12 columns">
+					@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].ID)
+					@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].EntityID)
+					@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].Type)
+
+					@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].Street)
+				</div>
+				<div class="large-4 small-5 columns">
+					@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].City)
+				</div>
+				<div class="large-2 small-4 columns">
+					@Html.LabelFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].StateID)
+					@Html.DropDownListFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].StateID, Model.EventRegistration.Attendees[i].Person.Base.Addresses[j].AddressStateList, "-- select one --", new { @class = "no-custom" })
+					<small class="error">State is required</small>
+				</div>
+				<div class="large-2 small-3 columns">
+					@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.Base.Addresses[j].ZIP, new { @class = "zip" })
+				</div>
+			</div>
+  }
+		<div class="row">
+			<div class="large-4 small-12 columns">
+				@for (var j = 0; j < Model.EventRegistration.Attendees[i].Person.Base.EmailAddresses.Count; j++)
+	{
+	@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.EmailAddresses[j].ID)
+	@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.EmailAddresses[j].EntityID)
+	@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.EmailAddresses[j].Type)
+	@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.Base.EmailAddresses[j].Address)
+	}
+			</div>
+			<div class="large-2 small-5 columns">
+				@for (var j = 0; j < Model.EventRegistration.Attendees[i].Person.Base.PhoneNumbers.Count; j++)
+	{
+	@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.PhoneNumbers[j].ID)
+	@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.PhoneNumbers[j].EntityID)
+	@Html.HiddenFor(model => model.EventRegistration.Attendees[i].Person.Base.PhoneNumbers[j].Type)
+	@Html.FoundationTextBoxFor(model => model.EventRegistration.Attendees[i].Person.Base.PhoneNumbers[j].Number, new { @class = "phoneNumber2" })
+	}
+			</div>
+			<div class="large-6 small-7 columns"></div>
+		</div>
+	</div>
+}
+<hr />
+<div class="row">
+	<div class="large-12 columns">
+		<label for="EventRegistration_Comments">Let us know if you have any comments, suggestions, or requests (such as any other player(s) you want to be paired with)</label>
+		@Html.FoundationTextAreaFor(model => model.EventRegistration.Comments, false)
+	</div>
+</div>
+
+<hr />
+
+@if (Model.IsAdminView)
+{
+	<div class="row">
+		<div class="large-12 columns">
+			@Html.LabelFor(model => model.EventRegistration.HasPaid)
+			@Html.DisplayFor(model => model.EventRegistration.HasPaid)
+		</div>
+	</div>
+	if (Model.EventRegistration.HasPaid != null)
+	{
+		if (Model.EventRegistration.HasPaid.Value == true)
+		{
+			<div class="row">
+				<div class="large-12 columns">
+					@Html.LabelFor(model => model.EventRegistration.AmountPaid)
+					@Html.DisplayFor(model => model.EventRegistration.AmountPaid)
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					@Html.LabelFor(model => model.EventRegistration.PaymentTransactionId)
+					@Html.DisplayFor(model => model.EventRegistration.PaymentTransactionId)
+				</div>
+			</div>
+		}
+	}
+}
+
+@if (Model.ShowPaymentSection)
+{
+	<div id="CreditCardPayInfo">
+		<div class="row">
+			<div class="large-12 columns">
+				<h4 class="subheader">Payment <small>required</small></h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-3 small-12 columns">
+				<p id="amountowned"></p>
+			</div>
+			<div class="large-4 columns">
+				<label for="prefillplayerlist">Populate payment information from </label>
+				<select id="prefillplayerlist" name="prefillplayerlist" class="no-custom">
+					<option value="">-- select player -- </option>
+				</select>
+			</div>
+			<div class="large-5 columns">
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-6 columns">
+				@Html.HiddenFor(model => model.BillingInformation.Person.ID)
+				@Html.HiddenFor(model => model.BillingInformation.Person.BaseID)
+				@Html.HiddenFor(model => model.BillingInformation.Person.Base.ID)
+
+				@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.FirstName)
+			</div>
+			<div class="large-6 columns">
+				@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.LastName)
+			</div>
+		</div>
+		@for (var j = 0; j < Model.BillingInformation.Person.Base.Addresses.Count; j++)
+		{
+
+			<div class="row">
+				<div class="large-4 small-12 columns">
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.Addresses[j].ID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.Addresses[j].EntityID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.Addresses[j].Type)
+
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.Addresses[j].Street)
+				</div>
+				<div class="large-4 small-5 columns">
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.Addresses[j].City)
+				</div>
+				<div class="large-2 small-4 columns">
+					@Html.LabelFor(model => model.BillingInformation.Person.Base.Addresses[j].StateID)
+					@Html.DropDownListFor(model => model.BillingInformation.Person.Base.Addresses[j].StateID, Model.BillingInformation.Person.Base.Addresses[j].AddressStateList, "-- select one --", new {@class = "no-custom"})
+					<small class="error">State is required</small>
+				</div>
+				<div class="large-2 small-3 columns">
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.Addresses[j].ZIP, new {@class = "zip"})
+				</div>
+			</div>
+		}
+		<div class="row">
+			<div class="large-4 small-12 columns">
+				@for (var j = 0; j < Model.BillingInformation.Person.Base.EmailAddresses.Count; j++)
+				{
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].ID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].EntityID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].Type)
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.EmailAddresses[j].Address, new {notrequired = ""})
+				}
+			</div>
+			<div class="large-2 small-5 columns">
+				@for (var j = 0; j < Model.BillingInformation.Person.Base.PhoneNumbers.Count; j++)
+				{
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].ID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].EntityID)
+					@Html.HiddenFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].Type)
+					@Html.FoundationTextBoxFor(model => model.BillingInformation.Person.Base.PhoneNumbers[j].Number, new {@class = "phoneNumber2", notrequired = ""})
+				}
+			</div>
+			<div class="large-6 small-7 columns"></div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns">
+				<br />
+				<ul class="inline-list">
+					<li>
+						<div class="input-wrapper">
+							@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardNumber, new {@name = "", autocomplete = "off", data_encrypted_name = "number", @class = "CreditCardNumber"})
+						</div>
+					</li>
+					<li>
+						<div class="input-wrapper">
+							@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardCvv, new {name = "", autocomplete = "off", data_encrypted_name = "cvv", @class = "CreditCardCVV"})
+						</div>
+					</li>
+					<li>
+						<div class="input-wrapper">
+							@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardExpireMonth, new {name = "", autocomplete = "off", data_encrypted_name = "month", @class = "CreditCardExpireMonth"})
+						</div>
+					</li>
+					<li>
+						<div class="input-wrapper">
+							@Html.FoundationTextBoxFor(model => model.BillingInformation.CreditCardExpireYear, new {name = "", autocomplete = "off", data_encrypted_name = "year", @class = "CreditCardExpireYear"})
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<ul class="inline-list">
+					<li style="margin-right: 2px; font-size: 0.875em">Accepted Cards: </li>
+					<li style="margin-left: 0;">
+						<img src="~/Content/Images/icons/cards/american_express.gif" alt="American Express" /></li>
+					<li style="margin-left: 0;">
+						<img src="~/Content/Images/icons/cards/discover.gif" alt="Discover Network" /></li>
+					<li style="margin-left: 0;">
+						<img src="~/Content/Images/icons/cards/jcb.gif" alt="JCB" /></li>
+					<li style="margin-left: 0;">
+						<img src="~/Content/Images/icons/cards/mastercard.gif" alt="Mastercard" /></li>
+					<li style="margin-left: 0;">
+						<img src="~/Content/Images/icons/cards/visa.gif" alt="Visa" /></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,20 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.Applicant
+@{
+	ViewBag.Title = "Apply";
+}
+
+@section JavaScript
+{
+	@Scripts.Render("~/bundles/adoption/apply/js")
+}
+
+@using (Html.BeginForm("Apply", "Foster", FormMethod.Post, new { @id = "formApp", @data_abide = "" }))
+{
+	@Html.EditorFor(model => model)
+
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Submit" id="btnSubmit" class="medium button"/>
+		</div>
+	</div>
+}

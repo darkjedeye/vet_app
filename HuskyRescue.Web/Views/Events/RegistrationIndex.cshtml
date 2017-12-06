@@ -1,0 +1,151 @@
+﻿@model IEnumerable<HuskyRescue.Core.ViewModel.Entity.EventRegistration>
+
+@{
+	ViewBag.Title = "Event Registration List";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+
+@section JavaScript
+{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// prepare the data
+			var source =
+				{
+					datatype: "json",
+					datafields: [
+						 { name: 'Id', type: 'string' },
+						 { name: 'EventId', type: 'string' },
+						 { name: 'EventName', type: 'string' },
+						 { name: 'IsActive', type: 'bool' },
+						 { name: 'IsActiveGolf', type: 'bool' },
+						 { name: 'IsActiveRaffle', type: 'bool' },
+						 { name: 'IsActiveRoughRiders', type: 'bool' },
+						 { name: 'DateRegistrationSubmitted', type: 'date' },
+						 { name: 'PaymentMethod', type: 'string' },
+						 { name: 'NumberTicketsPurchased', type: 'number' },
+						 { name: 'NumberOfAttendees', type: 'number' }
+						 //{ name: 'Attendees', type: 'string' }
+					],
+					url: '/Events/RegistrationIndex?type=1'
+				};
+
+			var editLinkRenderer = function (row, column, value) {
+				if (value.indexOf('#') != -1) {
+					value = value.substring(0, value.indexOf('#'));
+				}
+				var link = "/Events/RegistrationEdit?id=" + value;
+
+				if (value != "") {
+					return "<a href='" + link + "'>" + "Edit" + "</a>"
+				}
+				else {
+					return "";
+				}
+			}
+
+			var dataAdapter = new $.jqx.dataAdapter(source);
+
+			// initialize jqxGrid
+			$("#grid").jqxGrid(
+				{
+					width: '100%',
+					source: dataAdapter,
+					sortable: true,
+					filterable: true,
+					pageable: true,
+					autoheight: true,
+					altrows: true,
+					autorowheight: true,
+					pagesize: 25,
+					pagesizeoptions: ['25', '50', '100'],
+					columns: [
+						{ text: 'Action', datafield: 'Id', cellsrenderer: editLinkRenderer, width: 100 },
+						{ text: "Event Name", datafield: "EventName" },
+						{ text: "Active Event?", datafield: "IsActive", threestatecheckbox: true, columntype: "checkbox", width: 100 },
+						{ text: "Golf?", datafield: "IsActiveGolf", threestatecheckbox: true, columntype: "checkbox", width: 100 },
+						{ text: "Raffle?", datafield: "IsActiveRaffle", threestatecheckbox: true, columntype: "checkbox", width: 100 },
+						{ text: "RoughRiders?", datafield: "IsActiveRoughRiders", threestatecheckbox: true, columntype: "checkbox", width: 100 },
+						{ text: "Date Registered", datafield: "DateRegistrationSubmitted", cellsformat: "d", width: 150 },
+						{ text: "Payment Method", datafield: "PaymentMethod", width: 150 },
+						{ text: "# Tickets", datafield: "NumberTicketsPurchased", cellsalign: 'right', align: 'right', width: 100 },
+						{ text: "# Attendees", datafield: "NumberOfAttendees", cellsalign: 'right', align: 'right', width: 100 }
+						//{ text: "Attendees", datafield: "Attendees" }
+					]
+				});
+		});
+	</script>
+}
+
+<div id="grid"></div>
+
+
+@*
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Event Registration List</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<table>
+			<tr>
+				<th>Event Name</th>
+				<th>Active Event?</th>
+				<th>Golf Event?</th>
+				<th>RoughRiders Event?</th>
+				<th>Date Submitted</th>
+				<th>Payment Method</th>
+				<th># Tickets Bought</th>
+				<th># Attendee(s)</th>
+				<th>Attendees(s)</th>
+				<th>Action</th>
+			</tr>
+			@foreach (var item in Model)
+   {
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Event.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Event.IsActive)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Event.IsActiveGolfEvent)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Event.IsActiveRoughRidersEvent)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DateSubmitted)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.PaymentMethodText)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.TicketsBought)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Attendees.Count)
+					</td>
+					<td>
+						@if (item.Attendees != null)
+	  {
+		  foreach (var attendee in item.Attendees)
+		  {
+							<span>@Html.ActionLink(attendee.Person.FullName, "Edit", new { @controller = "Person", @id = attendee.PersonId })</span>
+							<br />
+		  }
+	  }
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "RegistrationEdit", new { id = item.Id }) |
+						@Html.ActionLink("Delete", "RegistrationDelete", new { id = item.Id })
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>*@

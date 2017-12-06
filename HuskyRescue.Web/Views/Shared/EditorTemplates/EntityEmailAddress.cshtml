@@ -1,0 +1,20 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.EntityEmailAddress
+
+<div>
+	<div class="row">
+		<div class="large-3 small-3 columns">
+			@Html.HiddenFor(model => model.ID)
+			@Html.HiddenFor(model => model.EntityID)
+
+			@Html.LabelFor(model => model.EmailTypeList)
+			@Html.DropDownListFor(model => model.Type, Model.EmailTypeList, "--select one--")
+		</div>
+		<div class="large-4 small-9 columns">
+			@Html.LabelFor(model => model.Address)
+			@Html.TextBoxFor(model => model.Address, new { @class = "email" })
+			@Html.ValidationMessageFor(model => model.Address)
+		</div>
+		<div class="large-5 columns"></div>
+	</div>
+</div>

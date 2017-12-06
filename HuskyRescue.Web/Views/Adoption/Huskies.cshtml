@@ -1,0 +1,116 @@
+﻿@model HuskyRescue.Core.ViewModel.Controllers.Adoption.Huskies
+
+@Styles.Render("~/bundles/adoption/huskies/css")
+
+@section JavaScript{
+	@Scripts.Render("~/bundles/adoption/huskies/js")
+
+	<script type="text/javascript">
+		var animalsObj = JSON.parse(@Html.Raw(Json.Encode(Model.AnimalsJson)));
+	</script>
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Adoptable Huskies</h3>
+	</div>
+</div>
+<div class="main-wrapper">
+	<div class="row">
+		<div class="large-2 columns">
+			<div style="min-width: 150px">
+				<img class="center" src="/Content/images/Controllers/Adoption/Huskies/FaceShot_01.jpg" width="250" />
+			</div>
+		</div>
+		<div class="large-8 columns">
+			<div class="page_content content_overflow">
+				<p class="strong">Adoption fees are as follows:</p>
+				<ul class="nomargin">
+					<li>$250<span class="strong">*</span> for males</li>
+					<li>$275<span class="strong">*</span> for females</li>
+					<li>$300<span class="strong">*</span> for puppies under 6 months</li>
+				</ul>
+				<p><span class="strong">*</span>The fee is an extra $10 (260/285/310) if paying by PayPal.</p>
+				<p>
+					$50 of each adoption fee is non-refundable if the dog is returned during the trial period.
+				</p>
+				<p>
+					If you are interested in adopting a husky, review our @Html.ActionLink("adoption process", "Process", "Adoption") and then @Html.ActionLink("click here to apply online.", "Apply", "Adoption")
+				</p>
+			</div>
+		</div>
+		<div class="large-2 columns">
+			<div style="min-width: 150px">
+				<img class="center" src="/Content/images/Controllers/Adoption/Huskies/FaceShot_14.jpg" width="250" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns" style="background-color: white; padding: 15px">
+		@for (var petCounter = 0; petCounter <= Model.AnimalsCountPadded; petCounter++)
+		{
+			if (petCounter%8 == 0)
+			{
+				// start a new row for the first element and before every 9th animal
+				@Html.Raw("<div class='row equalheight'>");
+			}
+	  
+			@Html.Raw("<div class='large-3 medium-6 columns'>");
+				@Html.Raw("<div class='row'>");
+					@Html.Raw("<div class='large-6 small-6 columns heightset'>");
+					if (petCounter < Model.Animals.Count)
+					{
+						Html.RenderPartial("_Animal", Model.Animals[petCounter]);
+						petCounter++;
+					}
+					@Html.Raw("</div>");
+					@Html.Raw("<div class='large-6 small-6 columns heightset'>");
+					if (petCounter < Model.Animals.Count)
+					{
+						Html.RenderPartial("_Animal", Model.Animals[petCounter]);
+					}
+					@Html.Raw("</div>");
+				@Html.Raw("</div>");
+			@Html.Raw("</div>");
+
+			if ((petCounter + 1) % 8 == 0)
+			{
+				// close row div after 8th animal
+				@Html.Raw("</div>");
+			}
+		}
+	</div>
+</div>
+
+<div id="animalDetailModal" class="reveal-modal medium" data-reveal>
+	<a class="close-reveal-modal">&#215;</a>
+	<div class="row">
+		<div class="large-12 columns">
+			<h2 id="petName"></h2>
+			<hr/>
+			<h6 class="subheader" id="petSexAge" style="text-align: center"></h6>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="camera_wrap" id="petPictures">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div id="petBio"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div id="petAttributes"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<a class="tiny button" id="revealClose">Close</a>
+		</div>
+	</div>
+</div>

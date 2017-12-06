@@ -1,0 +1,19 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Entity.ApplicantVeterinarian
+<div class="row">
+	<div class="large-4 columns">
+		<div class="input-wrapper">
+			@Html.FoundationTextBoxFor(model => model.NameOffice)
+		</div>
+	</div>
+	<div class="large-4 columns">
+		<div class="input-wrapper">
+			@Html.FoundationTextBoxFor(model => model.NameDr)
+		</div>
+	</div>
+	<div class="large-4 columns">
+		<div class="input-wrapper">
+			@Html.FoundationTextBoxFor(model => model.PhoneNumber, new { @class = "phoneNumber" })
+		</div>
+	</div>
+</div>

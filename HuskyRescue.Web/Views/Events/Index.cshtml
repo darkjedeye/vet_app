@@ -1,0 +1,68 @@
+﻿@model IEnumerable<HuskyRescue.Core.ViewModel.Entity.Event>
+@{
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Events</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="large-2 small-3 columns">
+		@Html.ActionLink("Create New Event", "Create")
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<table>
+			<tr>
+				<th>Date Of Event</th>
+				<th>Is Active</th>
+				<th>Name</th>
+				<th># of Registrations</th>
+				<th>Location</th>
+				<th></th>
+			</tr>
+			@foreach (var item in Model)
+			{
+				var Event = item;
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.DateOfEvent)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsActive)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Registrations.Count)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Business.BusinessName)
+					</td>
+					<td>
+						<div class="button-bar">
+							<ul class="button-group even-2">
+								<li>
+									@Html.ActionLink("Edit", "Edit", new { @id = item.Id }, new{ @class = "button medium" }) 
+								</li>
+								<li>
+									@using (Html.BeginForm("Delete", "Events", FormMethod.Post))
+									{
+										@Html.AntiForgeryToken()
+										@Html.Hidden("Id", item.Id)
+										<button name="deleteButton-@Event.Id" class="button medium alert" type="submit">Delete</button>
+									}
+								</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+   }
+		</table>
+	</div>
+</div>
+

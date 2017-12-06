@@ -1,0 +1,38 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.Person
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+
+<<<<<<< HEAD
+@using (Html.BeginForm("Edit", "Person", FormMethod.Post, new { @class = "custom" }))
+=======
+@using (Html.BeginForm("Edit", "Person", FormMethod.Post, new { @class = "" }))
+>>>>>>> release/v0.2.5
+{
+
+	<div class="row">
+		<div class="large-12 columns text-center">
+			<h3>@Html.DisplayFor(model => model.FullName)</h3>
+		</div>
+	</div>
+<<<<<<< HEAD
+
+	@Html.EditorForModel()
+=======
+	@Html.Partial("EntityPerson", Model, ViewData)
+	
+	@*@Html.EditorForModel()*@
+>>>>>>> release/v0.2.5
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<input type="submit" value="Save" id="btnSubmit" class="large button expand" />
+		</div>
+	</div>
+<<<<<<< HEAD
+}
+=======
+}
+<script src="~/Scripts/Controllers/Person/Person.js"></script>
+>>>>>>> release/v0.2.5

@@ -1,0 +1,68 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model HuskyRescue.Core.ViewModel.Blog.Post
+
+<div class="content box">
+	<div class="5grid">
+		<div class="row">
+			<div class="12u">
+				<!--Heading-->
+				<div id="blog_link">
+					<p>
+						<strong>@Html.BlogPostLink(Model)</strong>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="12u">
+				<div class="blog_post">
+					<div class="5grid">
+						<div class="row">
+							<!--Tags-->
+							<div class="1u">
+								<div class="blog_post-tag">
+									<span>Tags:</span>
+								</div>
+							</div>
+							<div class="8u">
+								<div class="blog_post-tags">
+									@Html.Tags(Model.Tags)
+								</div>
+							</div>
+							<!--Posted date-->
+							<div class="3u">
+								<div class="blog_post-date">
+									@Model.DateCreated.ToConfigLocalTime()
+								</div>
+							</div>
+						</div>
+						<!--Short Description-->
+						<div class="row">
+							<div class="12u">
+								<div class="blog_post-content">
+									@Model.PostContent
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="12u">
+				<div class="blog_post-foot">
+					@Html.ActionLink("continue...", "post", "blog",
+				new
+				{
+					year = Model.DateCreated.Year,
+					month = Model.DateCreated.Month,
+					day = Model.DateCreated.Day,
+					title = Model.Slug
+				},
+				new { title = "continue...", @class = "blog" }
+			)
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

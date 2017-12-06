@@ -1,0 +1,29 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@model List<HuskyRescue.Core.ViewModel.Entity.Applicant>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_LayoutAdminF.cshtml";
+}
+<fieldset>
+	<legend>Adoption Applications</legend>
+	<div class="main-container">
+		<div class="container1">
+			<div id="header1">
+				<p id="tagline1">
+					<strong>Adoption Applications</strong>
+				</p>
+			</div>
+			<div id="divExpenseList">    
+				@Html.Partial("AdoptionApplicationList", Model)
+			</div>
+			<p>
+				@Html.ActionLink("Create New Application", "Apply")
+			</p>
+		</div>
+	</div>
+</fieldset>
+
+
+
+

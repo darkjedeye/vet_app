@@ -1,0 +1,22 @@
+﻿@{
+	ViewBag.Title = "Calendar";
+}
+
+@Styles.Render("~/bundles/events/calendar/css")
+
+@section JavaScript
+{
+@Scripts.Render("~/bundles/events/calendar/js")
+}
+
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Calendar</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 small-12 columns">
+		<div id='calendar'></div>
+	</div>
+</div>

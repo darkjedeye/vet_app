@@ -1,0 +1,73 @@
+﻿@using HuskyRescue.Web.Infrastructure.Extensions;
+@using Recaptcha.Web.Mvc;
+@model HuskyRescue.Core.ViewModel.Entity.Contact
+@{
+	ViewBag.Title = "Email Texas Husky Rescue";
+}
+
+@section JavaScript
+{
+	@Scripts.Render("~/bundles/info/contact/js")
+}
+
+@using (Html.BeginForm("contact", "info", FormMethod.Post, new { @class = "custom", @data_abide = "", id = "contactForm" }))
+{
+	
+	<div class="row">
+		<div class="large-12 columns text-center">
+			<h3>Contact Us</h3>
+		</div>
+	</div>
+	<div class="main-wrapper">
+		<div class="row">
+			<div class="large-4 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextBoxFor(model => model.NameFirst)
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextBoxFor(model => model.NameLast)
+				</div>
+			</div>
+			<div class="large-2 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextBoxFor(model => model.Number)
+				</div>
+			</div>
+			<div class="large-2 columns"></div>
+		</div>
+		<div class="row">
+			<div class="large-4 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextBoxFor(model => model.EmailAddress)
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div class="input-wrapper">
+					<label for="ContactReasonList">Contact Reason <small>Required</small></label>
+					@Html.DropDownListFor(model => model.ContactReasonID, Model.ContactReasonList, "--contact reason--", new { @required = "", @class="no-custom" })
+					<small class="error">Reason for contact is required</small>
+				</div>
+			</div>
+			<div class="large-4 columns"></div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="input-wrapper">
+					@Html.FoundationTextAreaFor(model => model.Message, true)
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 small-12 columns" id="recaptcha">
+				@Html.Recaptcha(theme: Recaptcha.Web.RecaptchaTheme.Clean)
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns">
+				<input type="submit" value="Submit" id="btnSubmit" class="medium button"/>
+			</div>
+		</div>
+	</div>
+}

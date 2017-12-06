@@ -1,0 +1,40 @@
+﻿@model HuskyRescue.Core.ViewModel.Entity.EventRegistration
+
+@{
+	string errorMessage = string.Empty;
+	if (ViewData["ErrorMessage"] != null)
+	{
+
+	}
+}
+
+@Html.Partial("RaffleMenu")
+
+@if (ViewData["ErrorMessage"] != null)
+{
+	<div class="row">
+		<div class="large-12">
+			<div data-alert class="alert-box alert round">@ViewData["ErrorMessage"].ToString()</div>
+		</div>
+	</div>
+}
+
+<div>
+	@Html.AntiForgeryToken()
+	@using (Html.BeginForm("RaffleTickets", "Events", FormMethod.Post, new { @id = "braintree-payment-form", @class = "custom", @data_abide = "" }))
+ {
+		@Html.Partial("RaffleTicketsPartial", Model)
+ }
+</div>
+
+@section JavaScript
+{
+	@Scripts.Render("~/bundles/events/raffle/js")
+	@Scripts.Render("~/Scripts/Controllers/Events/RaffleTickets.js")
+	
+	<script src="https://js.braintreegateway.com/v1/braintree.js"></script>
+	<script>
+		var braintree = Braintree.create('@ViewBag.ClientKey');
+		braintree.onSubmitEncryptForm('braintree-payment-form');
+	</script>
+}

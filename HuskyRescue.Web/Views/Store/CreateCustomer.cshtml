@@ -1,0 +1,36 @@
+﻿@{
+	ViewBag.Title = "CreateCustomer";
+}
+<div class="row">
+	<div class="large-12 columns text-center">
+		<h3>Confirmation</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		@if (ViewData.ContainsKey("CustomerId"))
+  {
+			<h2>Customer created with name: @ViewData["CustomerName"]</h2>
+			@Html.ActionLink("Click here to sign this Customer up for a recurring payment", "Create", "Subscriptions", new { id = ViewData["CustomerId"] }, null)
+  }
+  else
+  {
+			<h2>Error: @ViewData["Message"]</h2>
+  }
+	</div>
+</div>
+
+
+@*<div class="row">
+	<div class="large-12 columns">
+		@if (ViewData.ContainsKey("CustomerName"))
+  {
+			<h2>Customer created with name: @ViewData["CustomerName"]</h2>
+  }
+  else
+  {
+			<h2>Error: @ViewData["Message"]</h2>
+  }
+	</div>
+</div>*@

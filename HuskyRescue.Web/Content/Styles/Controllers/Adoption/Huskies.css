@@ -1,0 +1,36 @@
+﻿.animalCell {
+		width: 110px;
+		height: 195px;
+	 }
+
+	 .animalCellHover {
+		background-color:#CCC;
+		cursor:pointer;
+	 }
+
+	.animalCell table {
+		background-color: inherit;
+		margin-bottom: .25em;
+	}
+
+	.animalThumbPix {
+		/*vert-align: middle;*/
+		/*height: 120px;*/
+		width: 100px;
+		padding: 0;
+	}
+	.animalThumbPix img {
+		max-height: 120px;
+	}
+	.petSummaryText {
+		font-size: 11px;
+		text-align: center;
+	}
+
+	.petName {
+		font-weight: bold;
+	}
+
+	.petinfo {
+		
+	}

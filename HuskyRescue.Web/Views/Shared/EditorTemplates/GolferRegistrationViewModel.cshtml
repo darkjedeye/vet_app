@@ -1,0 +1,63 @@
+﻿@model HuskyRescue.Core.ViewModel.GolferRegistrationViewModel
+<script type="text/javascript">
+	jQuery(function ($) {
+		$('.phone').mask('(999) 999-9999');
+		$('.zip').mask('99999');
+	});
+
+	$(document).ready(function () {
+		$('#PlayerCount').change(
+			function () {
+				if ($(this).val() == "1") {
+					$('#PlayerNumber1').fadeIn('slow');
+					$('#PlayerNumber2').fadeOut('slow');
+					$('#PlayerNumber3').fadeOut('slow');
+					$('#PlayerNumber4').fadeOut('slow');
+				}
+				else if ($(this).val() == "4") {
+					$('#PlayerNumber1').fadeIn('slow');
+					$('#PlayerNumber2').fadeIn('slow');
+					$('#PlayerNumber3').fadeIn('slow');
+					$('#PlayerNumber4').fadeIn('slow');
+				}
+				else {
+					$('#PlayerNumber1').fadeOut('slow');
+					$('#PlayerNumber2').fadeOut('slow');
+					$('#PlayerNumber3').fadeOut('slow');
+					$('#PlayerNumber4').fadeOut('slow');
+				}
+			}
+		);
+
+		$('#PlayerCount').val(4);
+		$('#PlayerCount').trigger("change")
+	});
+</script>
+<div>
+	<p>
+		Event Date: Friday, September 16, 2011</p>
+</div>
+<div class="registration">
+	<table>
+		<tr>
+			<td class="editor-label">
+				@Html.LabelFor(model => model.ListPlayerCount)
+			</td>
+			<td class="editor-field">
+				@Html.DropDownListFor(model => model.PlayerCount, Model.ListPlayerCount)
+				@Html.ValidationMessageFor(model => model.ListPlayerCount)
+			</td>
+		</tr>
+	</table>
+	@Html.HiddenFor(model => model.ID)
+	<table>
+		<tr>
+			<td class="display-field">
+				@Html.DisplayTextFor(model => model.DateSubmitted)
+			</td>
+		</tr>
+	</table>
+	@Html.EditorFor(model => model.Golfers)
+
+	@Html.ValidationSummary()
+</div>
