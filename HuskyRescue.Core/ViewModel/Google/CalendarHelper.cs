@@ -49,8 +49,8 @@ namespace HuskyRescue.Core.ViewModel.Google
 		{
 			DateTime dt = new DateTime();
 			dt = DateTime.Now;
-			string userName = "contact@texashuskyrescue.org";
-			string password = "popcorn";
+			string userName = "eric@kleincore.co.za";
+			string password = "Mundane2";
 			string applicationName = "Agenda";
 
 			CalendarHelper.Credentials = new GDataCredentials(userName, password);
@@ -79,7 +79,7 @@ namespace HuskyRescue.Core.ViewModel.Google
 		public static List<CalendarEvent> GetUpcomingCalendarEvents(int numberOfEvents = 5)
 		{
 			if (Credentials == null)
-				Credentials = new GDataCredentials("contact@texashuskyrescue.org", "popcorn");
+				Credentials = new GDataCredentials("eric@kleincore.co.za", "mundane2");
 			if (QueryUri == null)
 				QueryUri = "http://www.google.com/calendar/feeds/" + Credentials.Username + "/public/full";
 
